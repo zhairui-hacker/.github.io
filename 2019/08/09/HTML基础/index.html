@@ -22,7 +22,7 @@
 <h2 id="基本格式："><a href="#基本格式：" class="headerlink" title="基本格式："></a>基本格式：</h2><p><code>&lt;input name =&#39;zhangsan&#39; id=&#39;username&#39; value=&#39;&#39; onchange=&#39;javascript:;&#39;&gt;</code>       <code>&lt;/input&gt;</code></p>
 <p><code>&lt;标签   属性名=&#39;属性值&#39;    onclick onxxx=方法&gt;</code>内容（元素）<code>&lt;/标签&gt;</code></p>
 <h2 id="发展历史："><a href="#发展历史：" class="headerlink" title="发展历史："></a>发展历史：</h2><p>HTML发展了5代，目前兼容或运行的HTML（4-5），浏览器多为双核心浏览器（高速：webkit/兼容：IE/Edge）</p>
-<h2 id="基本组成："><a href="#基本组成：" class="headerlink" title="基本组成："></a>基本组成：</h2><p><img src="/.com//1564487756731.png" alt></p>
+<h2 id="基本组成："><a href="#基本组成：" class="headerlink" title="基本组成："></a>基本组成：</h2><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zh4i46tyj30c0070dfs.jpg" alt></p>
 <p>HTML和Head是系统级，不显现，Head中的内容是可对影响的浏览器本身的，它具有对浏览器的控制权限，只有Body才会显现。</p>
 <p>优先级：HTML&gt;Head&gt;Body&gt;元素</p>
 <p>HTML：网页基础结构，必不可少，如果不写，浏览器在渲染时会自动补全，该标签具有很高的优先级，因此会多跟浏览器本身的可视区域形成一种关联关系。</p>
@@ -40,8 +40,7 @@
 <p>XHTML 5（微软）          2013</p>
 <h2 id="识别HTML版本-规范方法："><a href="#识别HTML版本-规范方法：" class="headerlink" title="识别HTML版本/规范方法："></a>识别HTML版本/规范方法：</h2><!doctype><p>声明HTML的版本/规范<br>声明没有具体的大小写要求，可以全大写也可以全小写<br>HTML 5: <!doctype html><br>HTML 4.01: <!doctype HTML Public “-//w3c//DTD HTML 4.1 
 Transitional //EN” “**html4/xxx.dtd”><br>XHTML 1.0: <!doctype HTML Public “-//w3c//DTD HTML 1.0 Transitional //EN” “**xhtml1/xxx.dtd”><br>微软与W3C之争：争夺规范和话语权，微软是在W3C基础上增加了自己的一些内容：自有标签库/方法库/属性库。还增加了浏览器的解释和渲染的规范和话语权：IE5/6（HTML&lt;4.01） IE7/8/9（HTML&gt;4.01&lt;XHTML1.0） IE10/11(HTML5/XHTML5)<br>浏览器的份额发生变化导致微软的IE份额下滑，最后是由苹果和谷歌联合推动webkit内核胜利。</p>
-<h2 id="Head区域："><a href="#Head区域：" class="headerlink" title="Head区域："></a>Head区域：</h2><p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564488598583.png" alt="1564488598583"></p>
-<p>Meta标签是头功能定义：定义编码/缩放比例<br>Title 页面标题定义，也是唯一一个可以直观感受到HTML<br>Script 脚本<br>Style  样式<br>Link  引用标签</p>
+<h2 id="Head区域："><a href="#Head区域：" class="headerlink" title="Head区域："></a>Head区域：</h2><p>Meta标签是头功能定义：定义编码/缩放比例<br>Title 页面标题定义，也是唯一一个可以直观感受到HTML<br>Script 脚本<br>Style  样式<br>Link  引用标签</p>
 <h2 id="Body区域："><a href="#Body区域：" class="headerlink" title="Body区域："></a>Body区域：</h2><p>各类Tags<br>按功能划分：</p>
 <p>​    1、容器标签：常用的div，p，span<br>​            2、内容标签：常用的div，p，span，input，textarea，video，audio，img<br>​            3、交互标签:  常用的input，button，a<br>标签的套路（规则）</p>
 <p>​        标准写法：<code>&lt;标签名 属性 方法&gt;&lt;/标签名&gt;</code></p>
@@ -60,7 +59,7 @@ Transitional //EN” “**html4/xxx.dtd”><br>XHTML 1.0: <!doctype HTML Public 
 <p>3、标签一般依赖于body标签</p>
 <h2 id="常用标签："><a href="#常用标签：" class="headerlink" title="常用标签："></a>常用标签：</h2><h4 id="1、容器标签："><a href="#1、容器标签：" class="headerlink" title="1、容器标签："></a>1、容器标签：</h4><p><code>&lt;div&gt;</code>块级标签：独占一行、没有行高（没有内容时）、没有边框、position：属性会重写，原点定位：左上角<code>&lt;/div&gt;</code></p>
 <p>移动一个DIV：top left right bottom这四个属性基于position，<br>如left：100px，不表示向左移动100px ，而是移动后的位置距离左边100px</p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564489002607.png" alt="1564489002607"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlbmwco5j30fe05xdgq.jpg" alt></p>
 <p><code>&lt;span&gt;&lt;/span&gt;</code>:将一行分为多个小节/段，方向是横向分段，段的长度默认为0，长度可以有内容来定义，也可以由width定义（4.01版本以前才适用）</p>
 <p><code>&lt;p&gt;&lt;/p&gt;</code>：段落标签，与span类似，但是是纵向的分段。</p>
 <p><code>&lt;table&gt;&lt;/table&gt;</code>：表格标签  <code>&lt;tr&gt;</code>表示表格的一行   <code>&lt;td&gt;</code>表示表格的一列                            <code>&lt;th&gt;</code>表示表头</p>
@@ -68,8 +67,8 @@ Transitional //EN” “**html4/xxx.dtd”><br>XHTML 1.0: <!doctype HTML Public 
 <p><code>&lt;br/&gt;</code>：换行标签</p>
 <p><code>&lt;hr/&gt;</code>：生成水平线</p>
 <p><code>&lt;form&gt;&lt;/form&gt;</code>：表单</p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564497635178.png" alt="1564497635178"></p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564497644352.png" alt="1564497644352"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlctdhjvj30au01y3yq.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlda0gqyj306b04274u.jpg" alt></p>
 <p><code>&lt;button&gt;按钮&lt;/button&gt;</code>：</p>
 <p><code>&lt;textarea maxlength=&#39;1&#39;&gt;多行文本框&lt;/textarea&gt;</code></p>
 <p><code>&lt;select&gt;</code></p>
@@ -77,7 +76,7 @@ Transitional //EN” “**html4/xxx.dtd”><br>XHTML 1.0: <!doctype HTML Public 
 <p><code>&lt;option&gt;two&lt;/option&gt;</code></p>
 <p><code>&lt;/select&gt;</code>:下拉菜单</p>
 <p><code>&lt;lable&gt;标注标签&lt;/lable&gt;</code></p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564497825314.png" alt="1564497825314"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zleoy5rcj306a01iglk.jpg" alt></p>
 <h4 id="2、-格式标签："><a href="#2、-格式标签：" class="headerlink" title="2、 格式标签："></a>2、 格式标签：</h4><p><code>&lt;b&gt;加粗&lt;/b&gt;</code> </p>
 <p><code>&lt;i&gt;斜体&lt;/i&gt;</code></p>
 <p><code>&lt;bdo dir=&quot;ltr&quot;&gt;abc&lt;/bdo&gt;</code>  结果为cba<br><code>&lt;blockquote&gt;</code>块引用<code>&lt;/blockquote&gt;</code></p>
@@ -108,13 +107,13 @@ Transitional //EN” “**html4/xxx.dtd”><br>XHTML 1.0: <!doctype HTML Public 
 <h4 id="7、其他标签："><a href="#7、其他标签：" class="headerlink" title="7、其他标签："></a>7、其他标签：</h4><p><code>&lt;ul&gt;无序列表&lt;/ul&gt;</code></p>
 <p><code>&lt;ol&gt;有序列表&lt;/ol&gt;</code></p>
 <p><code>&lt;li&gt;列表项&lt;/li&gt;</code></p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498665758.png" alt="1564498665758"></p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498685330.png" alt="1564498685330"></p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498706872.png" alt="1564498706872"></p>
-<p><img src="/.com//C:%5CUsers%5Czhairui%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564498714439.png" alt="1564498714439"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlfifix2j304c03mwem.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlfwbus5j305a05aq3i.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlg9q057j308u02fmxk.jpg" alt></p>
+<p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlgkaeykj307f00st8q.jpg" alt></p>
 <p>Js的基本应用<br>Document：当前的文本对象，里面有当前访问页面的所有标签</p>
 <p>出现密码没有加密的情况：<br>输入时开始加密<br>加密方法：md5（）<br>Md5（md5（））<br>Md5（md5（“密码”）+“自定义密钥”）</p>
-</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zhairui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/09/HTML基础/">http://yoursite.com/2019/08/09/HTML基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Rakitic-Fans</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTML/">HTML    </a></div><div class="post_share"><div class="social-share" data-image="/img/avator.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" data-src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" data-src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="/2019/08/09/Base64注入/"><img class="prev_cover lozad" data-src="/img/hack2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>BASE64注入</span></div></a></div><div class="next-post pull-right"><a href="/2019/08/09/HTML标签/"><img class="next_cover lozad" data-src="/img/hack3.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>HTML标签</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span>相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/08/09/HTML标签/" title="HTML标签"><img class="relatedPosts_cover lozad" data-src="/img/hack3.jpg"><div class="relatedPosts_title">HTML标签</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span>评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTk1MC8yMjQ2MQ=="><script>(function(d, s) {
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zhairui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/09/HTML基础/">http://yoursite.com/2019/08/09/HTML基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Rakitic-Fans</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTML/">HTML    </a></div><div class="post_share"><div class="social-share" data-image="/img/avator.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" data-src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" data-src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="/2019/08/09/Base64注入/"><img class="prev_cover lozad" data-src="/img/hack1.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>BASE64注入</span></div></a></div><div class="next-post pull-right"><a href="/2019/08/09/HTML标签/"><img class="next_cover lozad" data-src="/img/hack4.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>HTML标签</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span>相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/08/09/HTML标签/" title="HTML标签"><img class="relatedPosts_cover lozad" data-src="/img/hack6.jpg"><div class="relatedPosts_title">HTML标签</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span>评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTk1MC8yMjQ2MQ=="><script>(function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
     if (typeof LivereTower === 'function') { return; }
     j = d.createElement(s);
