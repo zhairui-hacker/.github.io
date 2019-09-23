@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>策略路由 | Rakitic-Fans</title><meta name="description" content="策略路由"><meta name="keywords" content="网络设计及扩展,网络协议"><meta name="author" content="Zhairui"><meta name="copyright" content="Zhairui"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="http://yoursite.com/2019/09/23/策略路由/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="策略路由"><meta name="twitter:description" content="策略路由"><meta name="twitter:image" content="http://yoursite.com/img/avator.jpg"><meta property="og:type" content="article"><meta property="og:title" content="策略路由"><meta property="og:url" content="http://yoursite.com/2019/09/23/策略路由/"><meta property="og:site_name" content="Rakitic-Fans"><meta property="og:description" content="策略路由"><meta property="og:image" content="http://yoursite.com/img/avator.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="prev" title="防火墙简单配置" href="http://yoursite.com/2019/09/23/防火墙简单配置/"><link rel="next" title="STP生成树协议" href="http://yoursite.com/2019/09/23/STP生成树及PVST/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://zhairui-hacker.github.io","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'true',
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: '添加书签',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天'
+
+  
+}</script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#策略路由："><span class="toc-number">1.</span> <span class="toc-text">策略路由：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实验一、基于源IP地址的策略路由配置"><span class="toc-number">1.0.1.</span> <span class="toc-text">实验一、基于源IP地址的策略路由配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验二、基于数据包长度的策略路由配置"><span class="toc-number">1.0.2.</span> <span class="toc-text">实验二、基于数据包长度的策略路由配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实验三、基于应用的策略路由配置"><span class="toc-number">1.0.3.</span> <span class="toc-text">实验三、基于应用的策略路由配置</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/post.png)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">Rakitic-Fans</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" data-src="/img/avator.jpg" onerror="onerror=null;src='/img/friend_404.gif'"><div class="mobile_author-info__description"></div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-coffee"></i><span> 留言板</span></a><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a><a class="site-page" href="/gallery/"><i class="fa-fw fa fa-image"></i><span> 相册</span></a><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title"><div class="posttitle">策略路由</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-09-23<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-09-17</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/系统安全/">系统安全</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="策略路由："><a href="#策略路由：" class="headerlink" title="策略路由："></a>策略路由：</h1><p>策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表来定义。</p>
+<h3 id="实验一、基于源IP地址的策略路由配置"><a href="#实验一、基于源IP地址的策略路由配置" class="headerlink" title="实验一、基于源IP地址的策略路由配置"></a>实验一、基于源IP地址的策略路由配置</h3><p><strong>实验目的：</strong></p>
+<p>1、用route-map定义路由策略</p>
+<p>2、在接口下应用路由策略</p>
+<p>3、基于源IP地址的策略路由的配置和调试</p>
+<p><strong>实验拓扑：</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g72cr35esmj30m609wdg9.jpg" alt></p>
+<p><strong>实验步骤：</strong></p>
+<p>在路由器R1的f0/0接口应用IP策略路由CCNA，使得从主机PC2来的数据设置一跳地址为：172.16.12.2；从主机PC3来的数据设置下一跳地址为：172.16.21.2，所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
+<p><code>配置ACL</code></p>
+<p>R1(config)#access-list 1 permit 172.16.1.2</p>
+<p>R1(config)#access-list 2 permit 172.16.1.3</p>
+<p><code>配置路由映射表</code></p>
+<p>R1(config)#route-map CCNA permit 10</p>
+<p>R1(config-route-map)#match ip address 1</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
+<p>R1(config-route-map)#exit</p>
+<p>R1(config)#route-map CCNA permit 20</p>
+<p>R1(config-route-map)#match ip address 2</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
+<p><code>应用策略路由</code></p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#ip policy route-map CCNA</p>
+<p><strong>实验调试：</strong></p>
+<p>1、查看路由路径</p>
+<p>​    PC2#traceroute 172.16.2.2</p>
+<p>​    PC3#traceroute 172.16.2.2</p>
+<p>2、在R1上显示调试信息</p>
+<p>​    R1#debug ip policy</p>
+<p>​    PC2：ping 172.16.2.2  </p>
+<p>​    PC6:ping 172.16.2.2</p>
+<p>3、显示在哪些接口上应用了策略路由</p>
+<p>​    R1#sh ip policy</p>
+<p>4、显示定义的所有路由策略及路由策略匹配的情况</p>
+<hr>
+<h3 id="实验二、基于数据包长度的策略路由配置"><a href="#实验二、基于数据包长度的策略路由配置" class="headerlink" title="实验二、基于数据包长度的策略路由配置"></a>实验二、基于数据包长度的策略路由配置</h3><p><strong>实验目的：</strong></p>
+<p>1、用route-map定义路由策略</p>
+<p>2、在接口下应用路由策略</p>
+<p>3、基于数据包长度的策略路由的配置和调试</p>
+<p><strong>实验拓扑：</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g72cv2jjtyj30m609wdg9.jpg" alt></p>
+<p><strong>实验步骤：</strong></p>
+<p>在R1的f0/0接口应用IP策略路由CCNP，使得对大小为“64-100”字节的数据包设置出接口为s1/0;数据包大小“101-100”字节的数据包设置出接口为“f0/1”,所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p>
+<p><code>配置路由映射表</code></p>
+<p>R1(config)#route-map CCNP permit 10</p>
+<p>R1(config-route-map)#match length 64 100</p>
+<p>R1(config-route-map)#set interface s1/0</p>
+<p>R1(config)#route-map CCNP permit 20</p>
+<p>R1(config-route-map)#match length 101 1000</p>
+<p>R1(config-route-map)#set interface f0/1</p>
+<p><code>应用策略路由</code></p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#ip policy route-map CCNP</p>
+<p>R1(config-if)#exit</p>
+<p>R1(config)#ip local policy route-map CCNP</p>
+<p><strong>实验调试：</strong></p>
+<p>1.在主机上执行扩展ping命令，在R1上显示调试信息。</p>
+<p>​    PC2：ping 172.16.2.2 repeat 1 size 90</p>
+<p>​    PC2：ping 172.16.2.2 repeat 1 size 300</p>
+<p>​    PC2：ping 172.16.2.2 repeat 1 size 1200</p>
+<p>2、显示在哪些接口上应用了策略路由</p>
+<p>​    R1#sh ip policy</p>
+<p>3、显示定义的所有路由策略及路由策略匹配的情况</p>
+<p>​    R1#sh route-map CCNP</p>
+<hr>
+<h3 id="实验三、基于应用的策略路由配置"><a href="#实验三、基于应用的策略路由配置" class="headerlink" title="实验三、基于应用的策略路由配置"></a>实验三、基于应用的策略路由配置</h3><p><strong>实验目的：</strong></p>
+<p>1、用route-map定义路由策略</p>
+<p>2、在接口下应用路由策略</p>
+<p>3、基于数据包长度的策略路由的配置和调试</p>
+<p><strong>实验拓扑：</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g72cyv5zc6j30m609wdg9.jpg" alt></p>
+<p><strong>实验步骤：</strong></p>
+<p>在R1的f0/0接口应用IP策略路由CCIE，使得对HTTP数据包设置一跳地址为：172.16.12.2，并且设置IP数据包优先级为”flash”,为telnet数据包设置下一跳地址为：172.16.21.2，并且设置IP数据包优先级为：critical，所有其他的数据包正常转发，整个路由协议运行EIGRP。</p>
+<p><code>配置R2的http与telnet访问</code></p>
+<p>R2(config)#ip http server</p>
+<p>R2(config)#line vty 0 4</p>
+<p>R2(config-line)#no login</p>
+<p>R2(config-line)#privilege level 15</p>
+<p><code>配置扩展ACL</code></p>
+<p>R1(config)#ip access-list extended HTTP</p>
+<p>R1(config-ext-nacl)#permit tcp any any eq 80</p>
+<p>R1(config-ext-nacl)#exit</p>
+<p>R1(config)#ip access-list extended TELNET</p>
+<p>R1(config-ext-nacl)#permit tcp any any eq 23</p>
+<p><code>配置路由映射表</code></p>
+<p>R1(config)#route-map CCIE permit 10</p>
+<p>R1(config-route-map)#match ip address HTTP</p>
+<p>R1(config-route-map)#set ip precedence flash</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.12.2</p>
+<p>R1(config)#route-map CCIE permit 20</p>
+<p>R1(config-route-map)#match ip address TELNET</p>
+<p>R1(config-route-map)#set ip precedence critical</p>
+<p>R1(config-route-map)#set ip next-hop 172.16.21.2</p>
+<p><code>应用路由映射表</code></p>
+<p>R1(config)#int f0/0</p>
+<p>R1(config-if)#ip policy route-map CCIE</p>
+<p>R1(config)#ip local policy route-map CCIE</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zhairui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/09/23/策略路由/">http://yoursite.com/2019/09/23/策略路由/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Rakitic-Fans</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/网络设计及扩展/">网络设计及扩展    </a><a class="post-meta__tags" href="/tags/网络协议/">网络协议    </a></div><div class="post_share"><div class="social-share" data-image="/img/avator.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" data-src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" data-src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="/2019/09/23/防火墙简单配置/"><img class="prev_cover lozad" data-src="/img/hack1.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>防火墙简单配置</span></div></a></div><div class="next-post pull-right"><a href="/2019/09/23/STP生成树及PVST/"><img class="next_cover lozad" data-src="/img/hack7.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>STP生成树协议</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span>相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/09/23/ACL/" title="ACL-访问控制列表"><img class="relatedPosts_cover lozad" data-src="/img/hack8.jpg"><div class="relatedPosts_title">ACL-访问控制列表</div></a></div><div class="relatedPosts_item"><a href="/2019/09/23/HSRP/" title="HSRP热备份路由协议"><img class="relatedPosts_cover lozad" data-src="/img/hack2.jpg"><div class="relatedPosts_title">HSRP热备份路由协议</div></a></div><div class="relatedPosts_item"><a href="/2019/09/23/PPP/" title="PPP协议"><img class="relatedPosts_cover lozad" data-src="/img/hack3.jpg"><div class="relatedPosts_title">PPP协议</div></a></div><div class="relatedPosts_item"><a href="/2019/09/23/STP生成树及PVST/" title="STP生成树协议"><img class="relatedPosts_cover lozad" data-src="/img/hack5.jpg"><div class="relatedPosts_title">STP生成树协议</div></a></div><div class="relatedPosts_item"><a href="/2019/09/23/路由重分布/" title="路由重分布"><img class="relatedPosts_cover lozad" data-src="/img/hack3.jpg"><div class="relatedPosts_title">路由重分布</div></a></div><div class="relatedPosts_item"><a href="/2019/09/23/链路聚合/" title="链路聚合"><img class="relatedPosts_cover lozad" data-src="/img/hack7.jpg"><div class="relatedPosts_title">链路聚合</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span>评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NTk1MC8yMjQ2MQ=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 By Zhairui</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">欢迎来到我的博客！喜欢的话点个收藏吧！</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><i class="fa fa-book" id="readmode" title="阅读模式"> </i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换">繁</a><i class="fa fa-moon-o nightshift" id="nightshift" title="夜间模式"></i></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zindex="-1" data-click="false"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script src="/js/tw_cn.js"></script><script>translateInitilization()
+
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script></body></html>

